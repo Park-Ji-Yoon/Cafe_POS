@@ -26,7 +26,7 @@ public class MasterLogin {
 			
             while (result = rset.next()) {
                 if(rset.getString("S_ID").equals(Main.FillIn.getS_id_field().getText()) && rset.getString("S_PW").equals(Main.FillIn.getS_pw_field().getText())){
-                	JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 잘못입력되었습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                	JOptionPane.showMessageDialog(null, "로그인에 성공하였습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
 
     				Main.FillIn.getId_field().setText("");
     				Main.FillIn.getPw_field().setText("");	
