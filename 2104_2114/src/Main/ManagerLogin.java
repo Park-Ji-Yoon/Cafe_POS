@@ -26,8 +26,10 @@ public class ManagerLogin {
 			
             while (result = rset.next()) {
                 if(rset.getString("G_ID").equals(Main.FillIn.getG_id_field().getText()) && rset.getString("G_PW").equals(Main.FillIn.getG_pw_field().getText())){
-                	JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 잘못입력되었습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-                	
+                	JOptionPane.showMessageDialog(null, "로그인에 성공하였습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+
+    				Main.FillIn.getId_field().setText("");
+    				Main.FillIn.getPw_field().setText("");	
     				Main.FillIn.getG_id_field().setText("");
     				Main.FillIn.getG_pw_field().setText("");	
     				Main.FillIn.getS_id_field().setText("");
@@ -47,7 +49,7 @@ public class ManagerLogin {
     				Main.Loginarea.getS_login_button().setVisible(false);
     				
     				Main.MainFrame.getLogin_panel().setVisible(false);
-    				Main.MainFrame.getMaster_panel().setVisible(true);
+    				Main.MainFrame.getManager_panel().setVisible(true);
     				
 					break;
                 }
