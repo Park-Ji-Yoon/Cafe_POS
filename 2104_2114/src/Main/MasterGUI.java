@@ -3,6 +3,11 @@ package Main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -27,6 +32,9 @@ class MasterPanel extends JPanel {
 	static Object[] store_list = {busan_store, daegu_store, ulsan_store};
 
 	MasterPanel() {
+		SGreetLabel sgreet_label = new SGreetLabel();
+		add(sgreet_label);
+		
 		MasterLabel master_label = new MasterLabel();
 		add(master_label);
 
@@ -79,7 +87,50 @@ class MasterPanel extends JPanel {
 		return ulsan_store;
 	}
 }
-
+class SGreetLabel extends JLabel{
+	SGreetLabel() {
+		setBounds(1050, 0, 800, 120);
+		setVisible(true);
+		setText(getSGreet());
+		setForeground(new Color(112, 151, 168));
+		setFont(new Font("서울남산 장체 B", Font.BOLD, 30));
+		setHorizontalAlignment(JLabel.CENTER);
+	}
+	public String getSGreet(){
+		String greet = "";
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT S_NAME FROM MASTER_TABLE";
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	greet = rset.getString("S_NAME") + " 관리자님! 안녕하세요:-)";
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return greet;
+	}
+}
 class MasterLabel extends JLabel {
 	MasterLabel() {
 		setBounds(781, 0, 300, 120);
@@ -304,7 +355,7 @@ class ExitMasterBtn extends JButton {
 		setBounds(1272, 755, 498, 160);
 		setForeground(new Color(255, 255, 255));
 		setBackground(new Color(112, 151, 168));
-		setText("취소");
+		setText("로그아웃");
 		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
 		setVisible(true);
 		setHorizontalAlignment(SwingConstants.CENTER);
