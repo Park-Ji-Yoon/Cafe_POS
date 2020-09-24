@@ -116,7 +116,7 @@ class MainFrame extends JFrame {
 
 class MainPanel extends JPanel {
 	// MainPanel에 올릴 컴포넌트들의 생성자 호출
-	ImageIcon background = new ImageIcon("images/background_4.png"); // 배경사진은 class못만들어서 그냥 넣음
+	ImageIcon background = new ImageIcon("images/background_7.png"); // 배경사진은 class못만들어서 그냥 넣음
 	OrderBtn order_btn = new OrderBtn(); // '주문하기' 버튼 생성자 호출
 	LoginBtn login_btn = new LoginBtn(); // '로그인' 버튼 생성자 호출
 
