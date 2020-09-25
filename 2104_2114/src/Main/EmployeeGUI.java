@@ -16,7 +16,6 @@ import javax.swing.event.ListSelectionListener;
 
 public class EmployeeGUI {
 	public static void main(String args[]) {
-		EmployeePanel employee_panel = new EmployeePanel();
 	}
 }
 

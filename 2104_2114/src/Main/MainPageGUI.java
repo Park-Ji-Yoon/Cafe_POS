@@ -115,166 +115,64 @@ class MainFrame extends JFrame {
 }
 
 class MainPanel extends JPanel {
+	static Icon icon = new ImageIcon("images/back_1.png");
+	
 	// MainPanel에 올릴 컴포넌트들의 생성자 호출
-	ImageIcon background = new ImageIcon("images/background_7.png"); // 배경사진은 class못만들어서 그냥 넣음
-	OrderBtn order_btn = new OrderBtn(); // '주문하기' 버튼 생성자 호출
-	LoginBtn login_btn = new LoginBtn(); // '로그인' 버튼 생성자 호출
+		ImageIcon background = new ImageIcon("images/background_8.png"); // 배경사진은 class못만들어서 그냥 넣음
+		static JButton order_btn = new JButton(icon); // '주문하기' 버튼 생성자 호출
+		static JButton login_btn = new JButton(icon); // '로그인' 버튼 생성자 호출
 
-	MainPanel() {
-		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
-		setLayout(null);
-		add(order_btn); // MainPanel에 order_btn 추가
-		add(login_btn); // MainPanel에 login_btn 추가
-		setVisible(true);
-	}
-	@Override
-	protected void paintComponent(Graphics g) {
-		g.drawImage(background.getImage(), 0, 0, null);
-		setOpaque(false);
-		super.paintComponent(g);
-	}
-}
-
-class OrderBtn extends JButton {
-	OrderBtn() {
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("주문하기");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 45));
-		setBounds(681, 453, 500, 150);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		// 클릭 시 동작하는 ActionListener
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMain_panel().setVisible(false);
-				Main.MainFrame.getOrder_panel().setVisible(true);
-//				MainPageGUI_t1.getMain_frame().add(order_panel);
-			}
-		});
-	}
-
-	public OrderBtn(String text) {
-		super(text);
-		decorate();
-	}
-
-	public OrderBtn(Action action) {
-
-		super(action);
-		decorate();
-	}
-
-	public OrderBtn(Icon icon) {
-		super(icon);
-		decorate();
-	}
-
-	public OrderBtn(String text, Icon icon) {
-		super(text, icon);
-		decorate();
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
+		MainPanel() {
+			setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
+			setLayout(null);
+			
+			order_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
+			order_btn.setBounds(1250, 650, 550, 120);
+			order_btn.setVisible(true);
+			order_btn.setBorderPainted(false);
+			order_btn.setContentAreaFilled(false);
+			order_btn.setFocusPainted(false);
+			order_btn.setOpaque(false);
+//			order_btn.decorate(); // 버튼 테두리 둥글게
+			order_btn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Main.MainFrame.getMain_panel().setVisible(false);
+						Main.MainFrame.getOrder_panel().setVisible(true);
+				}
+			});
+			
+			login_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
+			login_btn.setBounds(1250, 800, 570, 120);
+			login_btn.setVisible(true);
+			login_btn.setBorderPainted(false);
+			login_btn.setContentAreaFilled(false);
+			login_btn.setFocusPainted(false);
+			login_btn.setOpaque(false);
+//			order_btn.decorate(); // 버튼 테두리 둥글게
+			login_btn.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Main.MainFrame.getMain_panel().setVisible(false);
+						Main.MainFrame.getLogin_panel().setVisible(true);
+				}
+			});
+			
+			add(order_btn); // MainPanel에 order_btn 추가
+			add(login_btn); // MainPanel에 login_btn 추가
+			setVisible(true);
 		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-
-class LoginBtn extends JButton {
-	LoginBtn() {
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("로그인");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 30));
-		setBounds(1632, 28, 200, 80);
-
-		decorate(); // 버튼 테두리 둥글게
 		
-		// 클릭 시 동작하는 ActionListener
-		addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMain_panel().setVisible(false);
-				Main.MainFrame.getLogin_panel().setVisible(true);
-			}
-		});
-	}
-
-	public LoginBtn(String text) {
-		super(text);
-		decorate();
-	}
-
-	public LoginBtn(Action action) {
-		super(action);
-		decorate();
-	}
-
-	public LoginBtn(Icon icon) {
-		super(icon);
-		decorate();
-	}
-
-	public LoginBtn(String text, Icon icon) {
-		super(text, icon);
-		decorate();
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
+		@Override
+		protected void paintComponent(Graphics g) {
+			g.drawImage(background.getImage(), 0, 0, null);
+			setOpaque(false);
+			super.paintComponent(g);
 		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
+		public static JButton getOrder_btn() {
+			return order_btn;
+		}
+		public static JButton getLogin_btn() {
+			return login_btn;
+		}
 }
 
 //둥근 버튼 만드는 RoundedButton 클래스
