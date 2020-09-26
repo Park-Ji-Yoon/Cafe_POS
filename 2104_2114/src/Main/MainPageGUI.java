@@ -51,6 +51,7 @@ class MainFrame extends JFrame {
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
+//		sales_panel.setVisible(false);
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
