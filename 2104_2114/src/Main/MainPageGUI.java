@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Main.OrderGUI;
-
 import javax.swing.*;
 
 public class MainPageGUI extends JFrame {
@@ -46,8 +45,8 @@ class MainFrame extends JFrame {
 		login_panel = new LoginPanel();
 		login_panel.setVisible(false);
 		
-		manager_panel = new ManagerPanel();
-		manager_panel.setVisible(false);
+		master_panel = new MasterPanel();
+		master_panel.setVisible(false);
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
@@ -55,9 +54,6 @@ class MainFrame extends JFrame {
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
-		
-		master_panel = new MasterPanel();
-		master_panel.setVisible(false);
 		
 		manager_join_panel = new ManagerJoinPanel();
 		manager_join_panel.setVisible(false);
@@ -78,15 +74,12 @@ class MainFrame extends JFrame {
 		add(order_panel);
 		add(payment_panel);
 		add(login_panel);
-		add(manager_panel);
-		add(sales_panel);
-		add(employee_panel);
 		add(master_panel);
 		add(manager_join_panel);
 		add(franchise_panel);
 
 		// 프레임 위 앱 아이콘
-		ImageIcon icon = new ImageIcon("images/logo_1.png");
+		ImageIcon icon = new ImageIcon("images/logo_2.png");
 		setIconImage(icon.getImage());
 	}
 
@@ -126,63 +119,61 @@ class MainPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_1.png");
 	
 	// MainPanel에 올릴 컴포넌트들의 생성자 호출
-		ImageIcon background = new ImageIcon("images/background_8.png"); // 배경사진은 class못만들어서 그냥 넣음
-		static JButton order_btn = new JButton(icon); // '주문하기' 버튼 생성자 호출
-		static JButton login_btn = new JButton(icon); // '로그인' 버튼 생성자 호출
+	ImageIcon background = new ImageIcon("images/background_8.png"); // 배경사진은 class못만들어서 그냥 넣음
+	static JButton order_btn = new JButton(icon); // '주문하기' 버튼 생성자 호출
+	static JButton login_btn = new JButton(icon); // '로그인' 버튼 생성자 호출
 
-		MainPanel() {
-			setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
-			setLayout(null);
-			
-			order_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
-			order_btn.setBounds(1250, 650, 550, 120);
-			order_btn.setVisible(true);
-			order_btn.setBorderPainted(false);
-			order_btn.setContentAreaFilled(false);
-			order_btn.setFocusPainted(false);
-			order_btn.setOpaque(false);
-//			order_btn.decorate(); // 버튼 테두리 둥글게
-			order_btn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Main.MainFrame.getMain_panel().setVisible(false);
-						Main.MainFrame.getOrder_panel().setVisible(true);
-				}
-			});
-			
-			login_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
-			login_btn.setBounds(1250, 800, 570, 120);
-			login_btn.setVisible(true);
-			login_btn.setBorderPainted(false);
-			login_btn.setContentAreaFilled(false);
-			login_btn.setFocusPainted(false);
-			login_btn.setOpaque(false);
-//			order_btn.decorate(); // 버튼 테두리 둥글게
-			login_btn.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Main.MainFrame.getMain_panel().setVisible(false);
-						Main.MainFrame.getLogin_panel().setVisible(true);
-				}
-			});
-			
-			add(order_btn); // MainPanel에 order_btn 추가
-			add(login_btn); // MainPanel에 login_btn 추가
-			setVisible(true);
-		}
+	MainPanel() {
+		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
+		setLayout(null);
 		
-		@Override
-		protected void paintComponent(Graphics g) {
-			g.drawImage(background.getImage(), 0, 0, null);
-			setOpaque(false);
-			super.paintComponent(g);
-		}
-		public static JButton getOrder_btn() {
-			return order_btn;
-		}
-		public static JButton getLogin_btn() {
-			return login_btn;
-		}
+		order_btn.setBounds(1250, 650, 550, 120);
+		order_btn.setVisible(true);
+		order_btn.setBorderPainted(false);
+		order_btn.setContentAreaFilled(false);
+		order_btn.setFocusPainted(false);
+		order_btn.setOpaque(false);
+//		order_btn.decorate(); // 버튼 테두리 둥글게
+		order_btn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Main.MainFrame.getMain_panel().setVisible(false);
+					Main.MainFrame.getOrder_panel().setVisible(true);
+			}
+		});
+		
+		login_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
+		login_btn.setBounds(1250, 800, 570, 120);
+		login_btn.setVisible(true);
+		login_btn.setBorderPainted(false);
+		login_btn.setContentAreaFilled(false);
+		login_btn.setFocusPainted(false);
+		login_btn.setOpaque(false);
+//		order_btn.decorate(); // 버튼 테두리 둥글게
+		login_btn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Main.MainFrame.getMain_panel().setVisible(false);
+					Main.MainFrame.getLogin_panel().setVisible(true);
+			}
+		});
+		
+		add(order_btn); // MainPanel에 order_btn 추가
+		add(login_btn); // MainPanel에 login_btn 추가
+		setVisible(true);
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
+	public static JButton getOrder_btn() {
+		return order_btn;
+	}
+	public static JButton getLogin_btn() {
+		return login_btn;
+	}
 }
-
 //둥근 버튼 만드는 RoundedButton 클래스
 class RoundedButton extends JButton {
 	public RoundedButton() {
