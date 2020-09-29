@@ -1940,3 +1940,4 @@ class OrderDetails extends JLabel{
 		setHorizontalAlignment(JLabel.LEFT);
 	}
 }
+// ³¡
