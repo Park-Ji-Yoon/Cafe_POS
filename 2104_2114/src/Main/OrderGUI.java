@@ -41,9 +41,14 @@ class OrderPanel extends JPanel {
 	static int strawberry_cake_count = 0;
 	static int chocolate_cake_count = 0;
 	
-	static int berry_macaron = 0;
-	static int yogurt_macaron = 0;
-	static int fruit_macaron = 0;
+	static int berry_macaron_count = 0;
+	static int yogurt_macaron_count = 0;
+	static int fruit_macaron_count = 0;
+	
+	static int all_count = OrderPanel.ice_coffee_count + OrderPanel.hot_coffee_count + OrderPanel.orange_smoothie_count + 
+			OrderPanel.kiwi_smoothie_count + OrderPanel.grape_smoothie_count + OrderPanel.strawberry_smoothie_count + 
+			OrderPanel.watermelon_smoothie_count + black_tea_count + green_tea_count + brown_sugar_bubble_count + taro_bubble_count + green_bubble_count + 
+			cheese_cake_count + strawberry_cake_count + chocolate_cake_count + berry_macaron_count + yogurt_macaron_count + fruit_macaron_count;
 	
 	// 커피
 	Icon ice_coffee = new ImageIcon("images/ice_coffee.png");
@@ -121,7 +126,32 @@ class OrderPanel extends JPanel {
 	ImageIcon background = new ImageIcon("images/background_15.png"); // 배경사진은 class못만들어서 그냥 넣음
 	
 	static OrderList order_list = new OrderList();
+	
+	static OrderDetails iceCoffee = new OrderDetails();
+	static OrderDetails hotCoffee = new OrderDetails();
+	static OrderDetails orangeSmoo = new OrderDetails();
+	static OrderDetails kiwiSmoo = new OrderDetails();
+	static OrderDetails grapeSmoo = new OrderDetails();
+	static OrderDetails strawberrySmoo = new OrderDetails();
+	static OrderDetails watermalonSmoo = new OrderDetails();
+	static OrderDetails blackTea = new OrderDetails();
+	static OrderDetails greenTea = new OrderDetails();
+	static OrderDetails brownBubble = new OrderDetails();
+	static OrderDetails taroBubble = new OrderDetails();
+	static OrderDetails greenBubble = new OrderDetails();
+	static OrderDetails cheeseCake = new OrderDetails();
+	static OrderDetails strayberryCake = new OrderDetails();
+	static OrderDetails chocolateCake = new OrderDetails();
+	static OrderDetails berryMacaron = new OrderDetails();
+	static OrderDetails yogurtMacaron = new OrderDetails();
+	static OrderDetails fruitMacaron = new OrderDetails();
+	
+	static OrderDetails space = new OrderDetails();
 
+	public static OrderDetails getIceCoffee() {
+		return iceCoffee;
+	}
+	
 	OrderPanel() {
 		add(order_list);
 		
@@ -189,22 +219,66 @@ class OrderPanel extends JPanel {
 		add_ice_coffee.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					ice_coffee_count++;
-					OrderList.getJumon_1().setText("Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "개   |  " + String.valueOf(ice_coffee_count*2500) + "원");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setLocation(0, 0);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(iceCoffee);
+				if (e.getClickCount() == 2) {
+					
+					 iceCoffee.setBounds(0, all_count*70, 500, 50);
+//					iceCoffee.setHorizontalAlignment(JLabel.CENTER);
+					iceCoffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					iceCoffee.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_ice_coffee = new JButton();
+					minus_ice_coffee.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_ice_coffee.setBounds(10, 0, 30, 30);
+
+					minus_ice_coffee.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_ice_coffee.setFocusPainted(false);
+					minus_ice_coffee.setOpaque(false);
+					minus_ice_coffee.setIcon(minus);
+					iceCoffee.add(minus_ice_coffee);
+
+					minus_ice_coffee.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							ice_coffee_count--;
+							iceCoffee.setText(" 뺌   Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "개   |  " + String.valueOf(ice_coffee_count * 2500) + "원");
+							if(ice_coffee_count==0) {
+								OrderPanel.iceCoffee.setVisible(false);
+							}
+						}
+					});
+					iceCoffee.add(minus_ice_coffee);
+					if (ice_coffee_count < 2) {
+						ice_coffee_count++;
+						iceCoffee.setText(" 뺌   Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "개   |  " + String.valueOf(ice_coffee_count * 2500) + "원");
+					} else {
+						ice_coffee_count++;
+						iceCoffee.setText(" 뺌   Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "개   |  " + String.valueOf(ice_coffee_count * 2500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -223,22 +297,66 @@ class OrderPanel extends JPanel {
 		add_hot_coffee.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					hot_coffee_count++;
-					OrderList.getJumon_2().setText("Hot-coffee  |  " + String.valueOf(hot_coffee_count) + "개   |  " + String.valueOf(hot_coffee_count*2500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(hotCoffee);
+				if (e.getClickCount() == 2) {
+					hotCoffee.setBounds(0, all_count*70, 500, 50);
+					hotCoffee.setHorizontalAlignment(JLabel.LEFT);
+					hotCoffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					hotCoffee.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_hot_coffee = new JButton();
+					minus_hot_coffee.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_hot_coffee.setBounds(10, 0, 30, 30);
+
+					minus_hot_coffee.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_hot_coffee.setFocusPainted(false);
+					minus_hot_coffee.setOpaque(false);
+					minus_hot_coffee.setIcon(minus);
+					hotCoffee.add(minus_hot_coffee);
+
+					minus_hot_coffee.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							hot_coffee_count--;
+							hotCoffee.setText(" 뺌   Hot-coffee  |  " + String.valueOf(hot_coffee_count) + "개   |  " + String.valueOf(hot_coffee_count * 2500) + "원");
+							if(hot_coffee_count==0) {
+								OrderPanel.hotCoffee.setVisible(false);
+							}
+						}
+					});
+					hotCoffee.add(minus_hot_coffee);
+					if (hot_coffee_count < 2) {
+						hot_coffee_count++;
+						hotCoffee.setText(" 뺌   Hot-coffee  |  " + String.valueOf(hot_coffee_count) + "개   |  " + String.valueOf(hot_coffee_count * 2500) + "원");
+					} else {
+						hot_coffee_count++;
+						hotCoffee.setText(" 뺌   Hot-coffee  |  " + String.valueOf(hot_coffee_count) + "개   |  " + String.valueOf(hot_coffee_count * 2500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 
@@ -287,22 +405,66 @@ class OrderPanel extends JPanel {
 		add_orange_smoo.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					orange_smoothie_count++;
-					OrderList.getJumon_3().setText("Orange-smoothie  |  " + String.valueOf(orange_smoothie_count) + "개   |  " + String.valueOf(orange_smoothie_count*3500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(orangeSmoo);
+				if (e.getClickCount() == 2) {
+					orangeSmoo.setBounds(0, all_count*70, 500, 50);
+					orangeSmoo.setHorizontalAlignment(JLabel.LEFT);
+					orangeSmoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					orangeSmoo.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_orange_smoo = new JButton();
+					minus_orange_smoo.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_orange_smoo.setBounds(10, 0, 30, 30);
+
+					minus_orange_smoo.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_orange_smoo.setFocusPainted(false);
+					minus_orange_smoo.setOpaque(false);
+					minus_orange_smoo.setIcon(minus);
+					hotCoffee.add(minus_orange_smoo);
+
+					minus_orange_smoo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							orange_smoothie_count--;
+							hotCoffee.setText(" 뺌   Orange-smoothie  |  " + String.valueOf(orange_smoothie_count) + "개   |  " + String.valueOf(orange_smoothie_count * 3500) + "원");
+							if(orange_smoothie_count==0) {
+								OrderPanel.orangeSmoo.setVisible(false);
+							}
+						}
+					});
+					orangeSmoo.add(minus_orange_smoo);
+					if (orange_smoothie_count < 2) {
+						orange_smoothie_count++;
+						orangeSmoo.setText(" 뺌   Orange-smoothie  |  " + String.valueOf(orange_smoothie_count) + "개   |  " + String.valueOf(orange_smoothie_count * 3500) + "원");
+					} else {
+						orange_smoothie_count++;
+						orangeSmoo.setText(" 뺌   Orange-smoothie  |  " + String.valueOf(orange_smoothie_count) + "개   |  " + String.valueOf(orange_smoothie_count * 3500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -324,22 +486,66 @@ class OrderPanel extends JPanel {
 		add_kiwi_smoo.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					kiwi_smoothie_count++;
-					OrderList.getJumon_4().setText("Kiwi-smoothie  |  " + String.valueOf(kiwi_smoothie_count) + "개   |  " + String.valueOf(kiwi_smoothie_count*3500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(kiwiSmoo);
+				if (e.getClickCount() == 2) {
+					kiwiSmoo.setBounds(0, all_count*70, 500, 50);
+					kiwiSmoo.setHorizontalAlignment(JLabel.LEFT);
+					kiwiSmoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					kiwiSmoo.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_kiwi_smoo = new JButton();
+					minus_kiwi_smoo.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_kiwi_smoo.setBounds(10, 0, 30, 30);
+
+					minus_kiwi_smoo.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_kiwi_smoo.setFocusPainted(false);
+					minus_kiwi_smoo.setOpaque(false);
+					minus_kiwi_smoo.setIcon(minus);
+					kiwiSmoo.add(minus_kiwi_smoo);
+
+					minus_kiwi_smoo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							kiwi_smoothie_count--;
+							kiwiSmoo.setText(" 뺌   Kiwi-smoothie  |  " + String.valueOf(kiwi_smoothie_count) + "개   |  " + String.valueOf(kiwi_smoothie_count * 3500) + "원");
+							if(kiwi_smoothie_count==0) {
+								OrderPanel.kiwiSmoo.setVisible(false);
+							}
+						}
+					});
+					kiwiSmoo.add(minus_kiwi_smoo);
+					if (kiwi_smoothie_count < 2) {
+						kiwi_smoothie_count++;
+						kiwiSmoo.setText(" 뺌   Kiwi-smoothie  |  " + String.valueOf(kiwi_smoothie_count) + "개   |  " + String.valueOf(kiwi_smoothie_count * 3500) + "원");
+					} else {
+						kiwi_smoothie_count++;
+						kiwiSmoo.setText(" 뺌   Kiwi-smoothie  |  " + String.valueOf(kiwi_smoothie_count) + "개   |  " + String.valueOf(kiwi_smoothie_count * 3500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -361,22 +567,66 @@ class OrderPanel extends JPanel {
 		add_grape_smoo.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					grape_smoothie_count++;
-					OrderList.getJumon_5().setText("Grape-smoothie  |  " + String.valueOf(grape_smoothie_count) + "개   |  " + String.valueOf(grape_smoothie_count*3500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(grapeSmoo);
+				if (e.getClickCount() == 2) {
+					grapeSmoo.setBounds(0, all_count*70, 500, 50);
+					grapeSmoo.setHorizontalAlignment(JLabel.LEFT);
+					grapeSmoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					grapeSmoo.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_grape_smoo = new JButton();
+					minus_grape_smoo.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_grape_smoo.setBounds(10, 0, 30, 30);
+
+					minus_grape_smoo.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_grape_smoo.setFocusPainted(false);
+					minus_grape_smoo.setOpaque(false);
+					minus_grape_smoo.setIcon(minus);
+					grapeSmoo.add(minus_grape_smoo);
+
+					minus_grape_smoo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							grape_smoothie_count--;
+							grapeSmoo.setText(" 뺌   Grape-smoothie  |  " + String.valueOf(grape_smoothie_count) + "개   |  " + String.valueOf(grape_smoothie_count * 3500) + "원");
+							if(grape_smoothie_count==0) {
+								OrderPanel.grapeSmoo.setVisible(false);
+							}
+						}
+					});
+					grapeSmoo.add(minus_grape_smoo);
+					if (grape_smoothie_count < 2) {
+						grape_smoothie_count++;
+						grapeSmoo.setText(" 뺌   Grape-smoothie  |  " + String.valueOf(grape_smoothie_count) + "개   |  " + String.valueOf(grape_smoothie_count * 3500) + "원");
+					} else {
+						grape_smoothie_count++;
+						grapeSmoo.setText(" 뺌   Grape-smoothie  |  " + String.valueOf(grape_smoothie_count) + "개   |  " + String.valueOf(grape_smoothie_count * 3500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -398,22 +648,66 @@ class OrderPanel extends JPanel {
 		add_strawberry_smoo.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					strawberry_smoothie_count++;
-					OrderList.getJumon_6().setText("Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count) + "개   |  " + String.valueOf(strawberry_smoothie_count*3500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(strawberrySmoo);
+				if (e.getClickCount() == 2) {
+					strawberrySmoo.setBounds(0, all_count*70, 500, 50);
+					strawberrySmoo.setHorizontalAlignment(JLabel.LEFT);
+					strawberrySmoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					strawberrySmoo.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_strawberry_smoo = new JButton();
+					minus_strawberry_smoo.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_strawberry_smoo.setBounds(10, 0, 30, 30);
+
+					minus_strawberry_smoo.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_strawberry_smoo.setFocusPainted(false);
+					minus_strawberry_smoo.setOpaque(false);
+					minus_strawberry_smoo.setIcon(minus);
+					strawberrySmoo.add(minus_strawberry_smoo);
+
+					minus_strawberry_smoo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							strawberry_smoothie_count--;
+							strawberrySmoo.setText(" 뺌   Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count) + "개   |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
+							if(strawberry_smoothie_count==0) {
+								OrderPanel.strawberrySmoo.setVisible(false);
+							}
+						}
+					});
+					strawberrySmoo.add(minus_strawberry_smoo);
+					if (strawberry_smoothie_count < 2) {
+						strawberry_smoothie_count++;
+						strawberrySmoo.setText(" 뺌   Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count) + "개   |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
+					} else {
+						strawberry_smoothie_count++;
+						strawberrySmoo.setText(" 뺌   Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count) + "개   |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -435,25 +729,69 @@ class OrderPanel extends JPanel {
 		add_watermelon_smoo.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					watermelon_smoothie_count++;
-					OrderList.getJumon_7().setText("Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count) + "개   |  " + String.valueOf(watermelon_smoothie_count*3500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(watermalonSmoo);
+				if (e.getClickCount() == 2) {
+					watermalonSmoo.setBounds(0, all_count*70, 500, 50);
+					watermalonSmoo.setHorizontalAlignment(JLabel.LEFT);
+					watermalonSmoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					watermalonSmoo.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_watermelon_smoo = new JButton();
+					minus_watermelon_smoo.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_watermelon_smoo.setBounds(10, 0, 30, 30);
+
+					minus_watermelon_smoo.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_watermelon_smoo.setFocusPainted(false);
+					minus_watermelon_smoo.setOpaque(false);
+					minus_watermelon_smoo.setIcon(minus);
+					watermalonSmoo.add(minus_watermelon_smoo);
+
+					minus_watermelon_smoo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							watermelon_smoothie_count--;
+							watermalonSmoo.setText(" 뺌  Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count) + "개   |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
+							if(watermelon_smoothie_count==0) {
+								OrderPanel.watermalonSmoo.setVisible(false);
+							}
+						}
+					});
+					watermalonSmoo.add(minus_watermelon_smoo);
+					if (watermelon_smoothie_count < 2) {
+						watermelon_smoothie_count++;
+						watermalonSmoo.setText(" 뺌  Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count) + "개   |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
+					} else {
+						watermelon_smoothie_count++;
+						watermalonSmoo.setText(" 뺌  Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count) + "개   |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
-
+		
 		// 차
 		tea_hong_label.setBounds(140, 476, 145, 145);
 		tea_hong_label.setVerticalTextPosition(JLabel.CENTER);
@@ -481,22 +819,66 @@ class OrderPanel extends JPanel {
 		add_hong_tea.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					black_tea_count++;
-					OrderList.getJumon_8().setText("Black-tea  |  " + String.valueOf(black_tea_count) + "개   |  " + String.valueOf(black_tea_count*3000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(blackTea);
+				if (e.getClickCount() == 2) {
+					blackTea.setBounds(0, all_count*70, 500, 50);
+					blackTea.setHorizontalAlignment(JLabel.LEFT);
+					blackTea.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					blackTea.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_black_tea = new JButton();
+					minus_black_tea.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_black_tea.setBounds(10, 0, 30, 30);
+
+					minus_black_tea.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_black_tea.setFocusPainted(false);
+					minus_black_tea.setOpaque(false);
+					minus_black_tea.setIcon(minus);
+					blackTea.add(minus_black_tea);
+
+					minus_black_tea.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							black_tea_count--;
+							blackTea.setText(" 뺌  Black-tea  |  " + String.valueOf(black_tea_count) + "개   |  " + String.valueOf(black_tea_count * 3000) + "원");
+							if(black_tea_count==0) {
+								OrderPanel.blackTea.setVisible(false);
+							}
+						}
+					});
+					blackTea.add(minus_black_tea);
+					if (black_tea_count < 2) {
+						black_tea_count++;
+						blackTea.setText(" 뺌  Black-tea  |  " + String.valueOf(black_tea_count) + "개   |  " + String.valueOf(black_tea_count * 3000) + "원");
+					} else {
+						black_tea_count++;
+						blackTea.setText(" 뺌  Black-tea  |  " + String.valueOf(black_tea_count) + "개   |  " + String.valueOf(black_tea_count * 3000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -515,22 +897,66 @@ class OrderPanel extends JPanel {
 		add_green_tea.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					green_tea_count++;
-					OrderList.getJumon_9().setText("Green-tea  |  " + String.valueOf(green_tea_count) + "개   |  " + String.valueOf(green_tea_count*3000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(greenTea);
+				if (e.getClickCount() == 2) {
+					greenTea.setBounds(0, all_count*70, 500, 50);
+					greenTea.setHorizontalAlignment(JLabel.LEFT);
+					greenTea.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					greenTea.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_green_tea = new JButton();
+					minus_green_tea.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_green_tea.setBounds(10, 0, 30, 30);
+
+					minus_green_tea.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_green_tea.setFocusPainted(false);
+					minus_green_tea.setOpaque(false);
+					minus_green_tea.setIcon(minus);
+					greenTea.add(minus_green_tea);
+
+					minus_green_tea.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							green_tea_count--;
+							greenTea.setText(" 뺌  Green-tea  |  " + String.valueOf(green_tea_count) + "개   |  " + String.valueOf(green_tea_count * 3000) + "원");
+							if(green_tea_count==0) {
+								OrderPanel.greenTea.setVisible(false);
+							}
+						}
+					});
+					greenTea.add(minus_green_tea);
+					if (green_tea_count < 2) {
+						green_tea_count++;
+						greenTea.setText(" 뺌  Green-tea  |  " + String.valueOf(green_tea_count) + "개   |  " + String.valueOf(green_tea_count * 3000) + "원");
+					} else {
+						green_tea_count++;
+						greenTea.setText(" 뺌  Green-tea  |  " + String.valueOf(green_tea_count) + "개   |  " + String.valueOf(green_tea_count * 3000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 
@@ -566,22 +992,66 @@ class OrderPanel extends JPanel {
 		add_black_bubble.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					brown_sugar_bubble_count++;
-					OrderList.getJumon_10().setText("Brownsugar-bubble-tea  |  " + String.valueOf(brown_sugar_bubble_count) + "개   |  " + String.valueOf(brown_sugar_bubble_count*4000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(brownBubble);
+				if (e.getClickCount() == 2) {
+					brownBubble.setBounds(0, all_count*70, 500, 50);
+					brownBubble.setHorizontalAlignment(JLabel.LEFT);
+					brownBubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					brownBubble.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_brown_bubble = new JButton();
+					minus_brown_bubble.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_brown_bubble.setBounds(10, 0, 30, 30);
+
+					minus_brown_bubble.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_brown_bubble.setFocusPainted(false);
+					minus_brown_bubble.setOpaque(false);
+					minus_brown_bubble.setIcon(minus);
+					brownBubble.add(minus_brown_bubble);
+
+					minus_brown_bubble.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							brown_sugar_bubble_count--;
+							brownBubble.setText(" 뺌 Brownsugar-bubble-tea  |  " + String.valueOf(brown_sugar_bubble_count) + "개   |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
+							if(brown_sugar_bubble_count==0) {
+								OrderPanel.brownBubble.setVisible(false);
+							}
+						}
+					});
+					brownBubble.add(minus_brown_bubble);
+					if (brown_sugar_bubble_count < 2) {
+						brown_sugar_bubble_count++;
+						brownBubble.setText(" 뺌 Brownsugar-bubble-tea  |  " + String.valueOf(brown_sugar_bubble_count) + "개   |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
+					} else {
+						brown_sugar_bubble_count++;
+						brownBubble.setText(" 뺌 Brownsugar-bubble-tea  |  " + String.valueOf(brown_sugar_bubble_count) + "개   |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -601,24 +1071,83 @@ class OrderPanel extends JPanel {
 		add_taro_bubble.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					taro_bubble_count++;
-					OrderList.getJumon_11().setText("Taro-bubble-tea  |  " + String.valueOf(taro_bubble_count) + "개   |  " + String.valueOf(taro_bubble_count*4000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(taroBubble);
+				if (e.getClickCount() == 2) {
+					taroBubble.setBounds(0, all_count*70, 500, 50);
+					taroBubble.setHorizontalAlignment(JLabel.LEFT);
+					taroBubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					taroBubble.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_taro_bubble = new JButton();
+					minus_taro_bubble.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_taro_bubble.setBounds(10, 0, 30, 30);
+
+					minus_taro_bubble.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_taro_bubble.setFocusPainted(false);
+					minus_taro_bubble.setOpaque(false);
+					minus_taro_bubble.setIcon(minus);
+					taroBubble.add(minus_taro_bubble);
+
+					minus_taro_bubble.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							taro_bubble_count--;
+							taroBubble.setText(" 뺌 Taro-bubble-tea  |  " + String.valueOf(taro_bubble_count) + "개   |  " + String.valueOf(taro_bubble_count * 4000) + "원");
+							if(taro_bubble_count==0) {
+								OrderPanel.taroBubble.setVisible(false);
+							}
+						}
+					});
+					taroBubble.add(minus_taro_bubble);
+					if (taro_bubble_count < 2) {
+						taro_bubble_count++;
+						taroBubble.setText(" 뺌 Taro-bubble-tea  |  " + String.valueOf(taro_bubble_count) + "개   |  " + String.valueOf(taro_bubble_count * 4000) + "원");
+					} else {
+						taro_bubble_count++;
+						taroBubble.setText(" 뺌 Taro-bubble-tea  |  " + String.valueOf(taro_bubble_count) + "개   |  " + String.valueOf(taro_bubble_count * 4000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
+		
+//		add_taro_bubble.setBounds(740, 525, 180, 40);
+//		add_taro_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
+//		add_taro_bubble.setBorderPainted(false);
+//		add_taro_bubble.setBackground(new Color(201, 255, 245));
+//		add_taro_bubble.setFocusPainted(false);
+//		add(add_taro_bubble);
+//		add_taro_bubble.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				bubble_brown_label.setVisible(false);
+//				bubble_taro_label.setVisible(true);
+//				bubble_green_label.setVisible(false);
+//			}
+//		});
+		
 		
 		add_green_bubble.setBounds(740, 575, 180, 40);
 		add_green_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
@@ -636,22 +1165,66 @@ class OrderPanel extends JPanel {
 		add_green_bubble.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					green_bubble_count++;
-					OrderList.getJumon_12().setText("Green-bubble-tea  |  " + String.valueOf(green_bubble_count) + "개   |  " + String.valueOf(green_bubble_count*4000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(greenBubble);
+				if (e.getClickCount() == 2) {
+					greenBubble.setBounds(0, all_count*70, 500, 50);
+					greenBubble.setHorizontalAlignment(JLabel.LEFT);
+					greenBubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					greenBubble.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_green_bubble = new JButton();
+					minus_green_bubble.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_green_bubble.setBounds(10, 0, 30, 30);
+
+					minus_green_bubble.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_green_bubble.setFocusPainted(false);
+					minus_green_bubble.setOpaque(false);
+					minus_green_bubble.setIcon(minus);
+					taroBubble.add(minus_green_bubble);
+
+					minus_green_bubble.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							green_bubble_count--;
+							greenBubble.setText(" 뺌 Green-bubble-tea  |  " + String.valueOf(green_bubble_count) + "개   |  " + String.valueOf(green_bubble_count * 4000) + "원");
+							if(green_bubble_count==0) {
+								OrderPanel.greenBubble.setVisible(false);
+							}
+						}
+					});
+					greenBubble.add(minus_green_bubble);
+					if (green_bubble_count < 2) {
+						green_bubble_count++;
+						greenBubble.setText(" 뺌 Green-bubble-tea  |  " + String.valueOf(green_bubble_count) + "개   |  " + String.valueOf(green_bubble_count * 4000) + "원");
+					} else {
+						green_bubble_count++;
+						greenBubble.setText(" 뺌 Green-bubble-tea  |  " + String.valueOf(green_bubble_count) + "개   |  " + String.valueOf(green_bubble_count * 4000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 
@@ -689,22 +1262,66 @@ class OrderPanel extends JPanel {
 		add_cake_cheese.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					cheese_cake_count++;
-					OrderList.getJumon_13().setText("Cheese-cake  |  " + String.valueOf(cheese_cake_count) + "개   |  " + String.valueOf(cheese_cake_count*5000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(cheeseCake);
+				if (e.getClickCount() == 2) {
+					cheeseCake.setBounds(0, all_count*70, 500, 50);
+					cheeseCake.setHorizontalAlignment(JLabel.LEFT);
+					cheeseCake.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					cheeseCake.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_cheese_cake = new JButton();
+					minus_cheese_cake.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_cheese_cake.setBounds(10, 0, 30, 30);
+
+					minus_cheese_cake.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_cheese_cake.setFocusPainted(false);
+					minus_cheese_cake.setOpaque(false);
+					minus_cheese_cake.setIcon(minus);
+					cheeseCake.add(minus_cheese_cake);
+
+					minus_cheese_cake.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							cheese_cake_count--;
+							cheeseCake.setText(" 뺌  Cheese-cake  |  " + String.valueOf(cheese_cake_count) + "개   |  " + String.valueOf(cheese_cake_count * 5000) + "원");
+							if(cheese_cake_count==0) {
+								OrderPanel.cheeseCake.setVisible(false);
+							}
+						}
+					});
+					cheeseCake.add(minus_cheese_cake);
+					if (cheese_cake_count < 2) {
+						cheese_cake_count++;
+						cheeseCake.setText(" 뺌  Cheese-cake  |  " + String.valueOf(cheese_cake_count) + "개   |  " + String.valueOf(cheese_cake_count * 5000) + "원");
+					} else {
+						cheese_cake_count++;
+						cheeseCake.setText(" 뺌  Cheese-cake  |  " + String.valueOf(cheese_cake_count) + "개   |  " + String.valueOf(cheese_cake_count * 5000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -724,22 +1341,66 @@ class OrderPanel extends JPanel {
 		add_cake_strawberry.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					strawberry_cake_count++;
-					OrderList.getJumon_14().setText("Strawberry-cake  |  " + String.valueOf(strawberry_cake_count) + "개   |  " + String.valueOf(strawberry_cake_count*5000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(strayberryCake);
+				if (e.getClickCount() == 2) {
+					strayberryCake.setBounds(0, all_count*70, 500, 50);
+					strayberryCake.setHorizontalAlignment(JLabel.LEFT);
+					strayberryCake.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					strayberryCake.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_strawberry_cake = new JButton();
+					minus_strawberry_cake.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_strawberry_cake.setBounds(10, 0, 30, 30);
+
+					minus_strawberry_cake.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_strawberry_cake.setFocusPainted(false);
+					minus_strawberry_cake.setOpaque(false);
+					minus_strawberry_cake.setIcon(minus);
+					strayberryCake.add(minus_strawberry_cake);
+
+					minus_strawberry_cake.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							strawberry_cake_count--;
+							strayberryCake.setText(" 뺌  Strawberry-cake  |  " + String.valueOf(strawberry_cake_count) + "개   |  " + String.valueOf(strawberry_cake_count * 5000) + "원");
+							if(cheese_cake_count==0) {
+								OrderPanel.strayberryCake.setVisible(false);
+							}
+						}
+					});
+					strayberryCake.add(minus_strawberry_cake);
+					if (strawberry_cake_count < 2) {
+						strawberry_cake_count++;
+						strayberryCake.setText(" 뺌  Strawberry-cake  |  " + String.valueOf(strawberry_cake_count) + "개   |  " + String.valueOf(strawberry_cake_count * 5000) + "원");
+					} else {
+						strawberry_cake_count++;
+						strayberryCake.setText(" 뺌  Strawberry-cake  |  " + String.valueOf(strawberry_cake_count) + "개   |  " + String.valueOf(strawberry_cake_count * 5000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -759,22 +1420,66 @@ class OrderPanel extends JPanel {
 		add_cake_chocolate.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					cheese_cake_count++;
-					OrderList.getJumon_15().setText("Chocolate-cake  |  " + String.valueOf(cheese_cake_count) + "개   |  " + String.valueOf(cheese_cake_count*5000) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(chocolateCake);
+				if (e.getClickCount() == 2) {
+					chocolateCake.setBounds(0, all_count*70, 500, 50);
+					chocolateCake.setHorizontalAlignment(JLabel.LEFT);
+					chocolateCake.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					chocolateCake.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_chocolate_cake = new JButton();
+					minus_chocolate_cake.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_chocolate_cake.setBounds(10, 0, 30, 30);
+
+					minus_chocolate_cake.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_chocolate_cake.setFocusPainted(false);
+					minus_chocolate_cake.setOpaque(false);
+					minus_chocolate_cake.setIcon(minus);
+					chocolateCake.add(minus_chocolate_cake);
+
+					minus_chocolate_cake.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							chocolate_cake_count--;
+							chocolateCake.setText(" 뺌 Chocolate-cake  |  " + String.valueOf(chocolate_cake_count) + "개   |  " + String.valueOf(chocolate_cake_count * 5000) + "원");
+							if(chocolate_cake_count==0) {
+								OrderPanel.chocolateCake.setVisible(false);
+							}
+						}
+					});
+					chocolateCake.add(minus_chocolate_cake);
+					if (chocolate_cake_count < 2) {
+						chocolate_cake_count++;
+						chocolateCake.setText(" 뺌 Chocolate-cake  |  " + String.valueOf(chocolate_cake_count) + "개   |  " + String.valueOf(chocolate_cake_count * 5000) + "원");
+					} else {
+						chocolate_cake_count++;
+						chocolateCake.setText(" 뺌 Chocolate-cake  |  " + String.valueOf(chocolate_cake_count) + "개   |  " + String.valueOf(chocolate_cake_count * 5000) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 
@@ -810,22 +1515,66 @@ class OrderPanel extends JPanel {
 		add_macaron_berry.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					berry_macaron++;
-					OrderList.getJumon_16().setText("Berry-macaron  |  " + String.valueOf(berry_macaron) + "개   |  " + String.valueOf(berry_macaron*2500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(berryMacaron);
+				if (e.getClickCount() == 2) {
+					berryMacaron.setBounds(0, all_count*70, 500, 50);
+					berryMacaron.setHorizontalAlignment(JLabel.LEFT);
+					berryMacaron.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					berryMacaron.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_berry_macaron = new JButton();
+					minus_berry_macaron.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_berry_macaron.setBounds(10, 0, 30, 30);
+
+					minus_berry_macaron.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_berry_macaron.setFocusPainted(false);
+					minus_berry_macaron.setOpaque(false);
+					minus_berry_macaron.setIcon(minus);
+					berryMacaron.add(minus_berry_macaron);
+
+					minus_berry_macaron.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							berry_macaron_count--;
+							berryMacaron.setText(" 뺌 Berry-macaron  |  " + String.valueOf(berry_macaron_count) + "개   |  " + String.valueOf(berry_macaron_count * 2500) + "원");
+							if(berry_macaron_count==0) {
+								OrderPanel.berryMacaron.setVisible(false);
+							}
+						}
+					});
+					berryMacaron.add(minus_berry_macaron);
+					if (berry_macaron_count < 2) {
+						berry_macaron_count++;
+						berryMacaron.setText(" 뺌 Berry-macaron  |  " + String.valueOf(berry_macaron_count) + "개   |  " + String.valueOf(berry_macaron_count * 2500) + "원");
+					} else {
+						berry_macaron_count++;
+						berryMacaron.setText(" 뺌 Berry-macaron  |  " + String.valueOf(berry_macaron_count) + "개   |  " + String.valueOf(berry_macaron_count * 200) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -845,22 +1594,66 @@ class OrderPanel extends JPanel {
 		add_macaron_yogurt.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					yogurt_macaron++;
-					OrderList.getJumon_17().setText("Yogurt-macaron  |  " + String.valueOf(yogurt_macaron) + "개   |  " + String.valueOf(yogurt_macaron*2500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(yogurtMacaron);
+				if (e.getClickCount() == 2) {
+					yogurtMacaron.setBounds(0, all_count*70, 500, 50);
+					yogurtMacaron.setHorizontalAlignment(JLabel.LEFT);
+					yogurtMacaron.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					yogurtMacaron.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_yogurt_macaron = new JButton();
+					minus_yogurt_macaron.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_yogurt_macaron.setBounds(10, 0, 30, 30);
+
+					minus_yogurt_macaron.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_yogurt_macaron.setFocusPainted(false);
+					minus_yogurt_macaron.setOpaque(false);
+					minus_yogurt_macaron.setIcon(minus);
+					yogurtMacaron.add(minus_yogurt_macaron);
+
+					minus_yogurt_macaron.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							yogurt_macaron_count--;
+							yogurtMacaron.setText(" 뺌 Yogurt-macaron  |  " + String.valueOf(yogurt_macaron_count) + "개   |  " + String.valueOf(yogurt_macaron_count * 2500) + "원");
+							if(yogurt_macaron_count==0) {
+								OrderPanel.yogurtMacaron.setVisible(false);
+							}
+						}
+					});
+					yogurtMacaron.add(minus_yogurt_macaron);
+					if (yogurt_macaron_count < 2) {
+						yogurt_macaron_count++;
+						yogurtMacaron.setText(" 뺌 Yogurt-macaron  |  " + String.valueOf(yogurt_macaron_count) + "개   |  " + String.valueOf(yogurt_macaron_count * 2500) + "원");
+					} else {
+						yogurt_macaron_count++;
+						yogurtMacaron.setText(" 뺌 Yogurt-macaron  |  " + String.valueOf(yogurt_macaron_count) + "개   |  " + String.valueOf(yogurt_macaron_count * 2500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 		
@@ -880,22 +1673,66 @@ class OrderPanel extends JPanel {
 		add_macaron_fruit.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount() == 2) {
-					fruit_macaron++;
-					OrderList.getJumon_18().setText("Fruit-macaron  |  " + String.valueOf(fruit_macaron) + "개   |  " + String.valueOf(fruit_macaron*2500) + "원\n");
+				if (OrderPanel.all_count == 0) {
+//					space.setText("========================");
+//					space.setBackground(Color.RED);
+//					space.setBounds(0, 0, 500, 50);
+					OrderPanel.getOrder_list().add(space);
+				}
+				OrderPanel.getOrder_list().add(fruitMacaron);
+				if (e.getClickCount() == 2) {
+					fruitMacaron.setBounds(0, all_count*70, 500, 50);
+					fruitMacaron.setHorizontalAlignment(JLabel.LEFT);
+					fruitMacaron.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
+					fruitMacaron.setVisible(true);
+					
+					ImageIcon minus = new ImageIcon("images/minus.png");
+					
+					JButton minus_fruit_macaron = new JButton();
+					minus_fruit_macaron.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
+					minus_fruit_macaron.setBounds(10, 0, 30, 30);
+
+					minus_fruit_macaron.setBorderPainted(false); // 테두리색
+//					minus_ice_coffee.setContentAreaFilled(false);
+					minus_fruit_macaron.setFocusPainted(false);
+					minus_fruit_macaron.setOpaque(false);
+					minus_fruit_macaron.setIcon(minus);
+					fruitMacaron.add(minus_fruit_macaron);
+
+					minus_fruit_macaron.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							fruit_macaron_count--;
+							fruitMacaron.setText(" 뺌 Fruit-macaron  |  " + String.valueOf(fruit_macaron_count) + "개   |  " + String.valueOf(fruit_macaron_count * 2500) + "원");
+							if(fruit_macaron_count==0) {
+								OrderPanel.fruitMacaron.setVisible(false);
+							}
+						}
+					});
+					fruitMacaron.add(minus_fruit_macaron);
+					if (fruit_macaron_count < 2) {
+						fruit_macaron_count++;
+						fruitMacaron.setText(" 뺌 Fruit-macaron  |  " + String.valueOf(fruit_macaron_count) + "개   |  " + String.valueOf(fruit_macaron_count * 2500) + "원");
+					} else {
+						fruit_macaron_count++;
+						fruitMacaron.setText(" 뺌 Fruit-macaron  |  " + String.valueOf(fruit_macaron_count) + "개   |  " + String.valueOf(fruit_macaron_count * 2500) + "원");
+					}
 				}
 			}
+
 			@Override
-			public void mouseEntered(MouseEvent e) {				
+			public void mouseEntered(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseExited(MouseEvent e) {				
+			public void mouseExited(MouseEvent e) {
 			}
+
 			@Override
-			public void mousePressed(MouseEvent e) {				
+			public void mousePressed(MouseEvent e) {
 			}
+
 			@Override
-			public void mouseReleased(MouseEvent e) {				
+			public void mouseReleased(MouseEvent e) {
 			}
 		});
 	}
@@ -1028,14 +1865,14 @@ class OrderList extends JPanel{
 		setBackground(Color.WHITE);
 		
 		FlowLayout fl = new FlowLayout();
-		fl.setAlignment(FlowLayout.LEFT);
+		fl.setAlignment(FlowLayout.LEADING);
 		setLayout(fl);
 		
-		add(jumon_1); add(jumon_2); add(jumon_3); add(jumon_4);
-		add(jumon_5); add(jumon_6); add(jumon_7); add(jumon_8); 
-		add(jumon_9); add(jumon_10); add(jumon_11);
-		add(jumon_12); add(jumon_13); add(jumon_14); add(jumon_15); 
-		add(jumon_16); add(jumon_17); add(jumon_18); add(jumon_19);
+//		add(jumon_1); add(jumon_2); add(jumon_3); add(jumon_4);
+//		add(jumon_5); add(jumon_6); add(jumon_7); add(jumon_8); 
+//		add(jumon_9); add(jumon_10); add(jumon_11);
+//		add(jumon_12); add(jumon_13); add(jumon_14); add(jumon_15); 
+//		add(jumon_16); add(jumon_17); add(jumon_18); add(jumon_19);
 	}
 	public static OrderDetails getJumon_1() {
 		return jumon_1;
@@ -1097,7 +1934,7 @@ class OrderList extends JPanel{
 }
 class OrderDetails extends JLabel{
 	OrderDetails(){
-		setBounds(0, 70*(OrderPanel.ice_coffee_count + OrderPanel.hot_coffee_count + OrderPanel.orange_smoothie_count + OrderPanel.kiwi_smoothie_count + OrderPanel.grape_smoothie_count + OrderPanel.strawberry_smoothie_count + OrderPanel.watermelon_smoothie_count), 700, 100);
+//		setBounds(0, 70*(OrderPanel.ice_coffee_count + OrderPanel.hot_coffee_count + OrderPanel.orange_smoothie_count + OrderPanel.kiwi_smoothie_count + OrderPanel.grape_smoothie_count + OrderPanel.strawberry_smoothie_count + OrderPanel.watermelon_smoothie_count), 700, 100);
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
 		setVisible(true);
 		setHorizontalAlignment(JLabel.LEFT);
