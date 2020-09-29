@@ -1940,4 +1940,5 @@ class OrderDetails extends JLabel{
 		setHorizontalAlignment(JLabel.LEFT);
 	}
 }
+// 진짜 끝
 // 끝
