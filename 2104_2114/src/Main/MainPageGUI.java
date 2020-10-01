@@ -27,6 +27,8 @@ class MainFrame extends JFrame {
 	static OrderPanel order_panel;
 	static Payment payment_panel;
 	static LoginPanel login_panel;
+	static GLoginPanel glogin_panel;
+	static SLoginPanel slogin_panel;
 	static ManagerPanel manager_panel;
 	static SalesPanel sales_panel;
 	static EmployeePanel employee_panel;
@@ -48,13 +50,21 @@ class MainFrame extends JFrame {
 
 		login_panel = new LoginPanel();
 		login_panel.setVisible(false);
+
+		glogin_panel = new GLoginPanel();
+		glogin_panel.setVisible(false);
+
+		slogin_panel = new SLoginPanel();
+		slogin_panel.setVisible(false);
+		
+		manager_panel = new ManagerPanel();
+		manager_panel.setVisible(false);
 		
 		master_panel = new MasterPanel();
 		master_panel.setVisible(false);
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
-//		sales_panel.setVisible(false);
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
@@ -81,6 +91,9 @@ class MainFrame extends JFrame {
 		add(order_panel);
 		add(payment_panel);
 		add(login_panel);
+		add(glogin_panel);
+		add(slogin_panel);
+		add(manager_panel);
 		add(master_panel);
 		add(manager_join_panel);
 		add(franchise_panel);
@@ -102,6 +115,12 @@ class MainFrame extends JFrame {
 	}
 	public static LoginPanel getLogin_panel() {
 		return login_panel;
+	}
+	public static GLoginPanel getGLogin_panel() {
+		return glogin_panel;
+	}
+	public static SLoginPanel getSLogin_panel() {
+		return slogin_panel;
 	}
 	public static ManagerPanel getManager_panel() {
 		return manager_panel;
