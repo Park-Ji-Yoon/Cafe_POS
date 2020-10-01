@@ -3,6 +3,9 @@ package Main;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import Main.OrderGUI;
 import javax.swing.*;
 
@@ -30,6 +33,7 @@ class MainFrame extends JFrame {
 	static MasterPanel master_panel;
 	static ManagerJoinPanel manager_join_panel;
 	static FranchisePanel franchise_panel;
+	static PaySuccessPanel pay_success_panel;
 
 	public MainFrame() {
 		// MainPanel 생성자 호출
@@ -60,6 +64,9 @@ class MainFrame extends JFrame {
 		
 		franchise_panel = new FranchisePanel();
 		franchise_panel.setVisible(false);
+		
+		pay_success_panel = new PaySuccessPanel();
+		pay_success_panel.setVisible(false);
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
@@ -77,12 +84,13 @@ class MainFrame extends JFrame {
 		add(master_panel);
 		add(manager_join_panel);
 		add(franchise_panel);
+		add(pay_success_panel);
 
 		// 프레임 위 앱 아이콘
 		ImageIcon icon = new ImageIcon("images/logo_2.png");
-		setIconImage(icon.getImage());
+		setIconImage(icon.getImage());	
 	}
-
+	
 	public static MainPanel getMain_panel() {
 		return main_panel;
 	}
@@ -113,6 +121,9 @@ class MainFrame extends JFrame {
 	public static FranchisePanel getFranchise_panel() {
 		return franchise_panel;
 	}
+	public static PaySuccessPanel getPay_success_panel() {
+		return pay_success_panel;
+	}
 }
 
 class MainPanel extends JPanel {
@@ -138,6 +149,31 @@ class MainPanel extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					Main.MainFrame.getMain_panel().setVisible(false);
 					Main.MainFrame.getOrder_panel().setVisible(true);
+					
+					// 커피
+					PaySuccessDetail.ice_coffee_pay.setVisible(false);
+					PaySuccessDetail.hot_coffee_pay.setVisible(false);
+					// 스무디
+					PaySuccessDetail.orange_smoo_pay.setVisible(false);
+					PaySuccessDetail.kiwi_smoo_pay.setVisible(false);
+					PaySuccessDetail.grape_smoo_pay.setVisible(false);
+					PaySuccessDetail.strawberry_smoo_pay.setVisible(false);
+					PaySuccessDetail.watermelon_smoo_pay.setVisible(false);
+					// 차
+					PaySuccessDetail.black_tea_pay.setVisible(false);
+					PaySuccessDetail.green_tea_pay.setVisible(false);
+					// 버블티
+					PaySuccessDetail.brown_bubble_pay.setVisible(false);
+					PaySuccessDetail.taro_bubble_pay.setVisible(false);
+					PaySuccessDetail.green_bubble_pay.setVisible(false);
+					// 케이크
+					PaySuccessDetail.cheese_cake_pay.setVisible(false);
+					PaySuccessDetail.strawberry_cake_pay.setVisible(false);
+					PaySuccessDetail.chocolate_cake_pay.setVisible(false);
+					// 마카롱
+					PaySuccessDetail.berry_macaron_pay.setVisible(false);
+					PaySuccessDetail.yogurt_macaron_pay.setVisible(false);
+					PaySuccessDetail.fruit_macaron_pay.setVisible(false);
 			}
 		});
 		
