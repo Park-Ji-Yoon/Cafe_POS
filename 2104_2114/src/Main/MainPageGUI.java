@@ -27,8 +27,16 @@ class MainFrame extends JFrame {
 	static OrderPanel order_panel;
 	static Payment payment_panel;
 	static LoginPanel login_panel;
+	static GLoginPanel glogin_panel;
+	static SLoginPanel slogin_panel;
 	static ManagerPanel manager_panel;
 	static SalesPanel sales_panel;
+	static CoffeeSalesPanel coffee_sales_panel;
+	static SmoothieSalesPanel smoothie_sales_panel;
+	static TeaSalesPanel tea_sales_panel;
+	static BubbleSalesPanel bubble_sales_panel;
+	static CakeSalesPanel cake_sales_panel;
+	static MacaronSalesPanel macaron_sales_panel;
 	static EmployeePanel employee_panel;
 	static MasterPanel master_panel;
 	static ManagerJoinPanel manager_join_panel;
@@ -48,13 +56,39 @@ class MainFrame extends JFrame {
 
 		login_panel = new LoginPanel();
 		login_panel.setVisible(false);
+
+		glogin_panel = new GLoginPanel();
+		glogin_panel.setVisible(false);
+
+		slogin_panel = new SLoginPanel();
+		slogin_panel.setVisible(false);
+		
+		manager_panel = new ManagerPanel();
+		manager_panel.setVisible(false);
 		
 		master_panel = new MasterPanel();
 		master_panel.setVisible(false);
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
-//		sales_panel.setVisible(false);
+
+		coffee_sales_panel = new CoffeeSalesPanel();
+		coffee_sales_panel.setVisible(false);
+
+		smoothie_sales_panel = new SmoothieSalesPanel();
+		smoothie_sales_panel.setVisible(false);
+
+		tea_sales_panel = new TeaSalesPanel();
+		tea_sales_panel.setVisible(false);
+
+		bubble_sales_panel = new BubbleSalesPanel();
+		bubble_sales_panel.setVisible(false);
+
+		cake_sales_panel = new CakeSalesPanel();
+		cake_sales_panel.setVisible(false);
+
+		macaron_sales_panel = new MacaronSalesPanel();
+		macaron_sales_panel.setVisible(false);
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
@@ -70,7 +104,7 @@ class MainFrame extends JFrame {
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
-		setBounds(20, 0, 1880, 1440); // JFrame 위치와 크기 (x, y, w, h)
+		setBounds(20, 0, 1880, 1070); // JFrame 위치와 크기 (x, y, w, h)
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x누르면 닫힘
 		getContentPane().setLayout(null);
 		setVisible(true);
@@ -81,6 +115,17 @@ class MainFrame extends JFrame {
 		add(order_panel);
 		add(payment_panel);
 		add(login_panel);
+		add(glogin_panel);
+		add(slogin_panel);
+		add(manager_panel);
+		add(sales_panel);
+		add(coffee_sales_panel);
+		add(smoothie_sales_panel);
+		add(tea_sales_panel);
+		add(bubble_sales_panel);
+		add(cake_sales_panel);
+		add(macaron_sales_panel);
+		add(employee_panel);
 		add(master_panel);
 		add(manager_join_panel);
 		add(franchise_panel);
@@ -103,11 +148,35 @@ class MainFrame extends JFrame {
 	public static LoginPanel getLogin_panel() {
 		return login_panel;
 	}
+	public static GLoginPanel getGLogin_panel() {
+		return glogin_panel;
+	}
+	public static SLoginPanel getSLogin_panel() {
+		return slogin_panel;
+	}
 	public static ManagerPanel getManager_panel() {
 		return manager_panel;
 	}
 	public static SalesPanel getSales_panel() {
 		return sales_panel;
+	}
+	public static CoffeeSalesPanel getCoffee_sales_panel() {
+		return coffee_sales_panel;
+	}
+	public static SmoothieSalesPanel getSmoothie_sales_panel() {
+		return smoothie_sales_panel;
+	}
+	public static TeaSalesPanel getTea_sales_panel() {
+		return tea_sales_panel;
+	}
+	public static BubbleSalesPanel getBubble_sales_panel() {
+		return bubble_sales_panel;
+	}
+	public static CakeSalesPanel getCake_sales_panel() {
+		return cake_sales_panel;
+	}
+	public static MacaronSalesPanel getMacaron_sales_panel() {
+		return macaron_sales_panel;
 	}
 	public static EmployeePanel getEmployee_panel() {
 		return employee_panel;

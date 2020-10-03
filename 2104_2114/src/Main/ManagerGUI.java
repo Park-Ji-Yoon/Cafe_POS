@@ -1,6 +1,9 @@
 package Main;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -8,62 +11,135 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class ManagerGUI {
+public class ManagerGUI extends JFrame{
+	public ManagerGUI() {
+	}
 	public static void main(String args[]) {
 		ManagerPanel manager_panel = new ManagerPanel();
 	}
 }
-
-class ManagerPanel extends JPanel {
-	ImageIcon background = new ImageIcon("images/background_4.png"); // 배경사진은 class못만들어서 그냥 넣음
+class ManagerPanel extends JPanel{
+	static Icon icon = new ImageIcon("images/back_2.png");
 	
-	ManagerPanel() {
-		GGreetLabel ggreet_label = new GGreetLabel();
-		add(ggreet_label);
-		
-		ManagerLabel manager_label = new ManagerLabel();
-		add(manager_label);
-		
-		SalesManagerBtn sales_manager_btn = new SalesManagerBtn();
-		add(sales_manager_btn);
-		
-		StockManagerBtn stock_manager_btn = new StockManagerBtn();
-		add(stock_manager_btn);
-		
-		EmployeeManagerBtn employee_manager_btn = new EmployeeManagerBtn();
-		add(employee_manager_btn);
+	ImageIcon background = new ImageIcon("images/background_19.png");
 
-		ExitManagerBtn exit_manager_btn = new ExitManagerBtn();
-		add(exit_manager_btn);
-				
+	JButton manager_exit_button = new JButton(icon);
+	JLabel bname_label = new JLabel();
+	JButton sales_button = new JButton(icon);
+	JButton stock_button = new JButton(icon);
+	JButton employee_button = new JButton(icon);
+	JButton mypage_button = new JButton(icon);
+
+	ManagerPanel() {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
-	}
+		setVisible(true);
 
+		//로그인 취소
+		manager_exit_button.setBounds(273, 781, 196, 80);
+		manager_exit_button.setVisible(true);
+		manager_exit_button.setBorderPainted(false);
+		manager_exit_button.setContentAreaFilled(false);
+		manager_exit_button.setFocusPainted(false);
+		manager_exit_button.setOpaque(false);
+		manager_exit_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getLogin_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(false);
+			}
+		});
+		add(manager_exit_button);
+		
+		bname_label.setBounds(90, 203, 300, 80);
+		bname_label.setText(getBname());
+		bname_label.setHorizontalAlignment(JLabel.RIGHT);
+		bname_label.setFont(new Font("인터파크고딕 L", Font.PLAIN, 40));
+		add(bname_label);
+
+		//매출 관리 버튼
+		sales_button.setBounds(908, 98, 780, 158);
+		sales_button.setVisible(true);
+		sales_button.setBorderPainted(false);
+		sales_button.setContentAreaFilled(false);
+		sales_button.setFocusPainted(false);
+		sales_button.setOpaque(false);
+		sales_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getSales_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(false);
+			}
+		});
+		add(sales_button);
+
+		//재고 관리 버튼
+		stock_button.setBounds(908, 329, 780, 158);
+		stock_button.setVisible(true);
+		stock_button.setBorderPainted(false);
+		stock_button.setContentAreaFilled(false);
+		stock_button.setFocusPainted(false);
+		stock_button.setOpaque(false);
+		stock_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Main.MainFrame.getStock_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(false);
+			}
+		});
+		add(stock_button);
+
+		//직원 관리 버튼
+		employee_button.setBounds(908, 560, 780, 158);
+		employee_button.setVisible(true);
+		employee_button.setBorderPainted(false);
+		employee_button.setContentAreaFilled(false);
+		employee_button.setFocusPainted(false);
+		employee_button.setOpaque(false);
+		employee_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getEmployee_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(false);				
+			}
+		});
+		add(employee_button);
+		
+		//정보 관리 버튼
+		mypage_button.setBounds(908, 791, 780, 158);
+		mypage_button.setVisible(true);
+		mypage_button.setBorderPainted(false);
+		mypage_button.setContentAreaFilled(false);
+		mypage_button.setFocusPainted(false);
+		mypage_button.setOpaque(false);
+		mypage_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Main.MainFrame.getMypage_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(false);
+			}
+		});
+		add(mypage_button);		
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-}
-class GGreetLabel extends JLabel{
-	GGreetLabel() {
-		setBounds(1050, 0, 800, 120);
-		setVisible(true);
-		setText(getGGreet());
-		setForeground(new Color(112, 151, 168));
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 30));
-		setHorizontalAlignment(JLabel.CENTER);
+	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
+		Image ximg = icon.getImage();
+		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon xyimg = new ImageIcon(yimg);
+		return xyimg;
 	}
-	public String getGGreet(){
-		String greet = "";
+	public static String getBname() {
+		String bname = "";
+		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -75,11 +151,11 @@ class GGreetLabel extends JLabel{
             query = "SELECT G_BNAME FROM MANAGER_TABLE";
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
-			
+             
 			boolean result = true;
 			
             while (result = rset.next()) {
-            	greet = rset.getString("G_BNAME") + "점 지점장님! 안녕하세요:-)";
+                bname = rset.getString("G_BNAME");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -94,214 +170,6 @@ class GGreetLabel extends JLabel{
                 e.printStackTrace();
             }
         }
-        return greet;
-	}
-}
-class ManagerLabel extends JLabel {
-	ManagerLabel() {
-		setBounds(781, 0, 300, 120);
-		setVisible(true);
-		setText("지점장");
-		setForeground(Color.black);
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 45));
-		setHorizontalAlignment(JLabel.CENTER);
-	}
-}
-class SalesManagerBtn extends JButton {
-	SalesManagerBtn() {
-		setBounds(320, 110, 600, 400);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("SalesManagerBtn");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-class StockManagerBtn extends JButton {
-	StockManagerBtn() {
-		setBounds(960, 110, 600, 400);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("StockManagerBtn");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-class EmployeeManagerBtn extends JButton {
-	EmployeeManagerBtn() {
-		setBounds(320, 560, 600, 400);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("EmployeeManagerBtn");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getEmployee_panel().setVisible(true);
-				Main.MainFrame.getManager_panel().setVisible(false);
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-class ExitManagerBtn extends JButton {
-	ExitManagerBtn() {
-		setBounds(960, 560, 600, 400);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("로그아웃");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getLogin_panel().setVisible(true);
-				Main.MainFrame.getManager_panel().setVisible(false);
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
+		return bname;
 	}
 }

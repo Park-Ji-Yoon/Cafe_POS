@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
  
 public class ManagerLogin {
-    public ManagerLogin() {
+    public String bname;
+	public ManagerLogin() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -18,39 +19,26 @@ public class ManagerLogin {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
             
-            query = "SELECT G_ID, G_PW FROM MANAGER_TABLE";
+            query = "SELECT G_BNAME, G_ID, G_PW FROM MANAGER_TABLE";
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
-                if(rset.getString("G_ID").equals(Main.FillIn.getG_id_field().getText()) && rset.getString("G_PW").equals(Main.FillIn.getG_pw_field().getText())){
+                if(rset.getString("G_ID").equals(GLoginPanel.getId_field().getText()) && rset.getString("G_PW").equals(GLoginPanel.getPw_field().getText())){
                 	JOptionPane.showMessageDialog(null, "로그인에 성공하였습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                	
+                	bname = rset.getString("G_BNAME");
 
-    				Main.FillIn.getId_field().setText("");
-    				Main.FillIn.getPw_field().setText("");	
-    				Main.FillIn.getG_id_field().setText("");
-    				Main.FillIn.getG_pw_field().setText("");	
-    				Main.FillIn.getS_id_field().setText("");
-    				Main.FillIn.getS_pw_field().setText("");					
-
-    				Main.FillIn.getG_id_field().setVisible(false);
-    				Main.FillIn.getG_pw_field().setVisible(false);
+                	GLoginPanel.getId_field().setText("");
+                	GLoginPanel.getPw_field().setText("");
+                	
+                	GLoginPanel.getId_field().setVisible(true);
+                	GLoginPanel.getPw_field().setVisible(true);
     				
-    				Main.FillIn.getS_id_field().setVisible(false);
-    				Main.FillIn.getS_pw_field().setVisible(false);
-    				
-    				Main.FillIn.getId_field().setVisible(true);
-    				Main.FillIn.getPw_field().setVisible(true);
-    				
-    				Main.Loginarea.getLogin_button().setVisible(true);
-    				Main.Loginarea.getG_login_button().setVisible(false);
-    				Main.Loginarea.getS_login_button().setVisible(false);
-    				
-    				Main.MainFrame.getLogin_panel().setVisible(false);
+    				Main.MainFrame.getGLogin_panel().setVisible(false);
     				Main.MainFrame.getManager_panel().setVisible(true);
-    				
 					break;
                 }
             }
