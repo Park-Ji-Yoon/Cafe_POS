@@ -1,6 +1,9 @@
 package Main;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -8,196 +11,219 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class EmployeeGUI {
+public class EmployeeGUI extends JFrame{
+	public EmployeeGUI() {
+	}
 	public static void main(String args[]) {
+		ManagerPanel manager_panel = new ManagerPanel();
 	}
 }
+class EmployeePanel extends JPanel{
+	static Icon icon = new ImageIcon("images/back_2.png");
+	
+	ImageIcon background = new ImageIcon("images/background_22.png");
 
-class EmployeePanel extends JPanel {
-	ImageIcon background = new ImageIcon("images/background_4.png"); // 배경사진은 class못만들어서 그냥 넣음
+	JButton employee_exit_button = new JButton(icon);
+	JLabel bname_label = new JLabel();
+	String bname = ManagerPanel.getBname();
+	JLabel employeecnt_label = new JLabel();
+
+	JButton em_in = new JButton(icon);
+	JButton em_de = new JButton(icon);
 	
 	EmployeePanel() {
-		EmployeeLabel employee_label = new EmployeeLabel();
-		add(employee_label);
 		
-		EmployeePlusBtn employee_plus_btn = new EmployeePlusBtn();
-		add(employee_plus_btn);
-		
-		EmployeeMinusBtn employee_minus_btn = new EmployeeMinusBtn();
-		add(employee_minus_btn);
-				
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
-	}
+		setVisible(true);
 
+		//로그인 취소
+		employee_exit_button.setBounds(61, 35, 126, 35);
+		employee_exit_button.setVisible(true);
+		employee_exit_button.setBorderPainted(false);
+		employee_exit_button.setContentAreaFilled(false);
+		employee_exit_button.setFocusPainted(false);
+		employee_exit_button.setOpaque(false);
+		employee_exit_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getManager_panel().setVisible(true);
+				Main.MainFrame.getEmployee_panel().setVisible(false);
+			}
+		});
+		add(employee_exit_button);
+
+		bname_label.setBounds(380, 398, 400, 80);
+		bname_label.setText(ManagerPanel.getBname());
+		bname_label.setHorizontalAlignment(JLabel.RIGHT);
+		bname_label.setFont(new Font("인터파크고딕 M", Font.BOLD, 50));
+		add(bname_label);
+
+		employeecnt_label.setBounds(1100, 398, 50, 80);
+		employeecnt_label.setText(Integer.toString(employee_db()));
+		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
+		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.BOLD, 55));
+		add(employeecnt_label);
+
+		//직원 추가
+		em_in.setBounds(642, 562, 253, 150);
+		em_in.setVisible(true);
+		em_in.setBorderPainted(false);
+		em_in.setContentAreaFilled(false);
+		em_in.setFocusPainted(false);
+		em_in.setOpaque(false);
+		em_in.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				employee_in();
+				employeecnt_label.setText(Integer.toString(employee_db()));
+			}
+		});
+		add(em_in);
+
+		//직원 삭제
+		em_de.setBounds(971, 562, 253, 150);
+		em_de.setVisible(true);
+		em_de.setBorderPainted(false);
+		em_de.setContentAreaFilled(false);
+		em_de.setFocusPainted(false);
+		em_de.setOpaque(false);
+		em_de.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				employee_de();
+				employeecnt_label.setText(Integer.toString(employee_db()));
+			}
+		});
+		add(em_de);
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-}
-class EmployeeLabel extends JLabel {
-	EmployeeLabel() {
-		setBounds(781, 0, 300, 120);
-		setVisible(true);
-		setText("직원 관리");
-		setForeground(Color.black);
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 45));
-		setHorizontalAlignment(JLabel.CENTER);
+	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
+		Image ximg = icon.getImage();
+		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon xyimg = new ImageIcon(yimg);
+		return xyimg;
 	}
-}
-class ExitEmployeeBtn extends JButton {
-	ExitEmployeeBtn() {
-		setBounds(15, 15, 200, 100);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("뒤로가기");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getLogin_panel().setVisible(true);
-				Main.MainFrame.getManager_panel().setVisible(false);
-			}
-		});
+	public int employee_db() {		
+		int em_cnt = 0;
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT G_EM FROM MANAGER_TABLE WHERE G_BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	em_cnt = rset.getInt("G_EM");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return em_cnt;
 	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
+	public void employee_in() {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+		int change_cnt;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT G_EM FROM MANAGER_TABLE WHERE G_BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	change_cnt = rset.getInt("G_EM")+1;
+            	query = "UPDATE MANAGER_TABLE SET G_EM = ?";
+            	pstmt = conn.prepareStatement(query);
+    			pstmt.setInt(1, change_cnt);
+    			pstmt.executeUpdate();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-class EmployeePlusBtn extends JButton {
-	EmployeePlusBtn() {
-		setBounds(510, 250, 370, 310);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("직원 추가(+1)");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
-	}
-}
-class EmployeeMinusBtn extends JButton {
-	EmployeeMinusBtn() {
-		setBounds(980, 250, 370, 310);
-		setForeground(new Color(255, 255, 255));
-		setBackground(new Color(112, 151, 168));
-		setText("직원 삭제(-1)");
-		setFont(new Font("서울남산 장체 B", Font.BOLD, 40));
-		setVisible(true);
-		setHorizontalAlignment(SwingConstants.CENTER);
-
-		decorate(); // 버튼 테두리 둥글게
-
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//
-			}
-		});
-	}
-
-	protected void decorate() {
-		setBorderPainted(false);
-		setOpaque(false);
-	}
-
-	@Override
-	protected void paintComponent(Graphics g) {
-		int width = getWidth();
-		int height = getHeight();
-		Graphics2D graphics = (Graphics2D) g;
-		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		if (getModel().isArmed()) {
-			graphics.setColor(getBackground().darker());
-		} else if (getModel().isRollover()) {
-			graphics.setColor(getBackground().brighter());
-		} else {
-			graphics.setColor(getBackground());
-		}
-		graphics.fillRoundRect(0, 0, width, height, 50, 50);
-		FontMetrics fontMetrics = graphics.getFontMetrics();
-		Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds();
-		int textX = (width - stringBounds.width) / 2;
-		int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent();
-		graphics.setColor(getForeground());
-		graphics.setFont(getFont());
-		graphics.drawString(getText(), textX, textY);
-		graphics.dispose();
-		super.paintComponent(g);
+	public void employee_de() {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+		int change_cnt;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT G_EM FROM MANAGER_TABLE WHERE G_BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	change_cnt = rset.getInt("G_EM")-1;
+            	query = "UPDATE MANAGER_TABLE SET G_EM = ?";
+            	pstmt = conn.prepareStatement(query);
+    			pstmt.setInt(1, change_cnt);
+    			pstmt.executeUpdate();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 	}
 }
