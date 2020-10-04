@@ -61,16 +61,16 @@ class EmployeePanel extends JPanel{
 		});
 		add(employee_exit_button);
 
-		bname_label.setBounds(380, 398, 400, 80);
-		bname_label.setText(ManagerPanel.getBname());
+		bname_label.setBounds(360, 398, 420, 80);
+		bname_label.setText(ManagerPanel.getBname() + "점");
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
-		bname_label.setFont(new Font("인터파크고딕 M", Font.BOLD, 50));
+		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 55));
 		add(bname_label);
 
-		employeecnt_label.setBounds(1100, 398, 50, 80);
+		employeecnt_label.setBounds(1105, 398, 50, 80);
 		employeecnt_label.setText(Integer.toString(employee_db()));
 		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
-		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.BOLD, 55));
+		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 45));
 		add(employeecnt_label);
 
 		//직원 추가
@@ -82,8 +82,12 @@ class EmployeePanel extends JPanel{
 		em_in.setOpaque(false);
 		em_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				employee_in();
-				employeecnt_label.setText(Integer.toString(employee_db()));
+				if(employee_db() == 20) {
+					JOptionPane.showMessageDialog(null, "한 지점당 20명의 직원만 등록 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
+				}else {
+					employee_in();
+					employeecnt_label.setText(Integer.toString(employee_db()));
+				}
 			}
 		});
 		add(em_in);
@@ -97,8 +101,12 @@ class EmployeePanel extends JPanel{
 		em_de.setOpaque(false);
 		em_de.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				employee_de();
-				employeecnt_label.setText(Integer.toString(employee_db()));
+				if(employee_db() == 0) {
+					JOptionPane.showMessageDialog(null, "직원 등록은 최소 0명부터 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
+				}else {
+					employee_de();
+					employeecnt_label.setText(Integer.toString(employee_db()));
+				}
 			}
 		});
 		add(em_de);
