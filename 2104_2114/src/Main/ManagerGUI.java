@@ -137,11 +137,7 @@ class ManagerPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-<<<<<<< HEAD
-	public String getBname() {
-=======
 	public static String getBname() {
->>>>>>> master
 		String bname = "";
 		
 		String query;

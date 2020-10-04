@@ -71,9 +71,7 @@ class MainFrame extends JFrame {
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
-<<<<<<< HEAD
-=======
-
+		
 		coffee_sales_panel = new CoffeeSalesPanel();
 		coffee_sales_panel.setVisible(false);
 
@@ -91,7 +89,6 @@ class MainFrame extends JFrame {
 
 		macaron_sales_panel = new MacaronSalesPanel();
 		macaron_sales_panel.setVisible(false);
->>>>>>> master
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
@@ -121,8 +118,6 @@ class MainFrame extends JFrame {
 		add(glogin_panel);
 		add(slogin_panel);
 		add(manager_panel);
-<<<<<<< HEAD
-=======
 		add(sales_panel);
 		add(coffee_sales_panel);
 		add(smoothie_sales_panel);
@@ -131,7 +126,6 @@ class MainFrame extends JFrame {
 		add(cake_sales_panel);
 		add(macaron_sales_panel);
 		add(employee_panel);
->>>>>>> master
 		add(master_panel);
 		add(manager_join_panel);
 		add(franchise_panel);
