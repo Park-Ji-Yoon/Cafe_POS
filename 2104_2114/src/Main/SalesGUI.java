@@ -27,9 +27,9 @@ public class SalesGUI {
 class SalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
-	ImageIcon background = new ImageIcon("images/background_23.png");
+	ImageIcon background = new ImageIcon("images/background_30.png");
 
-	JButton sales_exit_button = new JButton(icon);
+	JButton franchise_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
 	JButton tea_sales_button = new JButton(icon);
@@ -44,19 +44,19 @@ class SalesPanel extends JPanel{
 		setVisible(true);
 
 		//매출관리 취소
-		sales_exit_button.setBounds(61, 35, 126, 35);
-		sales_exit_button.setVisible(true);
-		sales_exit_button.setBorderPainted(false);
-		sales_exit_button.setContentAreaFilled(false);
-		sales_exit_button.setFocusPainted(false);
-		sales_exit_button.setOpaque(false);
-		sales_exit_button.addActionListener(new ActionListener() {
+		franchise_exit_button.setBounds(61, 35, 126, 35);
+		franchise_exit_button.setVisible(true);
+		franchise_exit_button.setBorderPainted(false);
+		franchise_exit_button.setContentAreaFilled(false);
+		franchise_exit_button.setFocusPainted(false);
+		franchise_exit_button.setOpaque(false);
+		franchise_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getSales_panel().setVisible(false);
+				Main.MainFrame.getMaster_panel().setVisible(true);
+				Main.MainFrame.getFranchise_panel().setVisible(false);
 			}
 		});
-		add(sales_exit_button);
+		add(franchise_exit_button);
 
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(115, 184, 67, 30);
@@ -67,7 +67,7 @@ class SalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
@@ -82,7 +82,7 @@ class SalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
@@ -97,7 +97,7 @@ class SalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
@@ -112,7 +112,7 @@ class SalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
@@ -127,7 +127,7 @@ class SalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
@@ -142,13 +142,13 @@ class SalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
 
-		//마카롱 매출액 버튼
+		//판넬 버튼
 		panel_button.setBounds(0, 223, 1861, 800);
 		panel_button.setVisible(true);
 		panel_button.setBorderPainted(false);
@@ -175,7 +175,7 @@ class SalesPanel extends JPanel{
 		return xyimg;
 	}
 }
-class CoffeeSalesPanel extends JPanel{
+class GCoffeeSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_24.png");
@@ -198,7 +198,7 @@ class CoffeeSalesPanel extends JPanel{
 	int hot_d_db;
 	int hot_m_db;
 
-	CoffeeSalesPanel() {
+	GCoffeeSalesPanel() {
 		coffee_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -215,7 +215,7 @@ class CoffeeSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -229,8 +229,8 @@ class CoffeeSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(smoothie_sales_button);
@@ -244,8 +244,8 @@ class CoffeeSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(tea_sales_button);
@@ -259,8 +259,8 @@ class CoffeeSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(bubble_sales_button);
@@ -274,8 +274,8 @@ class CoffeeSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(cake_sales_button);
@@ -289,8 +289,8 @@ class CoffeeSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
-				Main.MainFrame.getCoffee_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
@@ -372,7 +372,7 @@ class CoffeeSalesPanel extends JPanel{
         }
 	}	
 }
-class SmoothieSalesPanel extends JPanel{
+class GSmoothieSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_25.png");
@@ -407,7 +407,7 @@ class SmoothieSalesPanel extends JPanel{
 	int water_d_db;
 	int water_m_db;
 	
-	SmoothieSalesPanel() {
+	GSmoothieSalesPanel() {
 		smoothie_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -424,7 +424,7 @@ class SmoothieSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -438,8 +438,8 @@ class SmoothieSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(coffe_sales_button);
@@ -453,8 +453,8 @@ class SmoothieSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(tea_sales_button);
@@ -468,8 +468,8 @@ class SmoothieSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(bubble_sales_button);
@@ -483,8 +483,8 @@ class SmoothieSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(cake_sales_button);
@@ -498,8 +498,8 @@ class SmoothieSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
@@ -629,7 +629,7 @@ class SmoothieSalesPanel extends JPanel{
         }
 	}	
 }
-class TeaSalesPanel extends JPanel{
+class GTeaSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_26.png");
@@ -652,7 +652,7 @@ class TeaSalesPanel extends JPanel{
 	int black_d_db;;
 	int black_m_db;;
 
-	TeaSalesPanel() {
+	GTeaSalesPanel() {
 		tea_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -669,7 +669,7 @@ class TeaSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -683,8 +683,8 @@ class TeaSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(coffe_sales_button);
@@ -698,8 +698,8 @@ class TeaSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(smoothie_sales_button);
@@ -713,8 +713,8 @@ class TeaSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(bubble_sales_button);
@@ -728,8 +728,8 @@ class TeaSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(cake_sales_button);
@@ -743,8 +743,8 @@ class TeaSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
-				Main.MainFrame.getTea_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
@@ -826,7 +826,7 @@ class TeaSalesPanel extends JPanel{
         }
 	}
 }
-class BubbleSalesPanel extends JPanel{
+class GBubbleSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_27.png");
@@ -853,7 +853,7 @@ class BubbleSalesPanel extends JPanel{
 	int gb_d_db;
 	int gb_m_db;
 
-	BubbleSalesPanel() {
+	GBubbleSalesPanel() {
 		bubble_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -870,7 +870,7 @@ class BubbleSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -884,8 +884,8 @@ class BubbleSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(coffe_sales_button);
@@ -899,8 +899,8 @@ class BubbleSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(smoothie_sales_button);
@@ -914,8 +914,8 @@ class BubbleSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(tea_sales_button);
@@ -929,8 +929,8 @@ class BubbleSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(cake_sales_button);
@@ -944,8 +944,8 @@ class BubbleSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
-				Main.MainFrame.getBubble_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
@@ -1043,7 +1043,7 @@ class BubbleSalesPanel extends JPanel{
         }
 	}
 }
-class CakeSalesPanel extends JPanel{
+class GCakeSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_28.png");
@@ -1070,7 +1070,7 @@ class CakeSalesPanel extends JPanel{
 	int choco_d_db;
 	int choco_m_db;
 
-	CakeSalesPanel() {
+	GCakeSalesPanel() {
 		cake_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -1087,7 +1087,7 @@ class CakeSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -1101,8 +1101,8 @@ class CakeSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(coffe_sales_button);
@@ -1116,8 +1116,8 @@ class CakeSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(smoothie_sales_button);
@@ -1131,8 +1131,8 @@ class CakeSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(tea_sales_button);
@@ -1146,8 +1146,8 @@ class CakeSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(bubble_sales_button);
@@ -1161,8 +1161,8 @@ class CakeSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMacaron_sales_panel().setVisible(true);
-				Main.MainFrame.getCake_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
+				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
 		});
 		add(macaron_sales_button);
@@ -1260,7 +1260,7 @@ class CakeSalesPanel extends JPanel{
         }
 	}
 }
-class MacaronSalesPanel extends JPanel{
+class GMacaronSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_29.png");
@@ -1287,7 +1287,7 @@ class MacaronSalesPanel extends JPanel{
 	int fruit_d_db;
 	int fruit_m_db;
 	
-	MacaronSalesPanel() {
+	GMacaronSalesPanel() {
 		macaron_db();
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -1304,7 +1304,7 @@ class MacaronSalesPanel extends JPanel{
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(sales_exit_button);
@@ -1318,8 +1318,8 @@ class MacaronSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCoffee_sales_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(coffe_sales_button);
@@ -1333,8 +1333,8 @@ class MacaronSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getSmoothie_sales_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(smoothie_sales_button);
@@ -1348,8 +1348,8 @@ class MacaronSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getTea_sales_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGTea_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(tea_sales_button);
@@ -1363,8 +1363,8 @@ class MacaronSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getBubble_sales_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(bubble_sales_button);
@@ -1378,8 +1378,8 @@ class MacaronSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getCake_sales_panel().setVisible(true);
-				Main.MainFrame.getMacaron_sales_panel().setVisible(false);
+				Main.MainFrame.getGCake_sales_panel().setVisible(true);
+				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
 		});
 		add(cake_sales_button);

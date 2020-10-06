@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import Main.OrderGUI;
 import javax.swing.*;
 
 public class MainPageGUI extends JFrame {
@@ -31,15 +29,20 @@ class MainFrame extends JFrame {
 	static SLoginPanel slogin_panel;
 	static ManagerPanel manager_panel;
 	static SalesPanel sales_panel;
-	static CoffeeSalesPanel coffee_sales_panel;
-	static SmoothieSalesPanel smoothie_sales_panel;
-	static TeaSalesPanel tea_sales_panel;
-	static BubbleSalesPanel bubble_sales_panel;
-	static CakeSalesPanel cake_sales_panel;
-	static MacaronSalesPanel macaron_sales_panel;
+	static GCoffeeSalesPanel gcoffee_sales_panel;
+	static GSmoothieSalesPanel gsmoothie_sales_panel;
+	static GTeaSalesPanel gtea_sales_panel;
+	static GBubbleSalesPanel gbubble_sales_panel;
+	static GCakeSalesPanel gcake_sales_panel;
+	static GMacaronSalesPanel gmacaron_sales_panel;
 	static EmployeePanel employee_panel;
 	static MasterPanel master_panel;
-	static ManagerJoinPanel manager_join_panel;
+	static SCoffeeSalesPanel scoffee_sales_panel;
+	static SSmoothieSalesPanel ssmoothie_sales_panel;
+	static STeaSalesPanel stea_sales_panel;
+	static SBubbleSalesPanel sbubble_sales_panel;
+	static SCakeSalesPanel scake_sales_panel;
+	static SMacaronSalesPanel smacaron_sales_panel;
 	static FranchisePanel franchise_panel;
 	static PaySuccessPanel pay_success_panel;
 
@@ -66,35 +69,50 @@ class MainFrame extends JFrame {
 		manager_panel = new ManagerPanel();
 		manager_panel.setVisible(false);
 		
+		gcoffee_sales_panel = new GCoffeeSalesPanel();
+		gcoffee_sales_panel.setVisible(false);
+
+		gsmoothie_sales_panel = new GSmoothieSalesPanel();
+		gsmoothie_sales_panel.setVisible(false);
+
+		gtea_sales_panel = new GTeaSalesPanel();
+		gtea_sales_panel.setVisible(false);
+
+		gbubble_sales_panel = new GBubbleSalesPanel();
+		gbubble_sales_panel.setVisible(false);
+
+		gcake_sales_panel = new GCakeSalesPanel();
+		gcake_sales_panel.setVisible(false);
+
+		gmacaron_sales_panel = new GMacaronSalesPanel();
+		gmacaron_sales_panel.setVisible(false);
+		
 		master_panel = new MasterPanel();
 		master_panel.setVisible(false);
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
 		
-		coffee_sales_panel = new CoffeeSalesPanel();
-		coffee_sales_panel.setVisible(false);
+		scoffee_sales_panel = new SCoffeeSalesPanel();
+		scoffee_sales_panel.setVisible(false);
 
-		smoothie_sales_panel = new SmoothieSalesPanel();
-		smoothie_sales_panel.setVisible(false);
+		ssmoothie_sales_panel = new SSmoothieSalesPanel();
+		ssmoothie_sales_panel.setVisible(false);
 
-		tea_sales_panel = new TeaSalesPanel();
-		tea_sales_panel.setVisible(false);
+		stea_sales_panel = new STeaSalesPanel();
+		stea_sales_panel.setVisible(false);
 
-		bubble_sales_panel = new BubbleSalesPanel();
-		bubble_sales_panel.setVisible(false);
+		sbubble_sales_panel = new SBubbleSalesPanel();
+		sbubble_sales_panel.setVisible(false);
 
-		cake_sales_panel = new CakeSalesPanel();
-		cake_sales_panel.setVisible(false);
+		scake_sales_panel = new SCakeSalesPanel();
+		scake_sales_panel.setVisible(false);
 
-		macaron_sales_panel = new MacaronSalesPanel();
-		macaron_sales_panel.setVisible(false);
+		smacaron_sales_panel = new SMacaronSalesPanel();
+		smacaron_sales_panel.setVisible(false);
 		
 		employee_panel = new EmployeePanel();
 		employee_panel.setVisible(false);
-		
-		manager_join_panel = new ManagerJoinPanel();
-		manager_join_panel.setVisible(false);
 		
 		franchise_panel = new FranchisePanel();
 		franchise_panel.setVisible(false);
@@ -120,15 +138,20 @@ class MainFrame extends JFrame {
 		add(slogin_panel);
 		add(manager_panel);
 		add(sales_panel);
-		add(coffee_sales_panel);
-		add(smoothie_sales_panel);
-		add(tea_sales_panel);
-		add(bubble_sales_panel);
-		add(cake_sales_panel);
-		add(macaron_sales_panel);
+		add(gcoffee_sales_panel);
+		add(gsmoothie_sales_panel);
+		add(gtea_sales_panel);
+		add(gbubble_sales_panel);
+		add(gcake_sales_panel);
+		add(gmacaron_sales_panel);
 		add(employee_panel);
 		add(master_panel);
-		add(manager_join_panel);
+		add(scoffee_sales_panel);
+		add(ssmoothie_sales_panel);
+		add(stea_sales_panel);
+		add(sbubble_sales_panel);
+		add(scake_sales_panel);
+		add(smacaron_sales_panel);
 		add(franchise_panel);
 		add(pay_success_panel);
 
@@ -161,23 +184,23 @@ class MainFrame extends JFrame {
 	public static SalesPanel getSales_panel() {
 		return sales_panel;
 	}
-	public static CoffeeSalesPanel getCoffee_sales_panel() {
-		return coffee_sales_panel;
+	public static GCoffeeSalesPanel getGCoffee_sales_panel() {
+		return gcoffee_sales_panel;
 	}
-	public static SmoothieSalesPanel getSmoothie_sales_panel() {
-		return smoothie_sales_panel;
+	public static GSmoothieSalesPanel getGSmoothie_sales_panel() {
+		return gsmoothie_sales_panel;
 	}
-	public static TeaSalesPanel getTea_sales_panel() {
-		return tea_sales_panel;
+	public static GTeaSalesPanel getGTea_sales_panel() {
+		return gtea_sales_panel;
 	}
-	public static BubbleSalesPanel getBubble_sales_panel() {
-		return bubble_sales_panel;
+	public static GBubbleSalesPanel getGBubble_sales_panel() {
+		return gbubble_sales_panel;
 	}
-	public static CakeSalesPanel getCake_sales_panel() {
-		return cake_sales_panel;
+	public static GCakeSalesPanel getGCake_sales_panel() {
+		return gcake_sales_panel;
 	}
-	public static MacaronSalesPanel getMacaron_sales_panel() {
-		return macaron_sales_panel;
+	public static GMacaronSalesPanel getGMacaron_sales_panel() {
+		return gmacaron_sales_panel;
 	}
 	public static EmployeePanel getEmployee_panel() {
 		return employee_panel;
@@ -185,8 +208,23 @@ class MainFrame extends JFrame {
 	public static MasterPanel getMaster_panel() {
 		return master_panel;
 	}
-	public static ManagerJoinPanel getManager_join_panel() {
-		return manager_join_panel;
+	public static SCoffeeSalesPanel getSCoffee_sales_panel() {
+		return scoffee_sales_panel;
+	}
+	public static SSmoothieSalesPanel getSSmoothie_sales_panel() {
+		return ssmoothie_sales_panel;
+	}
+	public static STeaSalesPanel getSTea_sales_panel() {
+		return stea_sales_panel;
+	}
+	public static SBubbleSalesPanel getSBubble_sales_panel() {
+		return sbubble_sales_panel;
+	}
+	public static SCakeSalesPanel getSCake_sales_panel() {
+		return scake_sales_panel;
+	}
+	public static SMacaronSalesPanel getSMacaron_sales_panel() {
+		return smacaron_sales_panel;
 	}
 	public static FranchisePanel getFranchise_panel() {
 		return franchise_panel;

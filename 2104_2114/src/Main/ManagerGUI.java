@@ -62,7 +62,7 @@ class ManagerPanel extends JPanel{
 		bname_label.setBounds(90, 203, 300, 80);
 		bname_label.setText(getBname());
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
-		bname_label.setFont(new Font("인터파크고딕 L", Font.PLAIN, 40));
+		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 40));
 		add(bname_label);
 
 		//매출 관리 버튼
@@ -119,7 +119,7 @@ class ManagerPanel extends JPanel{
 		mypage_button.setOpaque(false);
 		mypage_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main.MainFrame.getMypage_panel().setVisible(true);
+				//Main.MainFrame.getGMypage_panel().setVisible(true);
 				Main.MainFrame.getManager_panel().setVisible(false);
 			}
 		});
