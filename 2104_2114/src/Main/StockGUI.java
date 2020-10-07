@@ -328,14 +328,6 @@ class GCoffeeStockPanel extends JPanel{
 		ice_cnt.setBorder(BorderFactory.createEmptyBorder());
 		ice_cnt.setHorizontalAlignment(JTextField.CENTER);
 		ice_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		ice_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(ice_cnt);
 		
 		//아이스 재고 추가
@@ -347,6 +339,9 @@ class GCoffeeStockPanel extends JPanel{
 		ice_in.setOpaque(false);
 		ice_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				coffee_db("ice");
+				ice_s.setText(Integer.toString(ice_s_db) + "잔");
+				ice_cnt.setText("");
 			}
 		});
 		add(ice_in);		
@@ -365,14 +360,6 @@ class GCoffeeStockPanel extends JPanel{
 		hot_cnt.setBorder(BorderFactory.createEmptyBorder());
 		hot_cnt.setHorizontalAlignment(JTextField.CENTER);
 		hot_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		hot_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(hot_cnt);
 		
 		//핫 재고 추가
@@ -384,6 +371,9 @@ class GCoffeeStockPanel extends JPanel{
 		hot_in.setOpaque(false);
 		hot_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				coffee_db("hot");
+				hot_s.setText(Integer.toString(hot_s_db) + "잔");
+				hot_cnt.setText("");
 			}
 		});
 		add(hot_in);
@@ -419,6 +409,51 @@ class GCoffeeStockPanel extends JPanel{
             while (result = rset.next()) {
             	ice_s_db = rset.getInt("ICE_S");
             	hot_s_db = rset.getInt("HOT_S");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}	
+	public void coffee_db(String menu) {	
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("ice")){
+            		ice_s_db = rset.getInt("ICE_S") + Integer.parseInt(ice_cnt.getText());
+                	query = "UPDATE MENU_COFFEE SET ICE_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, ice_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("hot")) {
+            		hot_s_db = rset.getInt("HOT_S") + Integer.parseInt(hot_cnt.getText());
+                	query = "UPDATE MENU_COFFEE SET HOT_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, hot_s_db);
+        			pstmt.executeUpdate();
+            	}
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -604,14 +639,6 @@ class GSmoothieStockPanel extends JPanel{
 		orange_cnt.setBorder(BorderFactory.createEmptyBorder());
 		orange_cnt.setHorizontalAlignment(JTextField.CENTER);
 		orange_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 70));
-		orange_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(orange_cnt);
 
 		//오렌지 재고 추가
@@ -623,6 +650,9 @@ class GSmoothieStockPanel extends JPanel{
 		orange_in.setOpaque(false);
 		orange_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				smoothie_db("orange");
+				orange_s.setText(Integer.toString(orange_s_db) + "잔");
+				orange_cnt.setText("");
 			}
 		});
 		add(orange_in);
@@ -641,14 +671,6 @@ class GSmoothieStockPanel extends JPanel{
 		kiwi_cnt.setBorder(BorderFactory.createEmptyBorder());
 		kiwi_cnt.setHorizontalAlignment(JTextField.CENTER);
 		kiwi_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 70));
-		kiwi_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(kiwi_cnt);
 
 		//키위 재고 추가
@@ -660,6 +682,9 @@ class GSmoothieStockPanel extends JPanel{
 		kiwi_in.setOpaque(false);
 		kiwi_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				smoothie_db("kiwi");
+				kiwi_s.setText(Integer.toString(kiwi_s_db) + "잔");
+				kiwi_cnt.setText("");
 			}
 		});
 		add(kiwi_in);
@@ -678,14 +703,6 @@ class GSmoothieStockPanel extends JPanel{
 		grape_cnt.setBorder(BorderFactory.createEmptyBorder());
 		grape_cnt.setHorizontalAlignment(JTextField.CENTER);
 		grape_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 70));
-		grape_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(grape_cnt);
 
 		//포도 재고 추가
@@ -697,6 +714,9 @@ class GSmoothieStockPanel extends JPanel{
 		grape_in.setOpaque(false);
 		grape_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				smoothie_db("grape");
+				grape_s.setText(Integer.toString(grape_s_db) + "잔");
+				grape_cnt.setText("");
 			}
 		});
 		add(grape_in);
@@ -715,14 +735,6 @@ class GSmoothieStockPanel extends JPanel{
 		straw_cnt.setBorder(BorderFactory.createEmptyBorder());
 		straw_cnt.setHorizontalAlignment(JTextField.CENTER);
 		straw_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 70));
-		straw_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(straw_cnt);
 
 		//딸기 재고 추가
@@ -734,6 +746,9 @@ class GSmoothieStockPanel extends JPanel{
 		straw_in.setOpaque(false);
 		straw_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				smoothie_db("straw");
+				straw_s.setText(Integer.toString(straw_s_db) + "잔");
+				straw_cnt.setText("");
 			}
 		});
 		add(straw_in);
@@ -752,14 +767,6 @@ class GSmoothieStockPanel extends JPanel{
 		water_cnt.setBorder(BorderFactory.createEmptyBorder());
 		water_cnt.setHorizontalAlignment(JTextField.CENTER);
 		water_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 70));
-		water_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(water_cnt);
 		
 		//수박 재고 추가
@@ -771,6 +778,9 @@ class GSmoothieStockPanel extends JPanel{
 		water_in.setOpaque(false);
 		water_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				smoothie_db("water");
+				water_s.setText(Integer.toString(water_s_db) + "잔");
+				water_cnt.setText("");
 			}
 		});
 		add(water_in);
@@ -810,6 +820,69 @@ class GSmoothieStockPanel extends JPanel{
             	grape_s_db = rset.getInt("GRAPE_S");
             	straw_s_db = rset.getInt("STRAW_S");
             	water_s_db = rset.getInt("WATER_S");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+	}	
+	public void smoothie_db(String menu) {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("orange")){
+            		orange_s_db = rset.getInt("ORANGE_S") + Integer.parseInt(orange_cnt.getText());
+                	query = "UPDATE MENU_SMOOTHIE SET ORANGE_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, orange_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("kiwi")) {
+            		kiwi_s_db = rset.getInt("KIWI_S") + Integer.parseInt(kiwi_cnt.getText());
+                	query = "UPDATE MENU_SMOOTHIE SET KIWI_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, kiwi_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("grape")) {
+            		grape_s_db = rset.getInt("GRAPE_S") + Integer.parseInt(grape_cnt.getText());
+                	query = "UPDATE MENU_SMOOTHIE SET GRAPE_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, grape_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("straw")) {
+            		straw_s_db = rset.getInt("STRAW_S") + Integer.parseInt(straw_cnt.getText());
+                	query = "UPDATE MENU_SMOOTHIE SET STRAW_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, straw_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("water")) {
+            		water_s_db = rset.getInt("WATER_S") + Integer.parseInt(water_cnt.getText());
+                	query = "UPDATE MENU_SMOOTHIE SET WATER_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, water_s_db);
+        			pstmt.executeUpdate();
+            	}
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -973,14 +1046,6 @@ class GTeaStockPanel extends JPanel{
 		green_cnt.setBorder(BorderFactory.createEmptyBorder());
 		green_cnt.setHorizontalAlignment(JTextField.CENTER);
 		green_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		green_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(green_cnt);
 		
 		//녹차 재고 추가
@@ -992,6 +1057,9 @@ class GTeaStockPanel extends JPanel{
 		green_in.setOpaque(false);
 		green_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tea_db("green");
+				green_s.setText(Integer.toString(green_s_db) + "잔");
+				green_cnt.setText("");
 			}
 		});
 		add(green_in);
@@ -1010,14 +1078,6 @@ class GTeaStockPanel extends JPanel{
 		black_cnt.setBorder(BorderFactory.createEmptyBorder());
 		black_cnt.setHorizontalAlignment(JTextField.CENTER);
 		black_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		black_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(black_cnt);
 		
 		//홍차 재고 추가
@@ -1029,6 +1089,9 @@ class GTeaStockPanel extends JPanel{
 		black_in.setOpaque(false);
 		black_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tea_db("black");
+				black_s.setText(Integer.toString(black_s_db) + "잔");
+				black_cnt.setText("");
 			}
 		});
 		add(black_in);
@@ -1079,6 +1142,51 @@ class GTeaStockPanel extends JPanel{
                 e.printStackTrace();
             }
         }
+	}
+	public void tea_db(String menu) {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("green")){
+            		green_s_db = rset.getInt("GREEN_S") + Integer.parseInt(green_cnt.getText());
+                	query = "UPDATE MENU_TEA SET GREEN_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, green_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("black")) {
+            		black_s_db = rset.getInt("BLACK_S") + Integer.parseInt(black_cnt.getText());
+                	query = "UPDATE MENU_TEA SET BLACK_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, black_s_db);
+        			pstmt.executeUpdate();
+            	}
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }		
 	}
 }
 class GBubbleStockPanel extends JPanel{
@@ -1237,14 +1345,6 @@ class GBubbleStockPanel extends JPanel{
 		bs_cnt.setBorder(BorderFactory.createEmptyBorder());
 		bs_cnt.setHorizontalAlignment(JTextField.CENTER);
 		bs_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		bs_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(bs_cnt);
 
 		//흑당 재고 추가
@@ -1256,6 +1356,9 @@ class GBubbleStockPanel extends JPanel{
 		bs_in.setOpaque(false);
 		bs_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bubble_db("bs");
+				bs_s.setText(Integer.toString(bs_s_db) + "잔");
+				bs_cnt.setText("");
 			}
 		});
 		add(bs_in);
@@ -1274,14 +1377,6 @@ class GBubbleStockPanel extends JPanel{
 		taro_cnt.setBorder(BorderFactory.createEmptyBorder());
 		taro_cnt.setHorizontalAlignment(JTextField.CENTER);
 		taro_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		taro_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(taro_cnt);
 		
 		//타로 재고 추가
@@ -1293,6 +1388,9 @@ class GBubbleStockPanel extends JPanel{
 		taro_in.setOpaque(false);
 		taro_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bubble_db("taro");
+				taro_s.setText(Integer.toString(taro_s_db) + "잔");
+				taro_cnt.setText("");
 			}
 		});
 		add(taro_in);
@@ -1311,14 +1409,6 @@ class GBubbleStockPanel extends JPanel{
 		gb_cnt.setBorder(BorderFactory.createEmptyBorder());
 		gb_cnt.setHorizontalAlignment(JTextField.CENTER);
 		gb_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		gb_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(gb_cnt);
 		
 		//녹차 재고 추가
@@ -1330,6 +1420,9 @@ class GBubbleStockPanel extends JPanel{
 		gb_in.setOpaque(false);
 		gb_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				bubble_db("gb");
+				gb_s.setText(Integer.toString(gb_s_db) + "잔");
+				gb_cnt.setText("");
 			}
 		});
 		add(gb_in);		
@@ -1380,6 +1473,58 @@ class GBubbleStockPanel extends JPanel{
                 e.printStackTrace();
             }
         }
+	}
+	public void bubble_db(String menu) {	
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("bs")){
+            		bs_s_db = rset.getInt("BS_S") + Integer.parseInt(bs_cnt.getText());
+                	query = "UPDATE MENU_BUBBLE SET BS_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, bs_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("taro")) {
+            		taro_s_db = rset.getInt("TARO_S") + Integer.parseInt(taro_cnt.getText());
+                	query = "UPDATE MENU_BUBBLE SET TARO_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, taro_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("gb")) {
+            		gb_s_db = rset.getInt("GB_S") + Integer.parseInt(gb_cnt.getText());
+                	query = "UPDATE MENU_BUBBLE SET GB_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, gb_s_db);
+        			pstmt.executeUpdate();
+            	}
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }		
+		
 	}
 }
 class GCakeStockPanel extends JPanel{
@@ -1538,14 +1683,6 @@ class GCakeStockPanel extends JPanel{
 		cheese_cnt.setBorder(BorderFactory.createEmptyBorder());
 		cheese_cnt.setHorizontalAlignment(JTextField.CENTER);
 		cheese_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		cheese_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(cheese_cnt);
 		
 		//치즈 재고 추가
@@ -1557,6 +1694,9 @@ class GCakeStockPanel extends JPanel{
 		cheese_in.setOpaque(false);
 		cheese_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cake_db("cheese");
+				cheese_s.setText(Integer.toString(cheese_s_db) + "조각");
+				cheese_cnt.setText("");
 			}
 		});
 		add(cheese_in);
@@ -1575,14 +1715,6 @@ class GCakeStockPanel extends JPanel{
 		sc_cnt.setBorder(BorderFactory.createEmptyBorder());
 		sc_cnt.setHorizontalAlignment(JTextField.CENTER);
 		sc_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		sc_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(sc_cnt);
 		
 		//딸기 재고 추가
@@ -1594,6 +1726,9 @@ class GCakeStockPanel extends JPanel{
 		sc_in.setOpaque(false);
 		sc_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cake_db("sc");
+				sc_s.setText(Integer.toString(sc_s_db) + "조각");
+				sc_cnt.setText("");
 			}
 		});
 		add(sc_in);
@@ -1612,14 +1747,6 @@ class GCakeStockPanel extends JPanel{
 		choco_cnt.setBorder(BorderFactory.createEmptyBorder());
 		choco_cnt.setHorizontalAlignment(JTextField.CENTER);
 		choco_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		choco_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(choco_cnt);
 		
 		//초코 재고 추가
@@ -1631,6 +1758,9 @@ class GCakeStockPanel extends JPanel{
 		choco_in.setOpaque(false);
 		choco_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				cake_db("choco");
+				choco_s.setText(Integer.toString(choco_s_db) + "조각");
+				choco_cnt.setText("");
 			}
 		});
 		add(choco_in);		
@@ -1681,6 +1811,58 @@ class GCakeStockPanel extends JPanel{
                 e.printStackTrace();
             }
         }
+	}
+	public void cake_db(String menu) {	
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("cheese")){
+            		cheese_s_db = rset.getInt("CHEESE_S") + Integer.parseInt(cheese_cnt.getText());
+                	query = "UPDATE MENU_CAKE SET CHEESE_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, cheese_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("sc")) {
+            		sc_s_db = rset.getInt("SC_S") + Integer.parseInt(sc_cnt.getText());
+                	query = "UPDATE MENU_CAKE SET SC_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, sc_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("choco")) {
+            		choco_s_db = rset.getInt("CHOCO_S") + Integer.parseInt(choco_cnt.getText());
+                	query = "UPDATE MENU_CAKE SET CHOCO_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, choco_s_db);
+        			pstmt.executeUpdate();
+            	}
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }		
+		
 	}
 }
 class GMacaronStockPanel extends JPanel{
@@ -1839,14 +2021,6 @@ class GMacaronStockPanel extends JPanel{
 		berry_cnt.setBorder(BorderFactory.createEmptyBorder());
 		berry_cnt.setHorizontalAlignment(JTextField.CENTER);
 		berry_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		berry_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(berry_cnt);
 		
 		//베리 재고 추가
@@ -1858,6 +2032,9 @@ class GMacaronStockPanel extends JPanel{
 		berry_in.setOpaque(false);
 		berry_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				macaron_db("berry");
+				berry_s.setText(Integer.toString(berry_s_db) + "개");
+				berry_cnt.setText("");
 			}
 		});
 		add(berry_in);
@@ -1876,14 +2053,6 @@ class GMacaronStockPanel extends JPanel{
 		yogurt_cnt.setBorder(BorderFactory.createEmptyBorder());
 		yogurt_cnt.setHorizontalAlignment(JTextField.CENTER);
 		yogurt_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		yogurt_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(yogurt_cnt);
 		
 		//요거트 재고 추가
@@ -1895,6 +2064,9 @@ class GMacaronStockPanel extends JPanel{
 		yogurt_in.setOpaque(false);
 		yogurt_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				macaron_db("yogurt");
+				yogurt_s.setText(Integer.toString(yogurt_s_db) + "개");
+				yogurt_cnt.setText("");
 			}
 		});
 		add(yogurt_in);
@@ -1913,14 +2085,6 @@ class GMacaronStockPanel extends JPanel{
 		fruit_cnt.setBorder(BorderFactory.createEmptyBorder());
 		fruit_cnt.setHorizontalAlignment(JTextField.CENTER);
 		fruit_cnt.setFont(new Font("인터파크고딕 L", Font.PLAIN, 80));
-		fruit_cnt.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-		});
 		add(fruit_cnt);
 		
 		//과일 재고 추가
@@ -1932,6 +2096,9 @@ class GMacaronStockPanel extends JPanel{
 		fruit_in.setOpaque(false);
 		fruit_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				macaron_db("fruit");
+				fruit_s.setText(Integer.toString(fruit_s_db) + "개");
+				fruit_cnt.setText("");
 			}
 		});
 		add(fruit_in);
@@ -1983,5 +2150,56 @@ class GMacaronStockPanel extends JPanel{
                 e.printStackTrace();
             }
         }
+	}
+	public void macaron_db(String menu) {
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bname);
+			rset = pstmt.executeQuery();
+             
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	if(menu.equals("berry")){
+            		berry_s_db = rset.getInt("BERRY_S") + Integer.parseInt(berry_cnt.getText());
+                	query = "UPDATE MENU_MACARON SET BERRY_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, berry_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("yogurt")) {
+            		yogurt_s_db = rset.getInt("YOGURT_S") + Integer.parseInt(yogurt_cnt.getText());
+                	query = "UPDATE MENU_MACARON SET YOGURT_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, yogurt_s_db);
+        			pstmt.executeUpdate();
+            	}else if(menu.equals("fruit")) {
+            		fruit_s_db = rset.getInt("FRUIT_S") + Integer.parseInt(fruit_cnt.getText());
+                	query = "UPDATE MENU_MACARON SET FRUIT_S = ?";
+                	pstmt = conn.prepareStatement(query);
+        			pstmt.setInt(1, fruit_s_db);
+        			pstmt.executeUpdate();
+            	}
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }		
 	}
 }
