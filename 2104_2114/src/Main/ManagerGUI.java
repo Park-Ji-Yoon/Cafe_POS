@@ -89,7 +89,7 @@ class ManagerPanel extends JPanel{
 		stock_button.setOpaque(false);
 		stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main.MainFrame.getStock_panel().setVisible(true);
+				Main.MainFrame.getStock_panel().setVisible(true);
 				Main.MainFrame.getManager_panel().setVisible(false);
 			}
 		});

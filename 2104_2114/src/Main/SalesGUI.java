@@ -27,9 +27,9 @@ public class SalesGUI {
 class SalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
-	ImageIcon background = new ImageIcon("images/background_30.png");
+	ImageIcon background = new ImageIcon("images/background_23.png");
 
-	JButton franchise_exit_button = new JButton(icon);
+	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
 	JButton tea_sales_button = new JButton(icon);
@@ -44,19 +44,19 @@ class SalesPanel extends JPanel{
 		setVisible(true);
 
 		//매출관리 취소
-		franchise_exit_button.setBounds(61, 35, 126, 35);
-		franchise_exit_button.setVisible(true);
-		franchise_exit_button.setBorderPainted(false);
-		franchise_exit_button.setContentAreaFilled(false);
-		franchise_exit_button.setFocusPainted(false);
-		franchise_exit_button.setOpaque(false);
-		franchise_exit_button.addActionListener(new ActionListener() {
+		sales_exit_button.setBounds(61, 35, 126, 35);
+		sales_exit_button.setVisible(true);
+		sales_exit_button.setBorderPainted(false);
+		sales_exit_button.setContentAreaFilled(false);
+		sales_exit_button.setFocusPainted(false);
+		sales_exit_button.setOpaque(false);
+		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMaster_panel().setVisible(true);
-				Main.MainFrame.getFranchise_panel().setVisible(false);
+				Main.MainFrame.getManager_panel().setVisible(true);
+				Main.MainFrame.getSales_panel().setVisible(false);
 			}
 		});
-		add(franchise_exit_button);
+		add(sales_exit_button);
 
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(115, 184, 67, 30);
@@ -647,10 +647,10 @@ class GTeaSalesPanel extends JPanel{
 	JLabel black_m = new JLabel();
 
 	String bname = ManagerPanel.getBname();
-	int green_d_db;;
+	int green_d_db;
 	int green_m_db;
-	int black_d_db;;
-	int black_m_db;;
+	int black_d_db;
+	int black_m_db;
 
 	GTeaSalesPanel() {
 		tea_db();

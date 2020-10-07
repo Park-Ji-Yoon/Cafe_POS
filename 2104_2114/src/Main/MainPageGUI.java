@@ -29,12 +29,19 @@ class MainFrame extends JFrame {
 	static SLoginPanel slogin_panel;
 	static ManagerPanel manager_panel;
 	static SalesPanel sales_panel;
+	static StockPanel stock_panel;
 	static GCoffeeSalesPanel gcoffee_sales_panel;
 	static GSmoothieSalesPanel gsmoothie_sales_panel;
 	static GTeaSalesPanel gtea_sales_panel;
 	static GBubbleSalesPanel gbubble_sales_panel;
 	static GCakeSalesPanel gcake_sales_panel;
 	static GMacaronSalesPanel gmacaron_sales_panel;
+	static GCoffeeStockPanel gcoffee_stock_panel;
+	static GSmoothieStockPanel gsmoothie_stock_panel;
+	static GTeaStockPanel gtea_stock_panel;
+	static GBubbleStockPanel gbubble_stock_panel;
+	static GCakeStockPanel gcake_stock_panel;
+	static GMacaronStockPanel gmacaron_stock_panel;
 	static EmployeePanel employee_panel;
 	static MasterPanel master_panel;
 	static SCoffeeSalesPanel scoffee_sales_panel;
@@ -49,7 +56,7 @@ class MainFrame extends JFrame {
 	public MainFrame() {
 		// MainPanel 생성자 호출
 		main_panel = new MainPanel();
-		main_panel.setVisible(true);
+		main_panel.setVisible(false);
 
 		order_panel = new OrderPanel();
 		order_panel.setVisible(false);
@@ -87,11 +94,32 @@ class MainFrame extends JFrame {
 		gmacaron_sales_panel = new GMacaronSalesPanel();
 		gmacaron_sales_panel.setVisible(false);
 		
+		gcoffee_stock_panel = new GCoffeeStockPanel();
+		gcoffee_stock_panel.setVisible(true);
+
+		gsmoothie_stock_panel = new GSmoothieStockPanel();
+		gsmoothie_stock_panel.setVisible(false);
+
+		gtea_stock_panel = new GTeaStockPanel();
+		gtea_stock_panel.setVisible(false);
+
+		gbubble_stock_panel = new GBubbleStockPanel();
+		gbubble_stock_panel.setVisible(false);
+
+		gcake_stock_panel = new GCakeStockPanel();
+		gcake_stock_panel.setVisible(false);
+
+		gmacaron_stock_panel = new GMacaronStockPanel();
+		gmacaron_stock_panel.setVisible(false);
+		
 		master_panel = new MasterPanel();
 		master_panel.setVisible(false);
 		
 		sales_panel = new SalesPanel();
 		sales_panel.setVisible(false);
+		
+		stock_panel = new StockPanel();
+		stock_panel.setVisible(false);
 		
 		scoffee_sales_panel = new SCoffeeSalesPanel();
 		scoffee_sales_panel.setVisible(false);
@@ -138,12 +166,19 @@ class MainFrame extends JFrame {
 		add(slogin_panel);
 		add(manager_panel);
 		add(sales_panel);
+		add(stock_panel);
 		add(gcoffee_sales_panel);
 		add(gsmoothie_sales_panel);
 		add(gtea_sales_panel);
 		add(gbubble_sales_panel);
 		add(gcake_sales_panel);
 		add(gmacaron_sales_panel);
+		add(gcoffee_stock_panel);
+		add(gsmoothie_stock_panel);
+		add(gtea_stock_panel);
+		add(gbubble_stock_panel);
+		add(gcake_stock_panel);
+		add(gmacaron_stock_panel);
 		add(employee_panel);
 		add(master_panel);
 		add(scoffee_sales_panel);
@@ -184,6 +219,9 @@ class MainFrame extends JFrame {
 	public static SalesPanel getSales_panel() {
 		return sales_panel;
 	}
+	public static StockPanel getStock_panel() {
+		return stock_panel;
+	}
 	public static GCoffeeSalesPanel getGCoffee_sales_panel() {
 		return gcoffee_sales_panel;
 	}
@@ -201,6 +239,24 @@ class MainFrame extends JFrame {
 	}
 	public static GMacaronSalesPanel getGMacaron_sales_panel() {
 		return gmacaron_sales_panel;
+	}
+	public static GCoffeeStockPanel getGCoffee_stock_panel() {
+		return gcoffee_stock_panel;
+	}
+	public static GSmoothieStockPanel getGSmoothie_stock_panel() {
+		return gsmoothie_stock_panel;
+	}
+	public static GTeaStockPanel getGTea_stock_panel() {
+		return gtea_stock_panel;
+	}
+	public static GBubbleStockPanel getGBubble_stock_panel() {
+		return gbubble_stock_panel;
+	}
+	public static GCakeStockPanel getGCake_stock_panel() {
+		return gcake_stock_panel;
+	}
+	public static GMacaronStockPanel getGMacaron_stock_panel() {
+		return gmacaron_stock_panel;
 	}
 	public static EmployeePanel getEmployee_panel() {
 		return employee_panel;
