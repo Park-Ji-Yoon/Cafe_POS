@@ -52,11 +52,13 @@ class MainFrame extends JFrame {
 	static SMacaronSalesPanel smacaron_sales_panel;
 	static FranchisePanel franchise_panel;
 	static PaySuccessPanel pay_success_panel;
+	static ChoiceArea choice_area_panel;
+	static ChoiceStore choice_store_panel;
 
 	public MainFrame() {
 		// MainPanel 생성자 호출
 		main_panel = new MainPanel();
-		main_panel.setVisible(false);
+		main_panel.setVisible(true);
 
 		order_panel = new OrderPanel();
 		order_panel.setVisible(false);
@@ -95,7 +97,7 @@ class MainFrame extends JFrame {
 		gmacaron_sales_panel.setVisible(false);
 		
 		gcoffee_stock_panel = new GCoffeeStockPanel();
-		gcoffee_stock_panel.setVisible(true);
+		gcoffee_stock_panel.setVisible(false);
 
 		gsmoothie_stock_panel = new GSmoothieStockPanel();
 		gsmoothie_stock_panel.setVisible(false);
@@ -147,6 +149,12 @@ class MainFrame extends JFrame {
 		
 		pay_success_panel = new PaySuccessPanel();
 		pay_success_panel.setVisible(false);
+		
+		choice_area_panel = new ChoiceArea();
+		choice_area_panel.setVisible(false);
+		
+		choice_store_panel = new ChoiceStore();
+		choice_store_panel.setVisible(false);
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
@@ -189,6 +197,8 @@ class MainFrame extends JFrame {
 		add(smacaron_sales_panel);
 		add(franchise_panel);
 		add(pay_success_panel);
+		add(choice_area_panel);
+		add(choice_store_panel);
 
 		// 프레임 위 앱 아이콘
 		ImageIcon icon = new ImageIcon("images/logo_2.png");
@@ -288,6 +298,12 @@ class MainFrame extends JFrame {
 	public static PaySuccessPanel getPay_success_panel() {
 		return pay_success_panel;
 	}
+	public static ChoiceArea getChoice_area_panel() {
+		return choice_area_panel;
+	}
+	public static ChoiceStore getChoice_store_panel() {
+		return choice_store_panel;
+	}
 }
 
 class MainPanel extends JPanel {
@@ -312,7 +328,7 @@ class MainPanel extends JPanel {
 		order_btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Main.MainFrame.getMain_panel().setVisible(false);
-					Main.MainFrame.getOrder_panel().setVisible(true);
+					Main.MainFrame.getChoice_area_panel().setVisible(true);
 					
 					// 커피
 					PaySuccessDetail.ice_coffee_pay.setVisible(false);

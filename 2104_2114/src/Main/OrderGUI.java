@@ -9,6 +9,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.EventHandler;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -20,6 +27,8 @@ public class OrderGUI extends JFrame {
 
 class OrderPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_2.png");
+	
+	static WhichStoreLabel which = new WhichStoreLabel();
 
 	JButton order_button = new JButton(icon);
 	JButton menu_exit_button = new JButton(icon);
@@ -183,13 +192,14 @@ class OrderPanel extends JPanel {
 	static PriceSum price_sum = new PriceSum();
 
 	static int order_btn_count = 0;
-	
+
 	public static OrderDetails getIceCoffee() {
 		return iceCoffee;
 	}
 
 	OrderPanel() {
-
+		add(which);
+		
 		add(order_list);
 		add(price_sum);
 
@@ -205,11 +215,11 @@ class OrderPanel extends JPanel {
 		order_button.setOpaque(false);
 
 		order_button.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				if(all_price == 0) {
-					JOptionPane.showMessageDialog(null, "메뉴를 하나 이상 선택해주세요", "메뉴부족", JOptionPane.ERROR_MESSAGE);	
-				}else {
+				if (all_price == 0) {
+					JOptionPane.showMessageDialog(null, "메뉴를 하나 이상 선택해주세요", "메뉴부족", JOptionPane.ERROR_MESSAGE);
+				} else {
 					order_btn_count++;
 					if (order_btn_count == 1) {
 						Main.MainFrame.getOrder_panel().setVisible(false);
@@ -241,7 +251,7 @@ class OrderPanel extends JPanel {
 				Main.MainFrame.getOrder_panel().setVisible(false);
 				Main.MainFrame.getMain_panel().setVisible(true);
 				OrderPanel.getOrder_list().removeAll();
-				
+
 				all_count = 0;
 				all_price = 0;
 				price_sum.setText("결제금액 : " + all_price + "원");
@@ -329,7 +339,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.ice_coffee_pay.setText("Ice-coffee  " + ice_coffee_count + "개  " + ice_coffee_count*ice_coffee_price + "원");
+							PaySuccessDetail.ice_coffee_pay.setText("Ice-coffee  " + ice_coffee_count + "개  "
+									+ ice_coffee_count * ice_coffee_price + "원");
 							if (ice_coffee_count == 0) {
 								OrderPanel.iceCoffee.setVisible(false);
 							}
@@ -360,7 +371,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.ice_coffee_pay.setText("Ice-coffee  " + ice_coffee_count + "개  " + ice_coffee_count*ice_coffee_price + "원");
+						PaySuccessDetail.ice_coffee_pay.setText(
+								"Ice-coffee  " + ice_coffee_count + "개  " + ice_coffee_count * ice_coffee_price + "원");
 					} else {
 						ice_coffee_count++;
 						iceCoffee.setText(" 뺌   Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "   |  "
@@ -386,7 +398,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.ice_coffee_pay.setText("Ice-coffee  " + ice_coffee_count + "개  " + ice_coffee_count*ice_coffee_price + "원");
+					PaySuccessDetail.ice_coffee_pay.setText(
+							"Ice-coffee  " + ice_coffee_count + "개  " + ice_coffee_count * ice_coffee_price + "원");
 				}
 			}
 
@@ -473,7 +486,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.hot_coffee_pay.setText("Hot-coffee  " + hot_coffee_count + "개  " + hot_coffee_count*hot_coffee_price + "원");
+							PaySuccessDetail.hot_coffee_pay.setText("Hot-coffee  " + hot_coffee_count + "개  "
+									+ hot_coffee_count * hot_coffee_price + "원");
 							if (hot_coffee_count == 0) {
 								OrderPanel.hotCoffee.setVisible(false);
 							}
@@ -504,7 +518,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.hot_coffee_pay.setText("Hot-coffee  " + hot_coffee_count + "개  " + hot_coffee_count*hot_coffee_price + "원");
+						PaySuccessDetail.hot_coffee_pay.setText(
+								"Hot-coffee  " + hot_coffee_count + "개  " + hot_coffee_count * hot_coffee_price + "원");
 					} else {
 						hot_coffee_count++;
 						hotCoffee.setText(" 뺌   Hot-coffee  |  " + String.valueOf(hot_coffee_count) + "  |  "
@@ -530,7 +545,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.hot_coffee_pay.setText("Hot-coffee  " + hot_coffee_count + "개  " + hot_coffee_count*hot_coffee_price + "원");
+					PaySuccessDetail.hot_coffee_pay.setText(
+							"Hot-coffee  " + hot_coffee_count + "개  " + hot_coffee_count * hot_coffee_price + "원");
 				}
 			}
 
@@ -647,7 +663,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  " + orange_smoothie_count*orange_smoothie_price + "원");
+							PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  "
+									+ orange_smoothie_count * orange_smoothie_price + "원");
 							if (orange_smoothie_count == 0) {
 								OrderPanel.orangeSmoo.setVisible(false);
 							}
@@ -702,9 +719,11 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  " + orange_smoothie_count*orange_smoothie_price + "원");
+						PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  "
+								+ orange_smoothie_count * orange_smoothie_price + "원");
 					}
-					PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  " + orange_smoothie_count*orange_smoothie_price + "원");
+					PaySuccessDetail.orange_smoo_pay.setText("Orange-smoothie  " + orange_smoothie_count + "개  "
+							+ orange_smoothie_count * orange_smoothie_price + "원");
 				}
 			}
 
@@ -794,7 +813,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  " + kiwi_smoothie_count*kiwi_smoothie_price + "원");
+							PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  "
+									+ kiwi_smoothie_count * kiwi_smoothie_price + "원");
 							if (kiwi_smoothie_count == 0) {
 								OrderPanel.kiwiSmoo.setVisible(false);
 							}
@@ -825,7 +845,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  " + kiwi_smoothie_count*kiwi_smoothie_price + "원");
+						PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  "
+								+ kiwi_smoothie_count * kiwi_smoothie_price + "원");
 					} else {
 						kiwi_smoothie_count++;
 						kiwiSmoo.setText(" 뺌   Kiwi-smoothie  |  " + String.valueOf(kiwi_smoothie_count) + "  |  "
@@ -851,7 +872,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  " + kiwi_smoothie_count*kiwi_smoothie_price + "원");
+					PaySuccessDetail.kiwi_smoo_pay.setText("Kiwi-smoothie  " + kiwi_smoothie_count + "개  "
+							+ kiwi_smoothie_count * kiwi_smoothie_price + "원");
 				}
 			}
 
@@ -941,7 +963,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  " + grape_smoothie_count*grape_smoothie_price + "원");
+							PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  "
+									+ grape_smoothie_count * grape_smoothie_price + "원");
 							if (grape_smoothie_count == 0) {
 								OrderPanel.grapeSmoo.setVisible(false);
 							}
@@ -972,7 +995,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  " + grape_smoothie_count*grape_smoothie_price + "원");
+						PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  "
+								+ grape_smoothie_count * grape_smoothie_price + "원");
 					} else {
 						grape_smoothie_count++;
 						grapeSmoo.setText(" 뺌   Grape-smoothie  |  " + String.valueOf(grape_smoothie_count) + "  |  "
@@ -998,7 +1022,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  " + grape_smoothie_count*grape_smoothie_price + "원");
+					PaySuccessDetail.grape_smoo_pay.setText("Grape-smoothie  " + grape_smoothie_count + "개  "
+							+ grape_smoothie_count * grape_smoothie_price + "원");
 				}
 			}
 
@@ -1089,7 +1114,9 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.strawberry_smoo_pay.setText("Strawberry-smoothie  " + strawberry_smoothie_count + "개  " + strawberry_smoothie_count*strawberry_smoothie_price + "원");
+							PaySuccessDetail.strawberry_smoo_pay
+									.setText("Strawberry-smoothie  " + strawberry_smoothie_count + "개  "
+											+ strawberry_smoothie_count * strawberry_smoothie_price + "원");
 							if (strawberry_smoothie_count == 0) {
 								OrderPanel.strawberrySmoo.setVisible(false);
 							}
@@ -1121,7 +1148,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.strawberry_smoo_pay.setText("Strawberry-smoothie  " + strawberry_smoothie_count + "개  " + strawberry_smoothie_count*strawberry_smoothie_price + "원");
+						PaySuccessDetail.strawberry_smoo_pay.setText("Strawberry-smoothie  " + strawberry_smoothie_count
+								+ "개  " + strawberry_smoothie_count * strawberry_smoothie_price + "원");
 					} else {
 						strawberry_smoothie_count++;
 						strawberrySmoo
@@ -1148,7 +1176,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.strawberry_smoo_pay.setText("Strawberry-smoothie  " + strawberry_smoothie_count + "개  " + strawberry_smoothie_count*strawberry_smoothie_price + "원");
+					PaySuccessDetail.strawberry_smoo_pay.setText("Strawberry-smoothie  " + strawberry_smoothie_count
+							+ "개  " + strawberry_smoothie_count * strawberry_smoothie_price + "원");
 				}
 			}
 
@@ -1239,7 +1268,9 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.watermelon_smoo_pay.setText("Watermelon-smoothie  " + watermelon_smoothie_count + "개  " + watermelon_smoothie_count*watermelon_smoothie_price + "원");
+							PaySuccessDetail.watermelon_smoo_pay
+									.setText("Watermelon-smoothie  " + watermelon_smoothie_count + "개  "
+											+ watermelon_smoothie_count * watermelon_smoothie_price + "원");
 							if (watermelon_smoothie_count == 0) {
 								OrderPanel.watermalonSmoo.setVisible(false);
 							}
@@ -1271,7 +1302,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.watermelon_smoo_pay.setText("Watermelon-smoothie  " + watermelon_smoothie_count + "개  " + watermelon_smoothie_count*watermelon_smoothie_price + "원");
+						PaySuccessDetail.watermelon_smoo_pay.setText("Watermelon-smoothie  " + watermelon_smoothie_count
+								+ "개  " + watermelon_smoothie_count * watermelon_smoothie_price + "원");
 					} else {
 						watermelon_smoothie_count++;
 						watermalonSmoo
@@ -1298,7 +1330,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.watermelon_smoo_pay.setText("Watermelon-smoothie  " + watermelon_smoothie_count + "개  " + watermelon_smoothie_count*watermelon_smoothie_price + "원");
+					PaySuccessDetail.watermelon_smoo_pay.setText("Watermelon-smoothie  " + watermelon_smoothie_count
+							+ "개  " + watermelon_smoothie_count * watermelon_smoothie_price + "원");
 				}
 			}
 
@@ -1397,7 +1430,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.black_tea_pay.setText("Black-tea  " + black_tea_count + "개  " + black_tea_count*black_tea_price + "원");
+							PaySuccessDetail.black_tea_pay.setText(
+									"Black-tea  " + black_tea_count + "개  " + black_tea_count * black_tea_price + "원");
 							if (black_tea_count == 0) {
 								OrderPanel.blackTea.setVisible(false);
 							}
@@ -1428,7 +1462,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.black_tea_pay.setText("Black-tea  " + black_tea_count + "개  " + black_tea_count*black_tea_price + "원");
+						PaySuccessDetail.black_tea_pay.setText(
+								"Black-tea  " + black_tea_count + "개  " + black_tea_count * black_tea_price + "원");
 					} else {
 						black_tea_count++;
 						blackTea.setText(" 뺌  Black-tea  |  " + String.valueOf(black_tea_count) + "  |  "
@@ -1454,7 +1489,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.black_tea_pay.setText("Black-tea  " + black_tea_count + "개  " + black_tea_count*black_tea_price + "원");
+					PaySuccessDetail.black_tea_pay
+							.setText("Black-tea  " + black_tea_count + "개  " + black_tea_count * black_tea_price + "원");
 				}
 			}
 
@@ -1541,7 +1577,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.green_tea_pay.setText("Green-tea  " + green_tea_count + "개  " + green_tea_count*green_tea_price + "원");
+							PaySuccessDetail.green_tea_pay.setText(
+									"Green-tea  " + green_tea_count + "개  " + green_tea_count * green_tea_price + "원");
 							if (green_tea_count == 0) {
 								OrderPanel.greenTea.setVisible(false);
 							}
@@ -1572,7 +1609,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.green_tea_pay.setText("Green-tea  " + green_tea_count + "개  " + green_tea_count*green_tea_price + "원");
+						PaySuccessDetail.green_tea_pay.setText(
+								"Green-tea  " + green_tea_count + "개  " + green_tea_count * green_tea_price + "원");
 					} else {
 						green_tea_count++;
 						greenTea.setText(" 뺌  Green-tea  |  " + String.valueOf(green_tea_count) + "  |  "
@@ -1598,7 +1636,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.green_tea_pay.setText("Green-tea  " + green_tea_count + "개  " + green_tea_count*green_tea_price + "원");
+					PaySuccessDetail.green_tea_pay
+							.setText("Green-tea  " + green_tea_count + "개  " + green_tea_count * green_tea_price + "원");
 				}
 			}
 
@@ -1680,9 +1719,8 @@ class OrderPanel extends JPanel {
 					minus_brown_bubble.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							brown_sugar_bubble_count--;
-							brownBubble
-									.setText(" 뺌 Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
-											+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
+							brownBubble.setText(" 뺌 Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
+									+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
 									+ OrderPanel.orange_smoothie_count * OrderPanel.orange_smoothie_price
@@ -1703,7 +1741,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count + "개  " + brown_sugar_bubble_count*brown_sugar_bubble_price + "원");
+							PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count
+									+ "개  " + brown_sugar_bubble_count * brown_sugar_bubble_price + "원");
 							if (brown_sugar_bubble_count == 0) {
 								OrderPanel.brownBubble.setVisible(false);
 							}
@@ -1734,7 +1773,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count + "개  " + brown_sugar_bubble_count*brown_sugar_bubble_price + "원");
+						PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count
+								+ "개  " + brown_sugar_bubble_count * brown_sugar_bubble_price + "원");
 					} else {
 						brown_sugar_bubble_count++;
 						brownBubble.setText(" 뺌 Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
@@ -1760,7 +1800,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count + "개  " + brown_sugar_bubble_count*brown_sugar_bubble_price + "원");
+					PaySuccessDetail.brown_bubble_pay.setText("Brownsugar-bubbleT  " + brown_sugar_bubble_count + "개  "
+							+ brown_sugar_bubble_count * brown_sugar_bubble_price + "원");
 				}
 			}
 
@@ -1848,7 +1889,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.taro_bubble_pay.setText("Taro-bubbleT  " + taro_bubble_count + "개  " + taro_bubble_count*taro_bubble_price + "원");
+							PaySuccessDetail.taro_bubble_pay.setText("Taro-bubbleT  " + taro_bubble_count + "개  "
+									+ taro_bubble_count * taro_bubble_price + "원");
 							if (taro_bubble_count == 0) {
 								OrderPanel.taroBubble.setVisible(false);
 							}
@@ -1879,7 +1921,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.taro_bubble_pay.setText("Taro-bubbleT  " + taro_bubble_count + "개  " + taro_bubble_count*taro_bubble_price + "원");
+						PaySuccessDetail.taro_bubble_pay.setText("Taro-bubbleT  " + taro_bubble_count + "개  "
+								+ taro_bubble_count * taro_bubble_price + "원");
 					} else {
 						taro_bubble_count++;
 						taroBubble.setText(" 뺌 Taro-bubbleT  |  " + String.valueOf(taro_bubble_count) + "  |  "
@@ -1905,7 +1948,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.taro_bubble_pay.setText("Taro-bubbleT  " + taro_bubble_count + "개  " + taro_bubble_count*taro_bubble_price + "원");
+					PaySuccessDetail.taro_bubble_pay.setText(
+							"Taro-bubbleT  " + taro_bubble_count + "개  " + taro_bubble_count * taro_bubble_price + "원");
 				}
 			}
 
@@ -1985,8 +2029,8 @@ class OrderPanel extends JPanel {
 					minus_green_bubble.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							green_bubble_count--;
-							greenBubble.setText(" 뺌 Green-bubbleT  |  " + String.valueOf(green_bubble_count)
-									+ "  |  " + String.valueOf(green_bubble_count * 4000) + "원");
+							greenBubble.setText(" 뺌 Green-bubbleT  |  " + String.valueOf(green_bubble_count) + "  |  "
+									+ String.valueOf(green_bubble_count * 4000) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
 									+ OrderPanel.orange_smoothie_count * OrderPanel.orange_smoothie_price
@@ -2007,7 +2051,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  " + green_bubble_count*green_bubble_price + "원");
+							PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  "
+									+ green_bubble_count * green_bubble_price + "원");
 							if (green_bubble_count == 0) {
 								OrderPanel.greenBubble.setVisible(false);
 							}
@@ -2038,7 +2083,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  " + green_bubble_count*green_bubble_price + "원");
+						PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  "
+								+ green_bubble_count * green_bubble_price + "원");
 					} else {
 						green_bubble_count++;
 						greenBubble.setText(" 뺌 Green-bubbleT  |  " + String.valueOf(green_bubble_count) + "  |  "
@@ -2064,7 +2110,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  " + green_bubble_count*green_bubble_price + "원");
+					PaySuccessDetail.green_bubble_pay.setText("Green-bubbleT  " + green_bubble_count + "개  "
+							+ green_bubble_count * green_bubble_price + "원");
 				}
 			}
 
@@ -2170,7 +2217,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.cheese_cake_pay.setText("Cheese-cake  " + cheese_cake_count + "개  " + cheese_cake_count*cheese_cake_price + "원");
+							PaySuccessDetail.cheese_cake_pay.setText("Cheese-cake  " + cheese_cake_count + "개  "
+									+ cheese_cake_count * cheese_cake_price + "원");
 							if (cheese_cake_count == 0) {
 								OrderPanel.cheeseCake.setVisible(false);
 							}
@@ -2201,7 +2249,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.cheese_cake_pay.setText("Cheese-cake  " + cheese_cake_count + "개  " + cheese_cake_count*cheese_cake_price + "원");
+						PaySuccessDetail.cheese_cake_pay.setText("Cheese-cake  " + cheese_cake_count + "개  "
+								+ cheese_cake_count * cheese_cake_price + "원");
 					} else {
 						cheese_cake_count++;
 						cheeseCake.setText(" 뺌  Cheese-cake  |  " + String.valueOf(cheese_cake_count) + "  |  "
@@ -2227,7 +2276,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.cheese_cake_pay.setText("Cheese-cake  " + cheese_cake_count + "개  " + cheese_cake_count*cheese_cake_price + "원");
+					PaySuccessDetail.cheese_cake_pay.setText(
+							"Cheese-cake  " + cheese_cake_count + "개  " + cheese_cake_count * cheese_cake_price + "원");
 				}
 			}
 
@@ -2315,7 +2365,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count + "개  " + strawberry_cake_count*strawberry_cake_price + "원");
+							PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count
+									+ "개  " + strawberry_cake_count * strawberry_cake_price + "원");
 							if (strawberry_cake_count == 0) {
 								OrderPanel.strayberryCake.setVisible(false);
 							}
@@ -2346,7 +2397,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count + "개  " + strawberry_cake_count*strawberry_cake_price + "원");
+						PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count + "개  "
+								+ strawberry_cake_count * strawberry_cake_price + "원");
 					} else {
 						strawberry_cake_count++;
 						strayberryCake.setText(" 뺌  Strawberry-cake  |  " + String.valueOf(strawberry_cake_count)
@@ -2372,7 +2424,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count + "개  " + strawberry_cake_count*strawberry_cake_price + "원");
+					PaySuccessDetail.strawberry_cake_pay.setText("Strawberry-cake  " + strawberry_cake_count + "개  "
+							+ strawberry_cake_count * strawberry_cake_price + "원");
 				}
 			}
 
@@ -2460,7 +2513,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count + "개  " + chocolate_cake_count*chocolate_cake_price + "원");
+							PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count
+									+ "개  " + chocolate_cake_count * chocolate_cake_price + "원");
 							if (chocolate_cake_count == 0) {
 								OrderPanel.chocolateCake.setVisible(false);
 							}
@@ -2491,7 +2545,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count + "개  " + chocolate_cake_count*chocolate_cake_price + "원");
+						PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count + "개  "
+								+ chocolate_cake_count * chocolate_cake_price + "원");
 					} else {
 						chocolate_cake_count++;
 						chocolateCake.setText(" 뺌 Chocolate-cake  |  " + String.valueOf(chocolate_cake_count) + "  |  "
@@ -2517,7 +2572,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count + "개  " + chocolate_cake_count*chocolate_cake_price + "원");
+					PaySuccessDetail.chocolate_cake_pay.setText("Chocolate-cake  " + chocolate_cake_count + "개  "
+							+ chocolate_cake_count * chocolate_cake_price + "원");
 				}
 			}
 
@@ -2621,7 +2677,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  " + berry_macaron_count*berry_macaron_price + "원");
+							PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  "
+									+ berry_macaron_count * berry_macaron_price + "원");
 							if (berry_macaron_count == 0) {
 								OrderPanel.berryMacaron.setVisible(false);
 							}
@@ -2652,7 +2709,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  " + berry_macaron_count*berry_macaron_price + "원");
+						PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  "
+								+ berry_macaron_count * berry_macaron_price + "원");
 					} else {
 						berry_macaron_count++;
 						berryMacaron.setText(" 뺌 Berry-macaron  |  " + String.valueOf(berry_macaron_count) + "  |  "
@@ -2678,7 +2736,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  " + berry_macaron_count*berry_macaron_price + "원");
+					PaySuccessDetail.berry_macaron_pay.setText("Berry-macaron  " + berry_macaron_count + "개  "
+							+ berry_macaron_count * berry_macaron_price + "원");
 				}
 			}
 
@@ -2766,7 +2825,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count + "개  " + yogurt_macaron_count*yogurt_macaron_price + "원");
+							PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count
+									+ "개  " + yogurt_macaron_count * yogurt_macaron_price + "원");
 							if (yogurt_macaron_count == 0) {
 								OrderPanel.yogurtMacaron.setVisible(false);
 							}
@@ -2797,7 +2857,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count + "개  " + yogurt_macaron_count*yogurt_macaron_price + "원");
+						PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count + "개  "
+								+ yogurt_macaron_count * yogurt_macaron_price + "원");
 					} else {
 						yogurt_macaron_count++;
 						yogurtMacaron.setText(" 뺌 Yogurt-macaron  |  " + String.valueOf(yogurt_macaron_count) + "  |  "
@@ -2823,7 +2884,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count + "개  " + yogurt_macaron_count*yogurt_macaron_price + "원");
+					PaySuccessDetail.yogurt_macaron_pay.setText("Yogurt-macaron  " + yogurt_macaron_count + "개  "
+							+ yogurt_macaron_count * yogurt_macaron_price + "원");
 				}
 			}
 
@@ -2911,7 +2973,8 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 							price_sum.setText("결제금액 : " + all_price + "원");
 							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-							PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  " + fruit_macaron_count*fruit_macaron_price + "원");
+							PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  "
+									+ fruit_macaron_count * fruit_macaron_price + "원");
 							if (fruit_macaron_count == 0) {
 								OrderPanel.fruitMacaron.setVisible(false);
 							}
@@ -2942,7 +3005,8 @@ class OrderPanel extends JPanel {
 								+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
-						PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  " + fruit_macaron_count*fruit_macaron_price + "원");
+						PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  "
+								+ fruit_macaron_count * fruit_macaron_price + "원");
 					} else {
 						fruit_macaron_count++;
 						fruitMacaron.setText(" 뺌 Fruit-macaron  |  " + String.valueOf(fruit_macaron_count) + "  |  "
@@ -2968,7 +3032,8 @@ class OrderPanel extends JPanel {
 						price_sum.setText("결제금액 : " + all_price + "원");
 						Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
 					}
-					PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  " + fruit_macaron_count*fruit_macaron_price + "원");
+					PaySuccessDetail.fruit_macaron_pay.setText("Fruit-macaron  " + fruit_macaron_count + "개  "
+							+ fruit_macaron_count * fruit_macaron_price + "원");
 				}
 			}
 
@@ -3183,7 +3248,7 @@ class Timer implements Runnable {
 	private JLabel timerLabel;
 
 	static int n = 10;
-	
+
 	public Timer(JLabel timerLabel) {
 		this.timerLabel = timerLabel;
 	}
@@ -3201,64 +3266,64 @@ class Timer implements Runnable {
 			if (n == -1) {
 				Main.MainFrame.getPay_success_panel().setVisible(true);
 				Main.MainFrame.getPayment_panel().setVisible(false);
-				if(OrderPanel.ice_coffee_count > 0) {
+				if (OrderPanel.ice_coffee_count > 0) {
 					PaySuccessDetail.ice_coffee_pay.setVisible(true);
 				}
-				if(OrderPanel.hot_coffee_count > 0) {
+				if (OrderPanel.hot_coffee_count > 0) {
 					PaySuccessDetail.hot_coffee_pay.setVisible(true);
 				}
-				if(OrderPanel.orange_smoothie_count > 0) {
+				if (OrderPanel.orange_smoothie_count > 0) {
 					PaySuccessDetail.orange_smoo_pay.setVisible(true);
 				}
-				if(OrderPanel.kiwi_smoothie_count > 0) {
+				if (OrderPanel.kiwi_smoothie_count > 0) {
 					PaySuccessDetail.kiwi_smoo_pay.setVisible(true);
 				}
-				if(OrderPanel.grape_smoothie_count > 0) {
+				if (OrderPanel.grape_smoothie_count > 0) {
 					PaySuccessDetail.grape_smoo_pay.setVisible(true);
 				}
-				if(OrderPanel.strawberry_smoothie_count > 0) {
+				if (OrderPanel.strawberry_smoothie_count > 0) {
 					PaySuccessDetail.strawberry_smoo_pay.setVisible(true);
 				}
-				if(OrderPanel.watermelon_smoothie_count > 0) {
+				if (OrderPanel.watermelon_smoothie_count > 0) {
 					PaySuccessDetail.watermelon_smoo_pay.setVisible(true);
 				}
-				if(OrderPanel.black_tea_count > 0) {
+				if (OrderPanel.black_tea_count > 0) {
 					PaySuccessDetail.black_tea_pay.setVisible(true);
 				}
-				if(OrderPanel.green_tea_count > 0) {
+				if (OrderPanel.green_tea_count > 0) {
 					PaySuccessDetail.green_tea_pay.setVisible(true);
 				}
-				if(OrderPanel.brown_sugar_bubble_count > 0) {
+				if (OrderPanel.brown_sugar_bubble_count > 0) {
 					PaySuccessDetail.brown_bubble_pay.setVisible(true);
 				}
-				if(OrderPanel.taro_bubble_count > 0) {
+				if (OrderPanel.taro_bubble_count > 0) {
 					PaySuccessDetail.taro_bubble_pay.setVisible(true);
 				}
-				if(OrderPanel.green_bubble_count > 0) {
+				if (OrderPanel.green_bubble_count > 0) {
 					PaySuccessDetail.green_bubble_pay.setVisible(true);
 				}
-				if(OrderPanel.cheese_cake_count > 0) {
+				if (OrderPanel.cheese_cake_count > 0) {
 					PaySuccessDetail.cheese_cake_pay.setVisible(true);
 				}
-				if(OrderPanel.strawberry_cake_count > 0) {
+				if (OrderPanel.strawberry_cake_count > 0) {
 					PaySuccessDetail.strawberry_cake_pay.setVisible(true);
 				}
-				if(OrderPanel.chocolate_cake_count > 0) {
+				if (OrderPanel.chocolate_cake_count > 0) {
 					PaySuccessDetail.chocolate_cake_pay.setVisible(true);
 				}
-				if(OrderPanel.berry_macaron_count > 0) {
+				if (OrderPanel.berry_macaron_count > 0) {
 					PaySuccessDetail.berry_macaron_pay.setVisible(true);
 				}
-				if(OrderPanel.yogurt_macaron_count > 0) {
+				if (OrderPanel.yogurt_macaron_count > 0) {
 					PaySuccessDetail.yogurt_macaron_pay.setVisible(true);
 				}
-				if(OrderPanel.fruit_macaron_count > 0) {
+				if (OrderPanel.fruit_macaron_count > 0) {
 					PaySuccessDetail.fruit_macaron_pay.setVisible(true);
 				}
 				// 커피
 				OrderPanel.ice_coffee_count = 0;
 				OrderPanel.hot_coffee_count = 0;
-				//스무디
+				// 스무디
 				OrderPanel.orange_smoothie_count = 0;
 				OrderPanel.kiwi_smoothie_count = 0;
 				OrderPanel.grape_smoothie_count = 0;
@@ -3279,7 +3344,7 @@ class Timer implements Runnable {
 				OrderPanel.berry_macaron_count = 0;
 				OrderPanel.yogurt_macaron_count = 0;
 				OrderPanel.fruit_macaron_count = 0;
-				
+
 				try {
 					n = 10;
 					synchronized (Payment.td2) {
@@ -3426,15 +3491,15 @@ class PaySuccessPanel extends JPanel {
 	ImageIcon background_2 = new ImageIcon("images/background_21.png");
 	TextField pay_text = new TextField();
 	PaySuccessDetail pay_success_detail = new PaySuccessDetail();
-	
+
 	JButton exit = new JButton();
-	
+
 	PaySuccessPanel() {
-		
+
 		setVisible(true);
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
-		
+
 		exit.setVisible(true);
 		exit.setBorderPainted(false);
 		exit.setContentAreaFilled(false);
@@ -3444,6 +3509,7 @@ class PaySuccessPanel extends JPanel {
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getPayment_panel().setVisible(false);
+				Main.MainFrame.getPay_success_panel().setVisible(false);
 				Main.MainFrame.getMain_panel().setVisible(true);
 				OrderPanel.getOrder_list().removeAll();
 			}
@@ -3460,7 +3526,8 @@ class PaySuccessPanel extends JPanel {
 		super.paintComponent(g);
 	}
 }
-class PaySuccessDetail extends JPanel{
+
+class PaySuccessDetail extends JPanel {
 	// 커피
 	static PaySuccessLabel ice_coffee_pay = new PaySuccessLabel("images/ice_coffee_small.png");
 	static PaySuccessLabel hot_coffee_pay = new PaySuccessLabel("images/hot_coffee_small.png");
@@ -3481,17 +3548,17 @@ class PaySuccessDetail extends JPanel{
 	static PaySuccessLabel cheese_cake_pay = new PaySuccessLabel("images/cake_cheese_small.png");
 	static PaySuccessLabel strawberry_cake_pay = new PaySuccessLabel("images/cake_strawberry_small.png");
 	static PaySuccessLabel chocolate_cake_pay = new PaySuccessLabel("images/cake_chocolate_small.png");
-	//마카롱
+	// 마카롱
 	static PaySuccessLabel berry_macaron_pay = new PaySuccessLabel("images/macaron_berry_small.png");
 	static PaySuccessLabel yogurt_macaron_pay = new PaySuccessLabel("images/macaron_yogurt_small.png");
 	static PaySuccessLabel fruit_macaron_pay = new PaySuccessLabel("images/macaron_fruit_small.png");
-	
+
 	PaySuccessDetail() {
 		setVisible(true);
 		setBackground(Color.WHITE);
 		setBounds(600, 220, 650, 700);
 		setLayout(new FlowLayout());
-		
+
 		add(ice_coffee_pay);
 		add(hot_coffee_pay);
 		add(orange_smoo_pay);
@@ -3512,11 +3579,282 @@ class PaySuccessDetail extends JPanel{
 		add(fruit_macaron_pay);
 	}
 }
-class PaySuccessLabel extends JLabel{
-	PaySuccessLabel(String string){
+
+class PaySuccessLabel extends JLabel {
+	PaySuccessLabel(String string) {
 		ImageIcon i = new ImageIcon(string);
 		setIcon(i);
 		setVisible(false);
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 35));
 	}
 }
+
+class ChoiceArea extends JPanel {
+	static ArrayList<String> area_names = new ArrayList<String>(Arrays.asList("...", "부산", "대구", "울산", "경주", "창원"));
+
+	ArrayList<String> busan_stores_name = new ArrayList<String>(Arrays.asList("부산해운대점", "부산진장점", "부산꼭두각시점"));
+	ArrayList<String> daegu_stores_name = new ArrayList<String>(
+			Arrays.asList("대구해운대점", "대구진장점", "대구꼭두각시점", "대구명성푸르지오점"));
+	ArrayList<String> ulsan_stores_name = new ArrayList<String>(
+			Arrays.asList("울산해운대점", "울산진장점", "울산꼭두각시점", "울산천상점", "울산삼산점"));
+	ArrayList<String> kyeongju_stores_name = new ArrayList<String>(Arrays.asList("경주해운대점", "경주진장점"));
+	ArrayList<String> changwon_stores_name = new ArrayList<String>(Arrays.asList("창원해운대점", "창원진장점", "창원꼭두각시점"));
+
+	ImageIcon background = new ImageIcon("images/choice_1.png");
+
+	static ChoiceBtn area_choice_btn = new ChoiceBtn();
+	static ExitBtn area_exit_btn = new ExitBtn();
+	
+	static Choice store_combobox;
+
+	static Choice area_combobox = new Choice(area_names.toArray(new String[area_names.size()]));
+
+	static String choisen_area, choisen_store;
+	
+	static ChoiceLabel area_choice_label = new ChoiceLabel("지역을 선택해 주세요");
+	static ChoiceLabel store_choice_label = new ChoiceLabel("지점을 선택해 주세요");
+	
+	ChoiceArea() {
+		setBounds(0, 0, 1862, 1055);
+		setLayout(null);
+
+		add(area_combobox);
+		add(area_choice_btn);
+		add(area_exit_btn);
+		add(area_choice_label);
+				
+		area_combobox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				choisen_area = area_combobox.getSelectedItem().toString();		
+				area_choice_label.setText(choisen_area + "이(가) 선택되었습니다");
+			}
+		});
+		
+		area_choice_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean flag = false;
+
+				if (choisen_area == "부산") {
+					store_combobox = new Choice(busan_stores_name.toArray(new String[area_names.size()]));
+					Main.MainFrame.getChoice_store_panel().add(store_combobox);
+					flag = true;
+				} else if (choisen_area == "대구") {
+					store_combobox = new Choice(daegu_stores_name.toArray(new String[area_names.size()]));
+					Main.MainFrame.getChoice_store_panel().add(store_combobox);
+					flag = true;
+				} else if (choisen_area == "울산") {
+					store_combobox = new Choice(ulsan_stores_name.toArray(new String[area_names.size()]));
+					Main.MainFrame.getChoice_store_panel().add(store_combobox);
+					flag = true;
+				} else if (choisen_area == "경주") {
+					store_combobox = new Choice(kyeongju_stores_name.toArray(new String[area_names.size()]));
+					Main.MainFrame.getChoice_store_panel().add(store_combobox);
+					flag = true;
+				} else if (choisen_area == "창원") {
+					store_combobox = new Choice(changwon_stores_name.toArray(new String[area_names.size()]));
+					Main.MainFrame.getChoice_store_panel().add(store_combobox);
+					flag = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "지역을 선택해주세요", "지역선택오류", JOptionPane.ERROR_MESSAGE);
+				}
+				if (flag == true) {
+					Main.MainFrame.getChoice_area_panel().setVisible(false);
+					Main.MainFrame.getChoice_store_panel().setVisible(true);
+					store_combobox.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								choisen_store = ChoiceArea.store_combobox.getSelectedItem().toString();
+								store_choice_label.setText(choisen_store + "이(가) 선택되었습니다");
+							}catch(NullPointerException e1) {
+								JOptionPane.showMessageDialog(null, "잘못된 지점을 선택했습니다", "지점 선택 오류", JOptionPane.ERROR_MESSAGE);
+							}
+							
+						}
+					});
+				}
+			}
+		});
+		area_exit_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getChoice_area_panel().setVisible(false);
+				Main.MainFrame.getMain_panel().setVisible(true);
+				area_combobox.setSelectedIndex(0);
+				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
+				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
+			}
+		});
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
+}
+
+class ChoiceStore extends JPanel {
+	ImageIcon background = new ImageIcon("images/choice_2.png");
+
+	static ChoiceBtn store_choice_btn = new ChoiceBtn();
+	static ExitBtn store_exit_btn = new ExitBtn();
+	
+	ChoiceStore() {
+		setBounds(0, 0, 1862, 1055);
+		setLayout(null);
+		
+		add(store_choice_btn);
+		add(store_exit_btn);
+		add(ChoiceArea.store_choice_label);
+		
+		store_choice_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getOrder_panel().setVisible(true);
+				Main.MainFrame.getChoice_store_panel().setVisible(false);
+				// String에 저장시키기========================================================================================================================
+				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
+				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
+				
+				OrderPanel.which.setText(ChoiceArea.choisen_store);
+				System.out.println(ChoiceArea.choisen_store);
+				
+				ChoiceArea.area_combobox.setSelectedIndex(0);	
+				ChoiceArea.store_combobox.setSelectedIndex(0);
+			}
+		});
+		store_exit_btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Main.MainFrame.getChoice_area_panel().setVisible(true);
+				Main.MainFrame.getChoice_store_panel().setVisible(false);
+				Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
+				ChoiceArea.area_combobox.setSelectedIndex(0);		
+				ChoiceArea.store_combobox.setSelectedIndex(0);
+				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
+				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
+			}
+		});
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
+}
+
+class Choice extends JComboBox {
+	Choice(String[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			addItem(arr[i]);
+		}
+		setBounds(781, 350, 300, 70);
+		setVisible(true);
+		setBackground(Color.MAGENTA);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+		setBackground(new Color(255, 212, 216));
+	}
+}
+
+class ChoiceBtn extends JButton {
+	ChoiceBtn() {
+		setBounds(732, 700, 160, 80);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setOpaque(false);
+	}
+}
+
+class ExitBtn extends JButton {
+	ExitBtn() {
+		setBounds(972, 700, 160, 80);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setOpaque(false);
+	}
+}
+class ChoiceLabel extends JLabel{
+	ChoiceLabel(String text){
+		setText(text);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 32));
+		setBounds(581, 500, 700, 60);
+		setHorizontalAlignment(JLabel.CENTER);
+		setForeground(new Color(255, 115, 125));
+		setVisible(true);
+	}
+}
+class WhichStoreLabel extends JLabel{
+	WhichStoreLabel() {
+		setBounds(120, 30, 400, 100);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
+		setForeground(new Color(255, 115, 125));
+		setVisible(true);
+	}
+}
+
+//class AddSalesDB{
+//	public void CoffeeAddSale(String store_name, String menu_name, String menu_count) {		
+//		String query;
+//		PreparedStatement pstmt = null;
+//		Connection conn = null;
+//		ResultSet rset = null;
+//		
+//		int icd_count;
+//		int hot_count;
+//		
+//        try {
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+//            
+//            query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, store_name);
+//			rset = pstmt.executeQuery();
+//             
+//			boolean result = true;
+//			
+//            while (result = rset.next()) {
+//            	rset.getInt("ICE_D") = rset.getInt("ICE_D") + 1;
+//            	berry_m_db = rset.getInt("BERRY_M") * 2500;
+//            }
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                rset.close();
+//                pstmt.close();
+//                conn.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//	}
+//	public String getStore_name() {
+//		return store_name;
+//	}
+//	public void setStore_name(String store_name) {
+//		this.store_name = store_name;
+//	}
+//	public String getMenu_name() {
+//		return menu_name;
+//	}
+//	public void setMenu_name(String menu_name) {
+//		this.menu_name = menu_name;
+//	}
+//	public int getMenu_count() {
+//		return menu_count;
+//	}
+//	public void setMenu_count(int menu_count) {
+//		this.menu_count = menu_count;
+//	}
+//}

@@ -72,7 +72,7 @@ class MasterPanel extends JPanel{
 		managerfix_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getMaster_panel().setVisible(false);
-				//Main.MainFrame.getManagerFix_panel().setVisible(true);
+				Main.MainFrame.getManager_panel().setVisible(true);
 			}
 		});
 		add(managerfix_button);
