@@ -56,6 +56,14 @@ class MainFrame extends JFrame {
 	static ChoiceStore choice_store_panel;
 
 	public MainFrame() {
+		
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image cursorimage=tk.getImage("images/cursor_1.png");
+		Point point=new Point(20,20);
+		Cursor cursor=tk.createCustomCursor(cursorimage, point, "haha");
+		
+		setCursor(cursor);
+		
 		// MainPanel 생성자 호출
 		main_panel = new MainPanel();
 		main_panel.setVisible(true);
