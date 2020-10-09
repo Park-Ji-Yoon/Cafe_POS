@@ -236,7 +236,7 @@ public class ManagerProc extends JFrame implements ActionListener {
 	}// actionPerformed
 
 	private void deleteMember() {
-		String id = tfG_id.getText();
+		String bname = tfG_bname.getText();
 		String pwd = pfPwd.getText();
 		if (pwd.length() == 0) { // 길이가 0이면
 			JOptionPane.showMessageDialog(this, "비밀번호를 꼭 입력하세요!");
@@ -244,7 +244,7 @@ public class ManagerProc extends JFrame implements ActionListener {
 		}
 		// System.out.println(mList);
 		ManagerDAO dao = new ManagerDAO();
-		boolean ok = dao.deleteMember(pwd);
+		boolean ok = dao.deleteMember(bname, pwd);
 
 		if (ok) {
 			JOptionPane.showMessageDialog(this, "삭제완료");

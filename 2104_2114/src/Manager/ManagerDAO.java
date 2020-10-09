@@ -368,23 +368,93 @@ public class ManagerDAO {
 	/**
 	 * 회원정보 삭제 : tip: 실무에서는 회원정보를 Delete 하지 않고 탈퇴여부만 체크한다.
 	 */
-	public boolean deleteMember(String pwd) {
+	public boolean deleteMember(String bname, String pwd) {
 
 		boolean ok = false;
 		Connection con = null;
 		PreparedStatement ps = null;
+		
+		boolean coffee_ok = false;
+		Connection coffee_con = null;
+		PreparedStatement coffee_ps = null;
+		
+		boolean smoothie_ok = false;
+		Connection smoothie_con = null;
+		PreparedStatement smoothie_ps = null;
+		
+		boolean tea_ok = false;
+		Connection tea_con = null;
+		PreparedStatement tea_ps = null;
+		
+		boolean bubble_ok = false;
+		Connection bubble_con = null;
+		PreparedStatement bubble_ps = null;
+		
+		boolean cake_ok = false;
+		Connection cake_con = null;
+		PreparedStatement cake_ps = null;
+		
+		boolean macaron_ok = false;
+		Connection macaron_con = null;
+		PreparedStatement macaron_ps = null;
 
 		try {
 			con = getConn();
 			String sql = "delete from MANAGER_TABLE where G_PW=?";
-
 			ps = con.prepareStatement(sql);
 			ps.setString(1, pwd);
-//            ps.setString(2, pwd);
 			int r = ps.executeUpdate(); // 실행 -> 삭제
-
 			if (r > 0)
 				ok = true; // 삭제됨;
+			
+			coffee_con = getConn();
+			String coffee_sql = "delete from MENU_COFFEE where BNAME=?";
+			coffee_ps = coffee_con.prepareStatement(coffee_sql);
+			coffee_ps.setString(1, bname);
+			int coffee_r = coffee_ps.executeUpdate(); // 실행 -> 삭제
+			if (coffee_r > 0)
+				coffee_ok = true; // 삭제됨;
+			
+			smoothie_con = getConn();
+			String smoothie_sql = "delete from MENU_SMOOTHIE where BNAME=?";
+			smoothie_ps = smoothie_con.prepareStatement(smoothie_sql);
+			smoothie_ps.setString(1, bname);
+			int smoothie_r = smoothie_ps.executeUpdate(); // 실행 -> 삭제
+			if (smoothie_r > 0)
+				smoothie_ok = true; // 삭제됨;
+			
+			tea_con = getConn();
+			String tea_sql = "delete from MENU_TEA where BNAME=?";
+			tea_ps = tea_con.prepareStatement(tea_sql);
+			tea_ps.setString(1, bname);
+			int tea_r = tea_ps.executeUpdate(); // 실행 -> 삭제
+			if (tea_r > 0)
+				tea_ok = true; // 삭제됨;
+			
+			bubble_con = getConn();
+			String bubble_sql = "delete from MENU_BUBBLE where BNAME=?";
+			bubble_ps = bubble_con.prepareStatement(bubble_sql);
+			bubble_ps.setString(1, bname);
+			int bubble_r = bubble_ps.executeUpdate(); // 실행 -> 삭제
+			if (bubble_r > 0)
+				bubble_ok = true; // 삭제됨;
+			
+			cake_con = getConn();
+			String cake_sql = "delete from MENU_CAKE where BNAME=?";
+			cake_ps = cake_con.prepareStatement(cake_sql);
+			cake_ps.setString(1, bname);
+//            ps.setString(2, pwd);
+			int cake_r = cake_ps.executeUpdate(); // 실행 -> 삭제
+			if (cake_r > 0)
+				cake_ok = true; // 삭제됨;
+			
+			macaron_con = getConn();
+			String macaron_sql = "delete from MENU_MACARON where BNAME=?";
+			macaron_ps = macaron_con.prepareStatement(macaron_sql);
+			macaron_ps.setString(1, bname);
+			int macaron_r = macaron_ps.executeUpdate(); // 실행 -> 삭제
+			if (macaron_r > 0)
+				macaron_ok = true; // 삭제됨;
 
 		} catch (Exception e) {
 			System.out.println(e + "-> 오류발생");
