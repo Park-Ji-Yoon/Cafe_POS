@@ -83,6 +83,5 @@ public class ManagerDTO implements java.io.Serializable{
 
 	public void setG_em(int g_em) {
 		this.g_em = g_em;
-	}
-     
+	}    
 }

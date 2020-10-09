@@ -18,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Manager.Manager_List;
+
 public class MasterGUI extends JFrame{
 	public MasterGUI() {
 	}
@@ -71,8 +73,9 @@ class MasterPanel extends JPanel{
 		managerfix_button.setOpaque(false);
 		managerfix_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getMaster_panel().setVisible(false);
-				Main.MainFrame.getManager_panel().setVisible(true);
+//				Main.MainFrame.getMaster_panel().setVisible(false);
+//				Main.MainFrame.getManager_panel().setVisible(true);
+				Main.MainFrame.manager_list_frame = new Manager_List();
 			}
 		});
 		add(managerfix_button);

@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
+import Manager.Manager_List;
+
 public class MainPageGUI extends JFrame {
 	public static MainFrame main_frame;
 
@@ -54,6 +56,7 @@ class MainFrame extends JFrame {
 	static PaySuccessPanel pay_success_panel;
 	static ChoiceArea choice_area_panel;
 	static ChoiceStore choice_store_panel;
+	static Manager_List manager_list_frame;
 
 	public MainFrame() {
 		
