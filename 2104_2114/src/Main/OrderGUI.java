@@ -255,6 +255,12 @@ class OrderPanel extends JPanel {
 				all_count = 0;
 				all_price = 0;
 				price_sum.setText("결제금액 : " + all_price + "원");
+				
+				Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
+				ChoiceArea.area_combobox.setSelectedIndex(0);		
+				ChoiceArea.store_combobox.setSelectedIndex(0);
+				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
+				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
 			}
 		});
 
@@ -3717,14 +3723,12 @@ class ChoiceStore extends JPanel {
 				Main.MainFrame.getOrder_panel().setVisible(true);
 				Main.MainFrame.getChoice_store_panel().setVisible(false);
 				// String에 저장시키기========================================================================================================================
+				OrderPanel.which.setText(ChoiceArea.choisen_store);				
+				Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
+				ChoiceArea.area_combobox.setSelectedIndex(0);		
+				ChoiceArea.store_combobox.setSelectedIndex(0);
 				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
 				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
-				
-				OrderPanel.which.setText(ChoiceArea.choisen_store);
-				System.out.println(ChoiceArea.choisen_store);
-				
-				ChoiceArea.area_combobox.setSelectedIndex(0);	
-				ChoiceArea.store_combobox.setSelectedIndex(0);
 			}
 		});
 		store_exit_btn.addActionListener(new ActionListener() {
