@@ -336,6 +336,7 @@ class GCoffeeSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void coffee_db() {		
+		SalesDB.CoffeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -587,6 +588,7 @@ class GSmoothieSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void smoothie_db() {		
+		SalesDB.SmoothieSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -790,6 +792,7 @@ class GTeaSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void tea_db() {		
+		SalesDB.TeaSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1005,6 +1008,7 @@ class GBubbleSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void bubble_db() {		
+		SalesDB.BubbleSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1222,6 +1226,7 @@ class GCakeSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void cake_db() {		
+		SalesDB.CakeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1439,6 +1444,7 @@ class GMacaronSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void macaron_db() {		
+		SalesDB.MacaronSalesDB(bname);		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
