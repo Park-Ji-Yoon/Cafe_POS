@@ -526,6 +526,11 @@ class GSmoothieStockPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
+				orange_cnt.setText("");
+				kiwi_cnt.setText("");
+				grape_cnt.setText("");
+				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(stock_exit_button);
@@ -545,6 +550,7 @@ class GSmoothieStockPanel extends JPanel{
 				kiwi_cnt.setText("");
 				grape_cnt.setText("");
 				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(coffe_stock_button);
@@ -564,6 +570,7 @@ class GSmoothieStockPanel extends JPanel{
 				kiwi_cnt.setText("");
 				grape_cnt.setText("");
 				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(tea_stock_button);
@@ -583,6 +590,7 @@ class GSmoothieStockPanel extends JPanel{
 				kiwi_cnt.setText("");
 				grape_cnt.setText("");
 				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(bubble_stock_button);
@@ -602,6 +610,7 @@ class GSmoothieStockPanel extends JPanel{
 				kiwi_cnt.setText("");
 				grape_cnt.setText("");
 				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(cake_stock_button);
@@ -621,6 +630,7 @@ class GSmoothieStockPanel extends JPanel{
 				kiwi_cnt.setText("");
 				grape_cnt.setText("");
 				straw_cnt.setText("");
+				water_cnt.setText("");
 			}
 		});
 		add(macaron_stock_button);
@@ -943,6 +953,8 @@ class GTeaStockPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
+				green_cnt.setText("");
+				black_cnt.setText("");
 			}
 		});
 		add(stock_exit_button);
@@ -1237,6 +1249,9 @@ class GBubbleStockPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
+				bs_cnt.setText("");
+				taro_cnt.setText("");
+				gb_cnt.setText("");
 			}
 		});
 		add(stock_exit_button);
@@ -1575,6 +1590,9 @@ class GCakeStockPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
+				cheese_cnt.setText("");
+				sc_cnt.setText("");
+				choco_cnt.setText("");
 			}
 		});
 		add(stock_exit_button);
@@ -1913,6 +1931,9 @@ class GMacaronStockPanel extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
+				berry_cnt.setText("");
+				yogurt_cnt.setText("");
+				fruit_cnt.setText("");
 			}
 		});
 		add(stock_exit_button);
