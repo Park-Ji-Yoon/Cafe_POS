@@ -59,8 +59,6 @@ public class MacaronDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-         
+        }    
     }
- 
 }

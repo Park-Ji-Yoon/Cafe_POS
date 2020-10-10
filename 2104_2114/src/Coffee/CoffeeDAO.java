@@ -56,8 +56,6 @@ public class CoffeeDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-         
+        }    
     }
- 
 }

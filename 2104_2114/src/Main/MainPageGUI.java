@@ -56,6 +56,8 @@ class MainFrame extends JFrame {
 	static PaySuccessPanel pay_success_panel;
 	static ChoiceArea choice_area_panel;
 	static ChoiceStore choice_store_panel;
+	static ChoiceAreaMaster master_choice_area_panel;
+	static ChoiceStoreMaster master_choice_store_panel;
 	static Manager_List manager_list_frame;
 
 	public MainFrame() {
@@ -166,6 +168,12 @@ class MainFrame extends JFrame {
 		
 		choice_store_panel = new ChoiceStore();
 		choice_store_panel.setVisible(false);
+		
+		master_choice_area_panel = new ChoiceAreaMaster();
+		master_choice_area_panel.setVisible(false);
+		
+		master_choice_store_panel = new ChoiceStoreMaster();
+		master_choice_store_panel.setVisible(false);
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
@@ -210,6 +218,8 @@ class MainFrame extends JFrame {
 		add(pay_success_panel);
 		add(choice_area_panel);
 		add(choice_store_panel);
+		add(master_choice_area_panel);
+		add(master_choice_store_panel);
 
 		// 프레임 위 앱 아이콘
 		ImageIcon icon = new ImageIcon("images/logo_2.png");
@@ -314,6 +324,12 @@ class MainFrame extends JFrame {
 	}
 	public static ChoiceStore getChoice_store_panel() {
 		return choice_store_panel;
+	}
+	public static ChoiceAreaMaster getChoice_area_master_panel() {
+		return master_choice_area_panel;
+	}
+	public static ChoiceStoreMaster getChoice_store_master_panel() {
+		return master_choice_store_panel;
 	}
 }
 

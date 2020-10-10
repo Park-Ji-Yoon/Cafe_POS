@@ -125,7 +125,4 @@ public class CakeDTO implements java.io.Serializable{
 	public void setChoco_s(int choco_s) {
 		this.choco_s = choco_s;
 	}
-    
-    
-
 }

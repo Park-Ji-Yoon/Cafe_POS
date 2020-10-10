@@ -94,7 +94,4 @@ public class CoffeeDTO implements java.io.Serializable{
 	public void setHot_s(int hot_s) {
 		this.hot_s = hot_s;
 	}
-    
-    
-
 }

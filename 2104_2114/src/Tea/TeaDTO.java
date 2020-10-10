@@ -94,6 +94,4 @@ public class TeaDTO implements java.io.Serializable{
 	public void setBlack_s(int black_s) {
 		this.black_s = black_s;
 	}
-
-
 }

@@ -186,7 +186,4 @@ public class SmoothieDTO implements java.io.Serializable{
 	public void setWater_s(int water_s) {
 		this.water_s = water_s;
 	}
-
-    
-
 }

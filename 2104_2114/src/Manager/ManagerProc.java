@@ -309,5 +309,4 @@ public class ManagerProc extends JFrame implements ActionListener {
 
 		return dto;
 	}
-
 }// end

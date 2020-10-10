@@ -60,5 +60,4 @@ public class MasterDTO implements java.io.Serializable{
 	public void setS_security(String s_security) {
 		this.s_security = s_security;
 	}
-
 }

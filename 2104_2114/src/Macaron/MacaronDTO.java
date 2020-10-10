@@ -125,6 +125,4 @@ public class MacaronDTO implements java.io.Serializable{
 	public void setFruit_s(int fruit_s) {
 		this.fruit_s = fruit_s;
 	}
-    
-
 }

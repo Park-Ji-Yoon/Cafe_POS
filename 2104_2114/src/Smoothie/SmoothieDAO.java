@@ -65,8 +65,6 @@ public class SmoothieDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-         
+        }    
     }
- 
 }

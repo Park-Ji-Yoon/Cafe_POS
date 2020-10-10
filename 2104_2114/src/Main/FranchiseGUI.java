@@ -1,5 +1,6 @@
 package Main;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -27,6 +28,8 @@ class FranchisePanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_30.png");
+	
+	static StoreNameLabel store_name_label = new StoreNameLabel();
 
 	JButton franchise_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -41,6 +44,8 @@ class FranchisePanel extends JPanel{
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
 		setVisible(true);
+		
+		add(store_name_label);
 
 		//매출관리 취소
 		franchise_exit_button.setBounds(61, 35, 126, 35);
@@ -178,6 +183,8 @@ class SCoffeeSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_31.png");
+	
+	static StoreNameLabel store_name_label_coffee = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
@@ -199,6 +206,8 @@ class SCoffeeSalesPanel extends JPanel{
 
 	SCoffeeSalesPanel() {
 		coffee_db();
+		
+		add(store_name_label_coffee);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -375,6 +384,8 @@ class SSmoothieSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_32.png");
+	
+	static StoreNameLabel store_name_label_smoothie = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -408,6 +419,8 @@ class SSmoothieSalesPanel extends JPanel{
 	
 	SSmoothieSalesPanel() {
 		smoothie_db();
+		
+		add(store_name_label_smoothie);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -632,6 +645,8 @@ class STeaSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_33.png");
+	
+	static StoreNameLabel store_name_label_tea = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -653,6 +668,8 @@ class STeaSalesPanel extends JPanel{
 
 	STeaSalesPanel() {
 		tea_db();
+		
+		add(store_name_label_tea);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -829,6 +846,8 @@ class SBubbleSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_34.png");
+	
+	static StoreNameLabel store_name_label_bubble = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -854,6 +873,8 @@ class SBubbleSalesPanel extends JPanel{
 
 	SBubbleSalesPanel() {
 		bubble_db();
+		
+		add(store_name_label_bubble);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1046,6 +1067,8 @@ class SCakeSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_35.png");
+	
+	static StoreNameLabel store_name_label_cake = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -1071,6 +1094,8 @@ class SCakeSalesPanel extends JPanel{
 
 	SCakeSalesPanel() {
 		cake_db();
+		
+		add(store_name_label_cake);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1263,6 +1288,8 @@ class SMacaronSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_36.png");
+	
+	static StoreNameLabel store_name_label_macaron = new StoreNameLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -1288,6 +1315,8 @@ class SMacaronSalesPanel extends JPanel{
 	
 	SMacaronSalesPanel() {
 		macaron_db();
+		
+		add(store_name_label_macaron);
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1474,5 +1503,14 @@ class SMacaronSalesPanel extends JPanel{
                 e.printStackTrace();
             }
         }
+	}
+}
+class StoreNameLabel extends JLabel{
+	StoreNameLabel(){
+		setBounds(500, 20, 862, 100);
+		setFont(new Font("인터파크고딕 B", Font.PLAIN, 50));
+		setVisible(true);
+		setForeground(Color.BLACK);
+		setHorizontalAlignment(JLabel.CENTER);
 	}
 }

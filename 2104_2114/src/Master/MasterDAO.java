@@ -54,7 +54,5 @@ public class MasterDAO {
                 e.printStackTrace();
             }
         }
-         
     }
- 
 }
