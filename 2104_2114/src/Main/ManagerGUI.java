@@ -59,7 +59,7 @@ class ManagerPanel extends JPanel{
 		});
 		add(manager_exit_button);
 		
-		bname_label.setBounds(90, 203, 300, 80);
+		bname_label.setBounds(20, 203, 370, 80);
 		bname_label.setText(getBname());
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 40));

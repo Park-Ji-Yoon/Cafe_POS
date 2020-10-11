@@ -30,6 +30,7 @@ class FranchisePanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_30.png");
 	
 	static StoreNameLabel store_name_label = new StoreNameLabel();
+	static String bname = store_name_label.getText();
 
 	JButton franchise_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -197,8 +198,7 @@ class SCoffeeSalesPanel extends JPanel{
 	JLabel ice_m = new JLabel();
 	JLabel hot_d = new JLabel();
 	JLabel hot_m = new JLabel();
-
-	String bname = ManagerPanel.getBname();
+	
 	int ice_d_db;
 	int ice_m_db;
 	int hot_d_db;
@@ -354,7 +354,7 @@ class SCoffeeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -405,7 +405,6 @@ class SSmoothieSalesPanel extends JPanel{
 	JLabel water_d = new JLabel();
 	JLabel water_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
 	int orange_d_db;
 	int orange_m_db;
 	int kiwi_d_db;
@@ -609,7 +608,7 @@ class SSmoothieSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -660,7 +659,6 @@ class STeaSalesPanel extends JPanel{
 	JLabel black_d = new JLabel();
 	JLabel black_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
 	int green_d_db;;
 	int green_m_db;
 	int black_d_db;;
@@ -816,7 +814,7 @@ class STeaSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -863,7 +861,6 @@ class SBubbleSalesPanel extends JPanel{
 	JLabel gb_d = new JLabel();
 	JLabel gb_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
 	int bs_d_db;
 	int bs_m_db;
 	int taro_d_db;
@@ -1035,7 +1032,7 @@ class SBubbleSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1084,7 +1081,6 @@ class SCakeSalesPanel extends JPanel{
 	JLabel choco_d = new JLabel();
 	JLabel choco_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
 	int cheese_d_db;
 	int cheese_m_db;
 	int sc_d_db;
@@ -1256,7 +1252,7 @@ class SCakeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1305,7 +1301,6 @@ class SMacaronSalesPanel extends JPanel{
 	JLabel fruit_d = new JLabel();
 	JLabel fruit_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
 	int berry_d_db;
 	int berry_m_db;
 	int yogurt_d_db;
@@ -1477,7 +1472,7 @@ class SMacaronSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, FranchisePanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
