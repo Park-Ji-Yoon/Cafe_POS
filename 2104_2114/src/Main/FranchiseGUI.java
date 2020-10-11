@@ -30,8 +30,8 @@ class FranchisePanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_30.png");
 	
 	static StoreNameLabel store_name_label = new StoreNameLabel();
-	static String bname = store_name_label.getText();
-
+	static String bname = ChoiceAreaMaster.choisen_store_master;
+	
 	JButton franchise_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
@@ -39,7 +39,6 @@ class FranchisePanel extends JPanel{
 	JButton bubble_sales_button = new JButton(icon);
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
-	JButton panel_button = new JButton(icon);
 
 	FranchisePanel() {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -152,20 +151,6 @@ class FranchisePanel extends JPanel{
 			}
 		});
 		add(macaron_sales_button);
-
-		//판넬 버튼
-		panel_button.setBounds(0, 230, 1190, 800);
-		panel_button.setVisible(true);
-		panel_button.setBorderPainted(false);
-		panel_button.setContentAreaFilled(false);
-		panel_button.setFocusPainted(false);
-		panel_button.setOpaque(false);
-		panel_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "매출액을 확인할 메뉴를 선택해주십시오.", "Error", JOptionPane.ERROR_MESSAGE);	
-			}
-		});
-		add(panel_button);		
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -178,6 +163,9 @@ class FranchisePanel extends JPanel{
 		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
+	}
+	public static String getBname() {
+		return bname;
 	}
 }
 class SCoffeeSalesPanel extends JPanel{
@@ -344,6 +332,8 @@ class SCoffeeSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void coffee_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.CoffeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -354,7 +344,7 @@ class SCoffeeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -598,6 +588,9 @@ class SSmoothieSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void smoothie_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.SmoothieSalesDB(bname);
+		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -608,7 +601,7 @@ class SSmoothieSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -804,6 +797,8 @@ class STeaSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void tea_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.TeaSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -814,7 +809,7 @@ class STeaSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1022,6 +1017,8 @@ class SBubbleSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void bubble_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.BubbleSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1032,7 +1029,7 @@ class SBubbleSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1242,6 +1239,8 @@ class SCakeSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void cake_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.CakeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1252,7 +1251,7 @@ class SCakeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1462,6 +1461,8 @@ class SMacaronSalesPanel extends JPanel{
 		return xyimg;
 	}
 	public void macaron_db() {		
+		String bname = FranchisePanel.getBname();
+		SalesDB.MacaronSalesDB(bname);		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1472,7 +1473,7 @@ class SMacaronSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, FranchisePanel.bname);
+			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;

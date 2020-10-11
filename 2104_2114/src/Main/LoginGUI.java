@@ -54,7 +54,9 @@ class LoginPanel extends JPanel{
 
             	SLoginPanel.getId_field().setText("");
             	SLoginPanel.getPw_field().setText("");
-            	
+
+        		login_button.setVisible(false);
+        		
 				Main.MainFrame.getMain_panel().setVisible(true);
 				Main.MainFrame.getLogin_panel().setVisible(false);
 			}
@@ -70,6 +72,7 @@ class LoginPanel extends JPanel{
 		login_manager_button.setOpaque(false);
 		login_manager_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				login_button.setVisible(false);
 				Main.MainFrame.getGLogin_panel().setVisible(true);
 				Main.MainFrame.getLogin_panel().setVisible(false);
 			}
@@ -85,6 +88,7 @@ class LoginPanel extends JPanel{
 		login_master_button.setOpaque(false);
 		login_master_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				login_button.setVisible(false);
 				Main.MainFrame.getSLogin_panel().setVisible(true);
 				Main.MainFrame.getLogin_panel().setVisible(false);
 			}

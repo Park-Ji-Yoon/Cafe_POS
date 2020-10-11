@@ -36,7 +36,6 @@ class SalesPanel extends JPanel{
 	JButton bubble_sales_button = new JButton(icon);
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
-	JButton panel_button = new JButton(icon);
 
 	SalesPanel() {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -147,20 +146,6 @@ class SalesPanel extends JPanel{
 			}
 		});
 		add(macaron_sales_button);
-
-		//판넬 버튼
-		panel_button.setBounds(0, 223, 1861, 800);
-		panel_button.setVisible(true);
-		panel_button.setBorderPainted(false);
-		panel_button.setContentAreaFilled(false);
-		panel_button.setFocusPainted(false);
-		panel_button.setOpaque(false);
-		panel_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "매출액을 확인할 메뉴를 선택해주십시오.", "Error", JOptionPane.ERROR_MESSAGE);	
-			}
-		});
-		add(panel_button);		
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
