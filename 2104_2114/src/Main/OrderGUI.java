@@ -3253,7 +3253,7 @@ class PaymentTextCount extends JLabel {
 class Timer implements Runnable {
 	private JLabel timerLabel;
 
-	static int n = 10;
+	static int n = 3;
 
 	public Timer(JLabel timerLabel) {
 		this.timerLabel = timerLabel;
@@ -3270,6 +3270,8 @@ class Timer implements Runnable {
 				return;
 			}
 			if (n == -1) {
+				// 주문하기 DB 넣는 곳 ====================================================================
+				//  =================================================================================
 				Main.MainFrame.getPay_success_panel().setVisible(true);
 				Main.MainFrame.getPayment_panel().setVisible(false);
 				if (OrderPanel.ice_coffee_count > 0) {
