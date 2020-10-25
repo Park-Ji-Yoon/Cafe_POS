@@ -3534,6 +3534,7 @@ class ChoiceArea extends JPanel {
 				break;
 			}
 		}
+		
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
 

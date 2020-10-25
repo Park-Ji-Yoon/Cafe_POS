@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Manager.ManagerDAO;
 import Manager.Manager_List;
 
 public class MasterGUI extends JFrame{
@@ -165,13 +166,11 @@ class MasterPanel extends JPanel{
 class ChoiceAreaMaster extends JPanel {
 	static ArrayList<String> area_names = new ArrayList<String>(Arrays.asList("...", "부산", "대구", "울산", "경주", "창원"));
 
-	ArrayList<String> busan_stores_name = new ArrayList<String>(Arrays.asList("부산해운대점", "부산진장점", "부산꼭두각시점"));
-	ArrayList<String> daegu_stores_name = new ArrayList<String>(
-			Arrays.asList("대구해운대점", "대구진장점", "대구꼭두각시점", "대구명성푸르지오점"));
-	ArrayList<String> ulsan_stores_name = new ArrayList<String>(
-			Arrays.asList("울산해운대점", "울산진장점", "울산꼭두각시점", "울산천상점", "울산삼산점"));
-	ArrayList<String> kyeongju_stores_name = new ArrayList<String>(Arrays.asList("경주해운대점", "경주진장점"));
-	ArrayList<String> changwon_stores_name = new ArrayList<String>(Arrays.asList("창원해운대점", "창원진장점", "창원꼭두각시점"));
+	ArrayList<String> busan_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> daegu_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> ulsan_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> kyeongju_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> changwon_stores_name = new ArrayList<String>(Arrays.asList("..."));
 
 	ImageIcon background = new ImageIcon("images/choice_3.png");
 
@@ -188,6 +187,30 @@ class ChoiceAreaMaster extends JPanel {
 	static ChoiceLabelMaster store_choice_label_master = new ChoiceLabelMaster("지점을 선택해 주세요");
 	
 	ChoiceAreaMaster() {
+		String area = "";
+		ArrayList<String> g_name_list = new ArrayList<String>();
+		g_name_list = new ManagerDAO().getGnameList();	
+		for(int i = 0; i < g_name_list.size(); i++) {
+			area = g_name_list.get(i).substring(0,2);
+			switch(area) {
+			case "부산":
+				busan_stores_name.add(g_name_list.get(i));
+				break;
+			case "대구":
+				daegu_stores_name.add(g_name_list.get(i));				
+				break;
+			case "울산":
+				ulsan_stores_name.add(g_name_list.get(i));
+				break;
+			case "경주":
+				kyeongju_stores_name.add(g_name_list.get(i));
+				break;
+			case "창원":
+				changwon_stores_name.add(g_name_list.get(i));
+				break;
+			}
+		}
+		
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
 
@@ -287,21 +310,25 @@ class ChoiceStoreMaster extends JPanel {
 		store_choice_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getFranchise_panel().setVisible(true);
-				Main.MainFrame.getChoice_area_master_panel().setVisible(false);
-				// String에 저장시키기========================================================================================================================
-				FranchisePanel.store_name_label.setText(ChoiceAreaMaster.choisen_store_master);	
-				SCoffeeSalesPanel.store_name_label_coffee.setText(ChoiceAreaMaster.choisen_store_master);	
-				SSmoothieSalesPanel.store_name_label_smoothie.setText(ChoiceAreaMaster.choisen_store_master);
-				STeaSalesPanel.store_name_label_tea.setText(ChoiceAreaMaster.choisen_store_master);	
-				SBubbleSalesPanel.store_name_label_bubble.setText(ChoiceAreaMaster.choisen_store_master);
-				SCakeSalesPanel.store_name_label_cake.setText(ChoiceAreaMaster.choisen_store_master);	
-				SMacaronSalesPanel.store_name_label_macaron.setText(ChoiceAreaMaster.choisen_store_master);
-				Main.MainFrame.getChoice_store_master_panel().remove(ChoiceAreaMaster.store_combobox_master);
-				ChoiceAreaMaster.area_combobox_master.setSelectedIndex(0);		
-				ChoiceAreaMaster.store_combobox_master.setSelectedIndex(0);
-				ChoiceAreaMaster.area_choice_label_master.setText("지역을 선택해 주세요");
-				ChoiceAreaMaster.store_choice_label_master.setText("지점을 선택해 주세요");
+				if(ChoiceAreaMaster.choisen_store_master == "...") {
+					JOptionPane.showMessageDialog(null, "지점을 선택해주세요", "지점선택오류", JOptionPane.ERROR_MESSAGE);									
+				}else {
+					Main.MainFrame.getFranchise_panel().setVisible(true);
+					Main.MainFrame.getChoice_area_master_panel().setVisible(false);
+					// String에 저장시키기========================================================================================================================
+					FranchisePanel.store_name_label.setText(ChoiceAreaMaster.choisen_store_master);	
+					SCoffeeSalesPanel.store_name_label_coffee.setText(ChoiceAreaMaster.choisen_store_master);	
+					SSmoothieSalesPanel.store_name_label_smoothie.setText(ChoiceAreaMaster.choisen_store_master);
+					STeaSalesPanel.store_name_label_tea.setText(ChoiceAreaMaster.choisen_store_master);	
+					SBubbleSalesPanel.store_name_label_bubble.setText(ChoiceAreaMaster.choisen_store_master);
+					SCakeSalesPanel.store_name_label_cake.setText(ChoiceAreaMaster.choisen_store_master);	
+					SMacaronSalesPanel.store_name_label_macaron.setText(ChoiceAreaMaster.choisen_store_master);
+					Main.MainFrame.getChoice_store_master_panel().remove(ChoiceAreaMaster.store_combobox_master);
+					ChoiceAreaMaster.area_combobox_master.setSelectedIndex(0);		
+					ChoiceAreaMaster.store_combobox_master.setSelectedIndex(0);
+					ChoiceAreaMaster.area_choice_label_master.setText("지역을 선택해 주세요");
+					ChoiceAreaMaster.store_choice_label_master.setText("지점을 선택해 주세요");
+				}
 			}
 		});
 		store_exit_btn.addActionListener(new ActionListener() {
