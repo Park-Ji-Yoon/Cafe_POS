@@ -16,8 +16,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 import javax.swing.*;
+
+import Manager.ManagerDAO;
 
 public class OrderGUI extends JFrame {
 	public static void main(String args[]) {
@@ -28,7 +31,8 @@ public class OrderGUI extends JFrame {
 class OrderPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
-	static WhichStoreLabel which = new WhichStoreLabel();
+	static String choice_store;
+	static JLabel which = new JLabel();
 
 	JButton order_button = new JButton(icon);
 	JButton menu_exit_button = new JButton(icon);
@@ -198,8 +202,6 @@ class OrderPanel extends JPanel {
 	}
 
 	OrderPanel() {
-		add(which);
-		
 		add(order_list);
 		add(price_sum);
 
@@ -207,6 +209,12 @@ class OrderPanel extends JPanel {
 		setLayout(null);
 		setVisible(true);
 
+
+		which.setBounds(120, 30, 400, 100);
+		which.setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
+		which.setForeground(new Color(255, 115, 125));
+		add(which);
+		
 		order_button.setBounds(1300, 900, 200, 50);
 		order_button.setVisible(true);
 		order_button.setBorderPainted(false);
@@ -3250,125 +3258,6 @@ class PaymentTextCount extends JLabel {
 	}
 }
 
-class Timer implements Runnable {
-	private JLabel timerLabel;
-
-	static int n = 3;
-
-	public Timer(JLabel timerLabel) {
-		this.timerLabel = timerLabel;
-	}
-
-	@Override
-	public void run() {
-		while (true) {
-			timerLabel.setText(Integer.toString(n));
-			n--;
-			try {
-				Thread.sleep(1000); // 1/1000초 단위
-			} catch (InterruptedException e) {
-				return;
-			}
-			if (n == -1) {
-				// 주문하기 DB 넣는 곳 ====================================================================
-				//  =================================================================================
-				Main.MainFrame.getPay_success_panel().setVisible(true);
-				Main.MainFrame.getPayment_panel().setVisible(false);
-				if (OrderPanel.ice_coffee_count > 0) {
-					PaySuccessDetail.ice_coffee_pay.setVisible(true);
-				}
-				if (OrderPanel.hot_coffee_count > 0) {
-					PaySuccessDetail.hot_coffee_pay.setVisible(true);
-				}
-				if (OrderPanel.orange_smoothie_count > 0) {
-					PaySuccessDetail.orange_smoo_pay.setVisible(true);
-				}
-				if (OrderPanel.kiwi_smoothie_count > 0) {
-					PaySuccessDetail.kiwi_smoo_pay.setVisible(true);
-				}
-				if (OrderPanel.grape_smoothie_count > 0) {
-					PaySuccessDetail.grape_smoo_pay.setVisible(true);
-				}
-				if (OrderPanel.strawberry_smoothie_count > 0) {
-					PaySuccessDetail.strawberry_smoo_pay.setVisible(true);
-				}
-				if (OrderPanel.watermelon_smoothie_count > 0) {
-					PaySuccessDetail.watermelon_smoo_pay.setVisible(true);
-				}
-				if (OrderPanel.black_tea_count > 0) {
-					PaySuccessDetail.black_tea_pay.setVisible(true);
-				}
-				if (OrderPanel.green_tea_count > 0) {
-					PaySuccessDetail.green_tea_pay.setVisible(true);
-				}
-				if (OrderPanel.brown_sugar_bubble_count > 0) {
-					PaySuccessDetail.brown_bubble_pay.setVisible(true);
-				}
-				if (OrderPanel.taro_bubble_count > 0) {
-					PaySuccessDetail.taro_bubble_pay.setVisible(true);
-				}
-				if (OrderPanel.green_bubble_count > 0) {
-					PaySuccessDetail.green_bubble_pay.setVisible(true);
-				}
-				if (OrderPanel.cheese_cake_count > 0) {
-					PaySuccessDetail.cheese_cake_pay.setVisible(true);
-				}
-				if (OrderPanel.strawberry_cake_count > 0) {
-					PaySuccessDetail.strawberry_cake_pay.setVisible(true);
-				}
-				if (OrderPanel.chocolate_cake_count > 0) {
-					PaySuccessDetail.chocolate_cake_pay.setVisible(true);
-				}
-				if (OrderPanel.berry_macaron_count > 0) {
-					PaySuccessDetail.berry_macaron_pay.setVisible(true);
-				}
-				if (OrderPanel.yogurt_macaron_count > 0) {
-					PaySuccessDetail.yogurt_macaron_pay.setVisible(true);
-				}
-				if (OrderPanel.fruit_macaron_count > 0) {
-					PaySuccessDetail.fruit_macaron_pay.setVisible(true);
-				}
-				// 커피
-				OrderPanel.ice_coffee_count = 0;
-				OrderPanel.hot_coffee_count = 0;
-				// 스무디
-				OrderPanel.orange_smoothie_count = 0;
-				OrderPanel.kiwi_smoothie_count = 0;
-				OrderPanel.grape_smoothie_count = 0;
-				OrderPanel.strawberry_smoothie_count = 0;
-				OrderPanel.watermelon_smoothie_count = 0;
-				// 차
-				OrderPanel.black_tea_count = 0;
-				OrderPanel.green_tea_count = 0;
-				// 버블티
-				OrderPanel.brown_sugar_bubble_count = 0;
-				OrderPanel.taro_bubble_count = 0;
-				OrderPanel.green_bubble_count = 0;
-				// 케이크
-				OrderPanel.cheese_cake_count = 0;
-				OrderPanel.strawberry_cake_count = 0;
-				OrderPanel.chocolate_cake_count = 0;
-				// 마카롱
-				OrderPanel.berry_macaron_count = 0;
-				OrderPanel.yogurt_macaron_count = 0;
-				OrderPanel.fruit_macaron_count = 0;
-
-				try {
-					n = 10;
-					synchronized (Payment.td2) {
-						Payment.td2.wait();
-					}
-				} catch (InterruptedException e) {
-					System.out.println("스레드 멈춤");
-				}
-			}
-			if (n <= 3) {
-				Payment.payment_text_count.setForeground(Color.RED);
-			}
-		}
-	}
-}
-
 class OrderList extends JPanel {
 	static OrderDetails jumon_1 = new OrderDetails();
 	static OrderDetails jumon_2 = new OrderDetails();
@@ -3600,13 +3489,12 @@ class PaySuccessLabel extends JLabel {
 class ChoiceArea extends JPanel {
 	static ArrayList<String> area_names = new ArrayList<String>(Arrays.asList("...", "부산", "대구", "울산", "경주", "창원"));
 
-	ArrayList<String> busan_stores_name = new ArrayList<String>(Arrays.asList("부산해운대점", "부산진장점", "부산꼭두각시점"));
-	ArrayList<String> daegu_stores_name = new ArrayList<String>(
-			Arrays.asList("대구해운대점", "대구진장점", "대구꼭두각시점", "대구명성푸르지오점"));
-	ArrayList<String> ulsan_stores_name = new ArrayList<String>(
-			Arrays.asList("울산해운대점", "울산진장점", "울산꼭두각시점", "울산천상점", "울산삼산점"));
-	ArrayList<String> kyeongju_stores_name = new ArrayList<String>(Arrays.asList("경주해운대점", "경주진장점"));
-	ArrayList<String> changwon_stores_name = new ArrayList<String>(Arrays.asList("창원해운대점", "창원진장점", "창원꼭두각시점"));
+	ArrayList<String> busan_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> daegu_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> ulsan_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> kyeongju_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	ArrayList<String> changwon_stores_name = new ArrayList<String>(Arrays.asList("..."));
+	
 
 	ImageIcon background = new ImageIcon("images/choice_1.png");
 
@@ -3623,6 +3511,29 @@ class ChoiceArea extends JPanel {
 	static ChoiceLabel store_choice_label = new ChoiceLabel("지점을 선택해 주세요");
 	
 	ChoiceArea() {
+		String area = "";
+		ArrayList<String> g_name_list = new ArrayList<String>();
+		g_name_list = new ManagerDAO().getGnameList();	
+		for(int i = 0; i < g_name_list.size(); i++) {
+			area = g_name_list.get(i).substring(0,2);
+			switch(area) {
+			case "부산":
+				busan_stores_name.add(g_name_list.get(i));
+				break;
+			case "대구":
+				daegu_stores_name.add(g_name_list.get(i));				
+				break;
+			case "울산":
+				ulsan_stores_name.add(g_name_list.get(i));
+				break;
+			case "경주":
+				kyeongju_stores_name.add(g_name_list.get(i));
+				break;
+			case "창원":
+				changwon_stores_name.add(g_name_list.get(i));
+				break;
+			}
+		}
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
 
@@ -3711,7 +3622,7 @@ class ChoiceStore extends JPanel {
 	static ChoiceBtn store_choice_btn = new ChoiceBtn();
 	static ExitBtn store_exit_btn = new ExitBtn();
 	
-	ChoiceStore() {
+	ChoiceStore() {		
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
 		
@@ -3722,15 +3633,19 @@ class ChoiceStore extends JPanel {
 		store_choice_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getOrder_panel().setVisible(true);
-				Main.MainFrame.getChoice_store_panel().setVisible(false);
-				// String에 저장시키기========================================================================================================================
-				OrderPanel.which.setText(ChoiceArea.choisen_store);				
-				Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
-				ChoiceArea.area_combobox.setSelectedIndex(0);		
-				ChoiceArea.store_combobox.setSelectedIndex(0);
-				ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
-				ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");
+				if(ChoiceArea.choisen_store == "...") {
+					JOptionPane.showMessageDialog(null, "지점을 선택해주세요", "지점선택오류", JOptionPane.ERROR_MESSAGE);									
+				}else {
+					Main.MainFrame.getOrder_panel().setVisible(true);
+					Main.MainFrame.getChoice_store_panel().setVisible(false);
+					OrderPanel.choice_store = ChoiceArea.choisen_store;				
+					OrderPanel.which.setText(OrderPanel.choice_store);
+					Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
+					ChoiceArea.area_combobox.setSelectedIndex(0);		
+					ChoiceArea.store_combobox.setSelectedIndex(0);
+					ChoiceArea.area_choice_label.setText("지역을 선택해 주세요");
+					ChoiceArea.store_choice_label.setText("지점을 선택해 주세요");					
+				}
 			}
 		});
 		store_exit_btn.addActionListener(new ActionListener() {
@@ -3797,11 +3712,138 @@ class ChoiceLabel extends JLabel{
 		setVisible(true);
 	}
 }
-class WhichStoreLabel extends JLabel{
-	WhichStoreLabel() {
-		setBounds(120, 30, 400, 100);
-		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
-		setForeground(new Color(255, 115, 125));
-		setVisible(true);
+
+class Timer implements Runnable {
+	private JLabel timerLabel;
+
+	static int n = 3;
+
+	public Timer(JLabel timerLabel) {
+		this.timerLabel = timerLabel;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			timerLabel.setText(Integer.toString(n));
+			n--;
+			try {
+				Thread.sleep(1000); // 1/1000초 단위
+			} catch (InterruptedException e) {
+				return;
+			}
+			if (n == -1) {
+				SalesDB.CoffeSalesDB(OrderPanel.choice_store);
+				OrderDB.CoffeOrderDB(OrderPanel.choice_store, OrderPanel.ice_coffee_count, OrderPanel.hot_coffee_count);
+				
+				SalesDB.SmoothieSalesDB(OrderPanel.choice_store);
+				OrderDB.SmoothieOrderDB(OrderPanel.choice_store, OrderPanel.orange_smoothie_count, OrderPanel.kiwi_smoothie_count, OrderPanel.grape_smoothie_count, OrderPanel.strawberry_smoothie_count, OrderPanel.watermelon_smoothie_count);
+
+				SalesDB.TeaSalesDB(OrderPanel.choice_store);
+				OrderDB.TeaOrderDB(OrderPanel.choice_store, OrderPanel.green_tea_count, OrderPanel.black_tea_count);
+
+				SalesDB.BubbleSalesDB(OrderPanel.choice_store);
+				OrderDB.BubbleOrderDB(OrderPanel.choice_store, OrderPanel.brown_sugar_bubble_count, OrderPanel.taro_bubble_count, OrderPanel.green_bubble_count);
+
+				SalesDB.CakeSalesDB(OrderPanel.choice_store);
+				OrderDB.CakeOrderDB(OrderPanel.choice_store, OrderPanel.cheese_cake_count, OrderPanel.strawberry_cake_count, OrderPanel.chocolate_cake_count);
+				
+				SalesDB.MacaronSalesDB(OrderPanel.choice_store);
+				OrderDB.MacaronOrderDB(OrderPanel.choice_store, OrderPanel.berry_macaron_count, OrderPanel.yogurt_macaron_count, OrderPanel.fruit_macaron_count);
+				
+				Main.MainFrame.getPay_success_panel().setVisible(true);
+				Main.MainFrame.getPayment_panel().setVisible(false);
+				if (OrderPanel.ice_coffee_count > 0) {
+					PaySuccessDetail.ice_coffee_pay.setVisible(true);
+				}
+				if (OrderPanel.hot_coffee_count > 0) {
+					PaySuccessDetail.hot_coffee_pay.setVisible(true);
+				}
+				if (OrderPanel.orange_smoothie_count > 0) {
+					PaySuccessDetail.orange_smoo_pay.setVisible(true);
+				}
+				if (OrderPanel.kiwi_smoothie_count > 0) {
+					PaySuccessDetail.kiwi_smoo_pay.setVisible(true);
+				}
+				if (OrderPanel.grape_smoothie_count > 0) {
+					PaySuccessDetail.grape_smoo_pay.setVisible(true);
+				}
+				if (OrderPanel.strawberry_smoothie_count > 0) {
+					PaySuccessDetail.strawberry_smoo_pay.setVisible(true);
+				}
+				if (OrderPanel.watermelon_smoothie_count > 0) {
+					PaySuccessDetail.watermelon_smoo_pay.setVisible(true);
+				}
+				if (OrderPanel.green_tea_count > 0) {
+					PaySuccessDetail.green_tea_pay.setVisible(true);
+				}
+				if (OrderPanel.black_tea_count > 0) {
+					PaySuccessDetail.black_tea_pay.setVisible(true);
+				}
+				if (OrderPanel.brown_sugar_bubble_count > 0) {
+					PaySuccessDetail.brown_bubble_pay.setVisible(true);
+				}
+				if (OrderPanel.taro_bubble_count > 0) {
+					PaySuccessDetail.taro_bubble_pay.setVisible(true);
+				}
+				if (OrderPanel.green_bubble_count > 0) {
+					PaySuccessDetail.green_bubble_pay.setVisible(true);
+				}
+				if (OrderPanel.cheese_cake_count > 0) {
+					PaySuccessDetail.cheese_cake_pay.setVisible(true);
+				}
+				if (OrderPanel.strawberry_cake_count > 0) {
+					PaySuccessDetail.strawberry_cake_pay.setVisible(true);
+				}
+				if (OrderPanel.chocolate_cake_count > 0) {
+					PaySuccessDetail.chocolate_cake_pay.setVisible(true);
+				}
+				if (OrderPanel.berry_macaron_count > 0) {
+					PaySuccessDetail.berry_macaron_pay.setVisible(true);
+				}
+				if (OrderPanel.yogurt_macaron_count > 0) {
+					PaySuccessDetail.yogurt_macaron_pay.setVisible(true);
+				}
+				if (OrderPanel.fruit_macaron_count > 0) {
+					PaySuccessDetail.fruit_macaron_pay.setVisible(true);
+				}
+				// 커피
+				OrderPanel.ice_coffee_count = 0;
+				OrderPanel.hot_coffee_count = 0;
+				// 스무디
+				OrderPanel.orange_smoothie_count = 0;
+				OrderPanel.kiwi_smoothie_count = 0;
+				OrderPanel.grape_smoothie_count = 0;
+				OrderPanel.strawberry_smoothie_count = 0;
+				OrderPanel.watermelon_smoothie_count = 0;
+				// 차
+				OrderPanel.black_tea_count = 0;
+				OrderPanel.green_tea_count = 0;
+				// 버블티
+				OrderPanel.brown_sugar_bubble_count = 0;
+				OrderPanel.taro_bubble_count = 0;
+				OrderPanel.green_bubble_count = 0;
+				// 케이크
+				OrderPanel.cheese_cake_count = 0;
+				OrderPanel.strawberry_cake_count = 0;
+				OrderPanel.chocolate_cake_count = 0;
+				// 마카롱
+				OrderPanel.berry_macaron_count = 0;
+				OrderPanel.yogurt_macaron_count = 0;
+				OrderPanel.fruit_macaron_count = 0;
+
+				try {
+					n = 10;
+					synchronized (Payment.td2) {
+						Payment.td2.wait();
+					}
+				} catch (InterruptedException e) {
+					System.out.println("스레드 멈춤");
+				}
+			}
+			if (n <= 3) {
+				Payment.payment_text_count.setForeground(Color.RED);
+			}
+		}
 	}
 }

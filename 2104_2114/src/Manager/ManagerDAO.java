@@ -1,6 +1,7 @@
 package Manager;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -510,5 +511,28 @@ public class ManagerDAO {
 					e.printStackTrace();
 				}
 		}
+	}
+	public ArrayList<String> getGnameList() {
+
+		ArrayList<String> list = new ArrayList<String>();
+
+		Connection con = null; // 연결
+		PreparedStatement ps = null; // 명령
+		ResultSet rs = null; // 결과
+
+		try {
+
+			con = getConn();
+			String sql = "select * from MANAGER_TABLE";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				list.add(rs.getString("G_BNAME"));				
+			} // while
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

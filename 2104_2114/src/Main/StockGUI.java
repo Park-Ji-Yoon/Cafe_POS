@@ -428,15 +428,17 @@ class GCoffeeStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("ice")){
             		ice_s_db = rset.getInt("ICE_S") + Integer.parseInt(ice_cnt.getText());
-                	query = "UPDATE MENU_COFFEE SET ICE_S = ?";
+                	query = "UPDATE MENU_COFFEE SET ICE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, ice_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("hot")) {
             		hot_s_db = rset.getInt("HOT_S") + Integer.parseInt(hot_cnt.getText());
-                	query = "UPDATE MENU_COFFEE SET HOT_S = ?";
+                	query = "UPDATE MENU_COFFEE SET HOT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, hot_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -849,33 +851,38 @@ class GSmoothieStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("orange")){
             		orange_s_db = rset.getInt("ORANGE_S") + Integer.parseInt(orange_cnt.getText());
-                	query = "UPDATE MENU_SMOOTHIE SET ORANGE_S = ?";
+                	query = "UPDATE MENU_SMOOTHIE SET ORANGE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, orange_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("kiwi")) {
             		kiwi_s_db = rset.getInt("KIWI_S") + Integer.parseInt(kiwi_cnt.getText());
-                	query = "UPDATE MENU_SMOOTHIE SET KIWI_S = ?";
+                	query = "UPDATE MENU_SMOOTHIE SET KIWI_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, kiwi_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("grape")) {
             		grape_s_db = rset.getInt("GRAPE_S") + Integer.parseInt(grape_cnt.getText());
-                	query = "UPDATE MENU_SMOOTHIE SET GRAPE_S = ?";
+                	query = "UPDATE MENU_SMOOTHIE SET GRAPE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, grape_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("straw")) {
             		straw_s_db = rset.getInt("STRAW_S") + Integer.parseInt(straw_cnt.getText());
-                	query = "UPDATE MENU_SMOOTHIE SET STRAW_S = ?";
+                	query = "UPDATE MENU_SMOOTHIE SET STRAW_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, straw_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("water")) {
             		water_s_db = rset.getInt("WATER_S") + Integer.parseInt(water_cnt.getText());
-                	query = "UPDATE MENU_SMOOTHIE SET WATER_S = ?";
+                	query = "UPDATE MENU_SMOOTHIE SET WATER_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, water_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1159,15 +1166,17 @@ class GTeaStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("green")){
             		green_s_db = rset.getInt("GREEN_S") + Integer.parseInt(green_cnt.getText());
-                	query = "UPDATE MENU_TEA SET GREEN_S = ?";
+                	query = "UPDATE MENU_TEA SET GREEN_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, green_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("black")) {
             		black_s_db = rset.getInt("BLACK_S") + Integer.parseInt(black_cnt.getText());
-                	query = "UPDATE MENU_TEA SET BLACK_S = ?";
+                	query = "UPDATE MENU_TEA SET BLACK_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, black_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1493,21 +1502,24 @@ class GBubbleStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("bs")){
             		bs_s_db = rset.getInt("BS_S") + Integer.parseInt(bs_cnt.getText());
-                	query = "UPDATE MENU_BUBBLE SET BS_S = ?";
+                	query = "UPDATE MENU_BUBBLE SET BS_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, bs_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("taro")) {
             		taro_s_db = rset.getInt("TARO_S") + Integer.parseInt(taro_cnt.getText());
-                	query = "UPDATE MENU_BUBBLE SET TARO_S = ?";
+                	query = "UPDATE MENU_BUBBLE SET TARO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, taro_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("gb")) {
             		gb_s_db = rset.getInt("GB_S") + Integer.parseInt(gb_cnt.getText());
-                	query = "UPDATE MENU_BUBBLE SET GB_S = ?";
+                	query = "UPDATE MENU_BUBBLE SET GB_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, gb_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1834,21 +1846,24 @@ class GCakeStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("cheese")){
             		cheese_s_db = rset.getInt("CHEESE_S") + Integer.parseInt(cheese_cnt.getText());
-                	query = "UPDATE MENU_CAKE SET CHEESE_S = ?";
+                	query = "UPDATE MENU_CAKE SET CHEESE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, cheese_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("sc")) {
             		sc_s_db = rset.getInt("SC_S") + Integer.parseInt(sc_cnt.getText());
-                	query = "UPDATE MENU_CAKE SET SC_S = ?";
+                	query = "UPDATE MENU_CAKE SET SC_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, sc_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("choco")) {
             		choco_s_db = rset.getInt("CHOCO_S") + Integer.parseInt(choco_cnt.getText());
-                	query = "UPDATE MENU_CAKE SET CHOCO_S = ?";
+                	query = "UPDATE MENU_CAKE SET CHOCO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, choco_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -2176,21 +2191,24 @@ class GMacaronStockPanel extends JPanel{
             while (result = rset.next()) {
             	if(menu.equals("berry")){
             		berry_s_db = rset.getInt("BERRY_S") + Integer.parseInt(berry_cnt.getText());
-                	query = "UPDATE MENU_MACARON SET BERRY_S = ?";
+                	query = "UPDATE MENU_MACARON SET BERRY_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, berry_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("yogurt")) {
             		yogurt_s_db = rset.getInt("YOGURT_S") + Integer.parseInt(yogurt_cnt.getText());
-                	query = "UPDATE MENU_MACARON SET YOGURT_S = ?";
+                	query = "UPDATE MENU_MACARON SET YOGURT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, yogurt_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("fruit")) {
             		fruit_s_db = rset.getInt("FRUIT_S") + Integer.parseInt(fruit_cnt.getText());
-                	query = "UPDATE MENU_MACARON SET FRUIT_S = ?";
+                	query = "UPDATE MENU_MACARON SET FRUIT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, fruit_s_db);
+        			pstmt.setString(2, bname);
         			pstmt.executeUpdate();
             	}
             }
