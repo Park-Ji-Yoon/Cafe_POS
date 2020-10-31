@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -110,7 +111,7 @@ class MasterPanel extends JPanel{
 		mypage_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getMaster_panel().setVisible(false);
-				//Main.MainFrame.getSMypage_panel().setVisible(true);
+				Main.MainFrame.getMaster_info_panel().setVisible(true);
 			}
 		});
 		add(mypage_button);		
@@ -401,5 +402,277 @@ class WhichStoreLabelMaster extends JLabel{
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
 		setForeground(new Color(255, 145, 71));
 		setVisible(true);
+	}
+}
+class MasterInfo extends JPanel{
+	ImageIcon background = new ImageIcon("images/master1.png");
+	GoBackBtn go_back_btn = new GoBackBtn();
+	ChangePwBtn change_pw_btn = new ChangePwBtn();
+	MasterNameLabel master_name_label = new MasterNameLabel();
+	MasterIdLabel master_id_label = new MasterIdLabel();
+	static MasterPwLabel master_pw_label = new MasterPwLabel();
+	
+	MasterInfo() {
+		setBounds(0, 0,1862, 1055);
+		setVisible(true);
+		setLayout(null);
+		setBackground(Color.RED);
+		
+		add(go_back_btn);
+		add(change_pw_btn);
+		add(master_name_label);
+		add(master_id_label);
+		add(master_pw_label);
+	}
+	
+	public static MasterPwLabel getMaster_pw_label() {
+		return master_pw_label;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
+}
+class GoBackBtn extends JButton{
+	GoBackBtn() {
+		setBounds(20, 20, 200, 70);
+		setVisible(true);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setOpaque(false);
+		addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				Main.MainFrame.getMaster_info_panel().setVisible(false);
+				Main.MainFrame.getMaster_panel().setVisible(true);				
+			}
+		});
+	}
+}
+class ChangePwBtn extends JButton{
+	static String s_pw;
+	
+	ChangePwBtn() {
+		setBounds(670, 741, 522, 100);
+		setVisible(true);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setOpaque(false);
+		addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+                String lastPw = JOptionPane.showInputDialog(null, "현재 비밀번호를 입력해주세요", "비밀번호 변경", JOptionPane.QUESTION_MESSAGE);
+                String dbPw = getS_pw();
+                if(lastPw != null) {
+                	if(lastPw.equals(dbPw)){
+                		String newPw = JOptionPane.showInputDialog(null, "새로운 비밀번호를 입력해주세요", "비밀번호 변경", JOptionPane.QUESTION_MESSAGE);
+                        if(newPw != null) {
+                            String checkNewPw = JOptionPane.showInputDialog(null, "다시 한 번 새로운 비밀번호를 입력해주세요", "비밀번호 변경", JOptionPane.QUESTION_MESSAGE);
+                            if(newPw.equals(checkNewPw)) {
+                            	boolean flag = setS_pw(newPw);
+                            	if(flag == true) {
+                            		JOptionPane.showMessageDialog(null, "비밀번호가 변경되었습니다", "비밀번호 변경", JOptionPane.PLAIN_MESSAGE);
+                            		MasterInfo.getMaster_pw_label().setText(newPw);
+                            	}else {
+                            		JOptionPane.showMessageDialog(null, "비밀번호를 변경하지 못했습니다", "비밀번호 변경", JOptionPane.ERROR_MESSAGE);
+                            	}
+                            }else {
+                        		JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다", "비밀번호 변경", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }else {
+                            JOptionPane.showMessageDialog(null, "새로운 비밀번호가 입력되지 않았습니다", "비밀번호 변경", JOptionPane.ERROR_MESSAGE);
+                        }
+                	}else {
+                		JOptionPane.showMessageDialog(null, "현재 비밀번호가 틀렸습니다", "비밀번호 변경", JOptionPane.ERROR_MESSAGE);
+                	}
+                }else if(lastPw == null){
+                    JOptionPane.showMessageDialog(null, "현재 비밀번호가 입력되지 않았습니다", "비밀번호 변경", JOptionPane.ERROR_MESSAGE);
+                }else {
+                	
+                }
+			}
+		});
+	}
+	public static String getS_pw() {
+		s_pw = "";
+		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT S_PW FROM MASTER_TABLE";
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	s_pw = rset.getString("S_PW");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rset.close();
+                pstmt.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		return s_pw;
+	}
+	public static boolean setS_pw(String newPw) {		
+		Connection conn = null;
+        Statement stmt = null;
+        int result = 0;
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            PreparedStatement pst=conn.prepareStatement("update MASTER_TABLE set S_PW=? where S_ID=?");
+
+            pst.setString(1, newPw);
+            pst.setString(2, "master");
+
+            int numRows = pst.executeUpdate(); //insert, delete, 
+
+            System.out.format("%d개의 행이 바꼈습니다.", numRows);
+
+            pst.close();
+            conn.close();
+			
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+		return true;
+	}
+}
+class MasterNameLabel extends JLabel{
+	static String s_name;
+	
+	MasterNameLabel() {
+		setBounds(900, 360, 300, 50);
+		String s_name = getS_Name();
+		setText(s_name);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+	public static String getS_Name() {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT S_NAME FROM MASTER_TABLE";
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	s_name = rset.getString("S_NAME");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "";
+        }
+		return s_name;
+	}
+}
+class MasterIdLabel extends JLabel{
+	static String s_id;
+	
+	MasterIdLabel() {
+		setBounds(900, 480, 300, 50);
+		String s_id = getS_Id();
+		setText(s_id);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+	public static String getS_Id() {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT S_ID FROM MASTER_TABLE";
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	s_id = rset.getString("S_ID");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "";
+        }
+		return s_id;
+	}
+}
+class MasterPwLabel extends JLabel{
+	static String s_pw;
+	
+	MasterPwLabel() {
+		setBounds(900, 590, 300, 50);
+		String s_pw = getS_Pw();
+		setText(s_pw);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+	public static String getS_Pw() {		
+		String query;
+		PreparedStatement pstmt = null;
+		Connection conn = null;
+		ResultSet rset = null;
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
+            
+            query = "SELECT S_PW FROM MASTER_TABLE";
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			boolean result = true;
+			
+            while (result = rset.next()) {
+            	s_pw = rset.getString("S_PW");
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return "";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "";
+        }
+		return s_pw;
 	}
 }

@@ -119,7 +119,7 @@ class ManagerPanel extends JPanel{
 		mypage_button.setOpaque(false);
 		mypage_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Main.MainFrame.getGMypage_panel().setVisible(true);
+				Main.MainFrame.getManager_info_panel().setVisible(true);
 				Main.MainFrame.getManager_panel().setVisible(false);
 			}
 		});
@@ -171,5 +171,118 @@ class ManagerPanel extends JPanel{
             }
         }
 		return bname;
+	}
+}
+class ManagerInfo extends JPanel{
+	ImageIcon background = new ImageIcon("images/manager1.png");
+	GoBackBtn2 go_back_btn2 = new GoBackBtn2();
+	
+	static ManagerNameLabel manager_name_label = new ManagerNameLabel();
+	static ManagerIdLabel manager_id_label = new ManagerIdLabel();
+	static ManagerPwLabel manager_pw_label = new ManagerPwLabel();
+	static ManagerBNameLabel manager_bname_label = new ManagerBNameLabel();
+	static ManagerBPhoneLabel manager_bphone_label = new ManagerBPhoneLabel();
+	static ManagerEmLabel manager_em_label = new ManagerEmLabel();
+	
+	ManagerInfo() {
+		setBounds(0, 0, 1862, 1055);
+		setLayout(null);
+		setVisible(true);
+		
+		add(go_back_btn2);
+		
+		add(manager_name_label);
+		add(manager_id_label);
+		add(manager_pw_label);
+		add(manager_bname_label);
+		add(manager_bphone_label);
+		add(manager_em_label);
+	}
+	
+	public static ManagerNameLabel getManager_name_label() {
+		return manager_name_label;
+	}
+
+	public static ManagerIdLabel getManager_id_label() {
+		return manager_id_label;
+	}
+
+	public static ManagerPwLabel getManager_pw_label() {
+		return manager_pw_label;
+	}
+
+	public static ManagerBNameLabel getManager_bname_label() {
+		return manager_bname_label;
+	}
+
+	public static ManagerBPhoneLabel getManager_bphone_label() {
+		return manager_bphone_label;
+	}
+
+	public static ManagerEmLabel getManager_em_label() {
+		return manager_em_label;
+	}
+
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(background.getImage(), 0, 0, null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
+}
+class GoBackBtn2 extends JButton{
+	GoBackBtn2() {
+		setBounds(20, 20, 200, 70);
+		setVisible(true);
+		setBorderPainted(false);
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setOpaque(false);
+		addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				Main.MainFrame.getManager_info_panel().setVisible(false);
+				Main.MainFrame.getManager_panel().setVisible(true);				
+			}
+		});
+	}
+}
+class ManagerNameLabel extends JLabel{
+	ManagerNameLabel() {
+		setBounds(950, 245, 400, 50);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+}
+class ManagerIdLabel extends JLabel{
+	ManagerIdLabel() {
+		setBounds(950, 367, 400, 50);
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+}
+class ManagerPwLabel extends JLabel{
+	ManagerPwLabel() {
+		setBounds(950, 480, 400, 50);
+		setText("123456789");
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+}
+class ManagerBNameLabel extends JLabel{
+	ManagerBNameLabel() {
+		setBounds(950, 590, 400, 50);
+		setText("울산현대백화점점");
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+}
+class ManagerBPhoneLabel extends JLabel{
+	ManagerBPhoneLabel() {
+		setBounds(950, 713, 400, 50);
+		setText("010-5135-4735");
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
+	}
+}
+class ManagerEmLabel extends JLabel{
+	ManagerEmLabel() {
+		setBounds(950, 825, 400, 50);
+		setText("박지윤유낭명");
+		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
