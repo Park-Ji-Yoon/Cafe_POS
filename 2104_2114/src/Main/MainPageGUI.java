@@ -65,7 +65,7 @@ class MainFrame extends JFrame {
 	public MainFrame() {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		Image cursorimage=tk.getImage("images/cursor_1.png");
+		Image cursorimage=tk.getImage("images/cursor_2.png");
 		Point point=new Point(20,20);
 		Cursor cursor=tk.createCustomCursor(cursorimage, point, "haha");
 		
