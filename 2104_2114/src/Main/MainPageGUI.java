@@ -232,7 +232,7 @@ class MainFrame extends JFrame {
 		add(manager_info_panel);
 
 		// 프레임 위 앱 아이콘
-		ImageIcon icon = new ImageIcon("images/logo_2.png");
+		ImageIcon icon = new ImageIcon("images/logo_20.png");
 		setIconImage(icon.getImage());	
 	}
 	
