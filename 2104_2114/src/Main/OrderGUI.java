@@ -3385,7 +3385,7 @@ class PriceSum extends JLabel {
 }
 
 class PaySuccessPanel extends JPanel {
-	ImageIcon background_2 = new ImageIcon("images/background_45.png");
+	ImageIcon background_2 = new ImageIcon("images/background_21.png");
 	TextField pay_text = new TextField();
 	PaySuccessDetail pay_success_detail = new PaySuccessDetail();
 

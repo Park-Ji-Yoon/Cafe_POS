@@ -177,7 +177,7 @@ class GCoffeeSalesPanel extends JPanel{
 	JLabel hot_d = new JLabel();
 	JLabel hot_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int ice_d_db;
 	int ice_m_db;
 	int hot_d_db;
@@ -381,7 +381,7 @@ class GSmoothieSalesPanel extends JPanel{
 	JLabel water_d = new JLabel();
 	JLabel water_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int orange_d_db;
 	int orange_m_db;
 	int kiwi_d_db;
@@ -633,7 +633,7 @@ class GTeaSalesPanel extends JPanel{
 	JLabel black_d = new JLabel();
 	JLabel black_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int green_d_db;
 	int green_m_db;
 	int black_d_db;
@@ -833,7 +833,7 @@ class GBubbleSalesPanel extends JPanel{
 	JLabel gb_d = new JLabel();
 	JLabel gb_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int bs_d_db;
 	int bs_m_db;
 	int taro_d_db;
@@ -1051,7 +1051,7 @@ class GCakeSalesPanel extends JPanel{
 	JLabel choco_d = new JLabel();
 	JLabel choco_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int cheese_d_db;
 	int cheese_m_db;
 	int sc_d_db;
@@ -1269,7 +1269,7 @@ class GMacaronSalesPanel extends JPanel{
 	JLabel fruit_d = new JLabel();
 	JLabel fruit_m = new JLabel();
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	int berry_d_db;
 	int berry_m_db;
 	int yogurt_d_db;

@@ -11,10 +11,9 @@ public class SalesDB {
 	static Calendar cal = Calendar.getInstance();
 	static int nowday = cal.get(Calendar.DAY_OF_MONTH);
 	static int nowmonth = cal.get(Calendar.MONTH)+1;
+	static Date date = new Date();
 	
-	public static void CoffeSalesDB(String bname) {
-		Date date = new Date();
-		
+	public static void CoffeSalesDB(String bname) {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -24,9 +23,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_COFFEE";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -34,17 +32,19 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_COFFEE SET ICE_D = ?, HOT_D = ?";
+					query = "UPDATE MENU_COFFEE SET ICE_D = ?, HOT_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
+					pstmt.setString(3, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_COFFEE SET ICE_M = ?, HOT_M = ?";
+						query = "UPDATE MENU_COFFEE SET ICE_M = ?, HOT_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
+						pstmt.setString(3, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -64,8 +64,6 @@ public class SalesDB {
 		}
 	}
 	public static void SmoothieSalesDB(String bname) {
-		Date date = new Date();
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -75,9 +73,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_SMOOTHIE";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -85,23 +82,25 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_SMOOTHIE SET ORANGE_D = ?, KIWI_D = ?, GRAPE_D = ?, STRAW_D = ?, WATER_D = ?";
+					query = "UPDATE MENU_SMOOTHIE SET ORANGE_D = ?, KIWI_D = ?, GRAPE_D = ?, STRAW_D = ?, WATER_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
 					pstmt.setInt(3, 0);
 					pstmt.setInt(4, 0);
 					pstmt.setInt(5, 0);
+					pstmt.setString(6, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_SMOOTHIE SET ORANGE_M = ?, KIWI_M = ?, GRAPE_M = ?, STRAW_M = ?, WATER_M = ?";
+						query = "UPDATE MENU_SMOOTHIE SET ORANGE_M = ?, KIWI_M = ?, GRAPE_M = ?, STRAW_M = ?, WATER_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
 						pstmt.setInt(3, 0);
 						pstmt.setInt(4, 0);
 						pstmt.setInt(5, 0);
+						pstmt.setString(6, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -121,8 +120,6 @@ public class SalesDB {
 		}
 	}
 	public static void TeaSalesDB(String bname) {
-		Date date = new Date();
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -132,9 +129,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_TEA";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -142,17 +138,19 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_TEA SET GREEN_D = ?, BLACK_D = ?";
+					query = "UPDATE MENU_TEA SET GREEN_D = ?, BLACK_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
+					pstmt.setString(3, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_TEA SET GREEN_M = ?, BLACK_M = ?";
+						query = "UPDATE MENU_TEA SET GREEN_M = ?, BLACK_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
+						pstmt.setString(3, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -172,8 +170,6 @@ public class SalesDB {
 		}
 	}
 	public static void BubbleSalesDB(String bname) {
-		Date date = new Date();
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -183,9 +179,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_BUBBLE";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -193,19 +188,21 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_BUBBLE SET BS_D = ?, TARO_D = ?, GB_D = ?";
+					query = "UPDATE MENU_BUBBLE SET BS_D = ?, TARO_D = ?, GB_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
 					pstmt.setInt(3, 0);
+					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_BUBBLE SET BS_M = ?, TARO_M = ?, GB_M = ?";
+						query = "UPDATE MENU_BUBBLE SET BS_M = ?, TARO_M = ?, GB_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
 						pstmt.setInt(3, 0);
+						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -225,8 +222,6 @@ public class SalesDB {
 		}
 	}
 	public static void CakeSalesDB(String bname) {
-		Date date = new Date();
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -236,9 +231,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_CAKE";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -246,19 +240,21 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_CAKE SET CHEESE_D = ?, SC_D = ?, CHOCO_D = ?";
+					query = "UPDATE MENU_CAKE SET CHEESE_D = ?, SC_D = ?, CHOCO_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
 					pstmt.setInt(3, 0);
+					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_CAKE SET CHEESE_M = ?, SC_M = ?, CHOCO_M = ?";
+						query = "UPDATE MENU_CAKE SET CHEESE_M = ?, SC_M = ?, CHOCO_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
 						pstmt.setInt(3, 0);
+						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -278,8 +274,6 @@ public class SalesDB {
 		}
 	}
 	public static void MacaronSalesDB(String bname) {
-		Date date = new Date();
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -289,9 +283,8 @@ public class SalesDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
 
-			query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
+			query = "SELECT * FROM MENU_MACARON";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
 			boolean result = true;
@@ -299,19 +292,21 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_MACARON SET BERRY_D = ?, YOGURT_D = ?, FRUIT_D = ?";
+					query = "UPDATE MENU_MACARON SET BERRY_D = ?, YOGURT_D = ?, FRUIT_D = ? WHERE BNAME = ?";
 					pstmt = conn.prepareStatement(query);
 					pstmt.setInt(1, 0);
 					pstmt.setInt(2, 0);
 					pstmt.setInt(3, 0);
+					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_MACARON SET BERRY_M = ?, YOGURT_M = ?, FRUIT_M = ?";
+						query = "UPDATE MENU_MACARON SET BERRY_M = ?, YOGURT_M = ?, FRUIT_M = ? WHERE BNAME = ?";
 						pstmt = conn.prepareStatement(query);
 						pstmt.setInt(1, 0);
 						pstmt.setInt(2, 0);
 						pstmt.setInt(3, 0);
+						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -338,7 +333,6 @@ class Date {
 	public static int month;
 
 	Date(){
-		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;

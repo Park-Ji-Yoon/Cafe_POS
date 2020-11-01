@@ -37,11 +37,16 @@ public class OrderDB {
 					pstmt.setInt(5, rset.getInt("ICE_S") - icecount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
+					
 				}
 				if(rset.getInt("HOT_S") - hotcount >= 0) {
 					pstmt.setInt(6, rset.getInt("HOT_S") - hotcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				pstmt.setString(7, bname);
 				pstmt.executeUpdate();
@@ -94,28 +99,38 @@ public class OrderDB {
 					pstmt.setInt(11, rset.getInt("ORANGE_S") - orangecount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("KIWI_S") - kiwicount >= 0) {
 					pstmt.setInt(12, rset.getInt("KIWI_S") - kiwicount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("GRAPE_S") - grapecount >= 0) {
-					pstmt.setInt(12, rset.getInt("GRAPE_S") - grapecount);
+					pstmt.setInt(13, rset.getInt("GRAPE_S") - grapecount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("STRAW_S") - strawcount >= 0) {
-					pstmt.setInt(13, rset.getInt("STRAW_S") - strawcount);
+					pstmt.setInt(14, rset.getInt("STRAW_S") - strawcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("WATER_S") - watercount >= 0) {
-					pstmt.setInt(14, rset.getInt("WATER_S") - watercount);
+					pstmt.setInt(15, rset.getInt("WATER_S") - watercount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
-				pstmt.setString(15, bname);
+				pstmt.setString(16, bname);
 				pstmt.executeUpdate();
 			}
 		} catch (ClassNotFoundException e) {
@@ -160,11 +175,15 @@ public class OrderDB {
 					pstmt.setInt(5, rset.getInt("GREEN_S") - greencount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("BLACK_S") - blackcount >= 0) {
 					pstmt.setInt(6, rset.getInt("BLACK_S") - blackcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				pstmt.setString(7, bname);
 				pstmt.executeUpdate();
@@ -213,16 +232,22 @@ public class OrderDB {
 					pstmt.setInt(7, rset.getInt("BS_S") - bscount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("TARO_S") - tarocount >= 0) {
 					pstmt.setInt(8, rset.getInt("TARO_S") - tarocount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("GB_S") - gbcount >= 0) {
 					pstmt.setInt(9, rset.getInt("GB_S") - gbcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				pstmt.setString(10, bname);
 				pstmt.executeUpdate();
@@ -270,17 +295,23 @@ public class OrderDB {
 				if(rset.getInt("CHEESE_S") - cheesecount >= 0) {
 					pstmt.setInt(7, rset.getInt("CHEESE_S") - cheesecount);
 				}else {
-					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("SC_S") - sccount >= 0) {
 					pstmt.setInt(8, rset.getInt("SC_S") - sccount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("CHOCO_S") - chococount >= 0) {
 					pstmt.setInt(9, rset.getInt("CHOCO_S") - chococount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				pstmt.setString(10, bname);
 				pstmt.executeUpdate();
@@ -329,16 +360,22 @@ public class OrderDB {
 					pstmt.setInt(7, rset.getInt("BERRY_S") - berrycount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("YOGURT_S") - yogurtcount >= 0) {
 					pstmt.setInt(8, rset.getInt("YOGURT_S") - yogurtcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				if(rset.getInt("FRUIT_S") - fruitcount >= 0) {
 					pstmt.setInt(9, rset.getInt("FRUIT_S") - fruitcount);
 				}else {
 					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "재고 오류", JOptionPane.ERROR_MESSAGE);		
+					Main.MainFrame.getPayment_panel().setVisible(false);		
+					Main.MainFrame.getOrder_panel().setVisible(true);
 				}
 				pstmt.setString(10, bname);
 				pstmt.executeUpdate();

@@ -32,6 +32,23 @@ public class ManagerLogin {
                 	
                 	bname = rset.getString("G_BNAME");
                 	
+                	ManagerPanel.bname_label.setText(bname);
+                	EmployeePanel.bname_label.setText(bname);
+                	EmployeePanel.bname = bname;
+                	GCoffeeSalesPanel.bname = bname;
+                	GSmoothieSalesPanel.bname = bname;
+                	GTeaSalesPanel.bname = bname;
+                	GBubbleSalesPanel.bname = bname;
+                	GCakeSalesPanel.bname = bname;
+                	GMacaronSalesPanel.bname = bname;
+                	GCoffeeStockPanel.bname = bname;
+                	GSmoothieStockPanel.bname = bname;
+                	GTeaStockPanel.bname = bname;
+                	GBubbleStockPanel.bname = bname;
+                	GCakeStockPanel.bname = bname;
+                	GMacaronStockPanel.bname = bname;
+                	
+                	
                 	System.out.println("메소드 밖 : " + bname);
                 	ManagerInfo.getManager_name_label().setText(getG_Name());
                 	ManagerInfo.getManager_id_label().setText(getG_Id());

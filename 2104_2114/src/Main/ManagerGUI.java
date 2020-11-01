@@ -33,7 +33,7 @@ class ManagerPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_19.png");
 
 	JButton manager_exit_button = new JButton(icon);
-	JLabel bname_label = new JLabel();
+	static JLabel bname_label = new JLabel();
 	JButton sales_button = new JButton(icon);
 	JButton stock_button = new JButton(icon);
 	JButton employee_button = new JButton(icon);
@@ -60,7 +60,6 @@ class ManagerPanel extends JPanel{
 		add(manager_exit_button);
 		
 		bname_label.setBounds(20, 203, 370, 80);
-		bname_label.setText(getBname());
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 40));
 		add(bname_label);
@@ -136,41 +135,6 @@ class ManagerPanel extends JPanel{
 		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
-	}
-	public static String getBname() {
-		String bname = "";
-		
-		String query;
-		PreparedStatement pstmt = null;
-		Connection conn = null;
-		ResultSet rset = null;
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system", "rootpassword");
-            
-            query = "SELECT G_BNAME FROM MANAGER_TABLE";
-			pstmt = conn.prepareStatement(query);
-			rset = pstmt.executeQuery();
-             
-			boolean result = true;
-			
-            while (result = rset.next()) {
-                bname = rset.getString("G_BNAME");
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rset.close();
-                pstmt.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-		return bname;
 	}
 }
 class ManagerInfo extends JPanel{

@@ -33,8 +33,8 @@ class EmployeePanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_22.png");
 
 	JButton employee_exit_button = new JButton(icon);
-	JLabel bname_label = new JLabel();
-	String bname = ManagerPanel.getBname();
+	static JLabel bname_label = new JLabel();
+	static String bname;
 	JLabel employeecnt_label = new JLabel();
 
 	JButton em_in = new JButton(icon);
@@ -62,7 +62,6 @@ class EmployeePanel extends JPanel{
 		add(employee_exit_button);
 
 		bname_label.setBounds(360, 398, 420, 80);
-		bname_label.setText(ManagerPanel.getBname());
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 55));
 		add(bname_label);

@@ -176,7 +176,7 @@ class GCoffeeStockPanel extends JPanel{
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel ice_s = new JLabel();
 	JLabel hot_s = new JLabel();
@@ -469,7 +469,7 @@ class GSmoothieStockPanel extends JPanel{
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel orange_s = new JLabel();
 	JLabel kiwi_s = new JLabel();
@@ -913,7 +913,7 @@ class GTeaStockPanel extends JPanel{
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel green_s = new JLabel();
 	JLabel black_s = new JLabel();
@@ -1207,7 +1207,7 @@ class GBubbleStockPanel extends JPanel{
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel bs_s = new JLabel();
 	JLabel taro_s = new JLabel();
@@ -1551,7 +1551,7 @@ class GCakeStockPanel extends JPanel{
 	JButton bubble_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel cheese_s = new JLabel();
 	JLabel sc_s = new JLabel();
@@ -1895,7 +1895,7 @@ class GMacaronStockPanel extends JPanel{
 	JButton bubble_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
 
-	String bname = ManagerPanel.getBname();
+	static String bname;
 	
 	JLabel berry_s = new JLabel();
 	JLabel yogurt_s = new JLabel();
