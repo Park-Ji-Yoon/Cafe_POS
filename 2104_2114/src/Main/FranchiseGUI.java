@@ -151,6 +151,13 @@ class FranchisePanel extends JPanel{
 			}
 		});
 		add(macaron_sales_button);
+		
+		SalesDB.CoffeSalesDB();
+		SalesDB.SmoothieSalesDB();
+		SalesDB.TeaSalesDB();
+		SalesDB.BubbleSalesDB();
+		SalesDB.CakeSalesDB();
+		SalesDB.MacaronSalesDB();
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -333,7 +340,6 @@ class SCoffeeSalesPanel extends JPanel{
 	}
 	public void coffee_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.CoffeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -589,7 +595,6 @@ class SSmoothieSalesPanel extends JPanel{
 	}
 	public void smoothie_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.SmoothieSalesDB(bname);
 		
 		String query;
 		PreparedStatement pstmt = null;
@@ -798,7 +803,6 @@ class STeaSalesPanel extends JPanel{
 	}
 	public void tea_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.TeaSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1018,7 +1022,6 @@ class SBubbleSalesPanel extends JPanel{
 	}
 	public void bubble_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.BubbleSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1240,7 +1243,6 @@ class SCakeSalesPanel extends JPanel{
 	}
 	public void cake_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.CakeSalesDB(bname);
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1462,7 +1464,6 @@ class SMacaronSalesPanel extends JPanel{
 	}
 	public void macaron_db() {		
 		String bname = FranchisePanel.getBname();
-		SalesDB.MacaronSalesDB(bname);		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;

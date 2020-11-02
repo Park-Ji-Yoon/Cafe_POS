@@ -13,7 +13,7 @@ public class SalesDB {
 	static int nowmonth = cal.get(Calendar.MONTH)+1;
 	static Date date = new Date();
 	
-	public static void CoffeSalesDB(String bname) {		
+	public static void CoffeSalesDB() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -32,19 +32,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_COFFEE SET ICE_D = ?, HOT_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_COFFEE SET ICE_D = 0, HOT_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setString(3, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_COFFEE SET ICE_M = ?, HOT_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_COFFEE SET ICE_M = 0, HOT_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setString(3, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -63,7 +57,7 @@ public class SalesDB {
 			}
 		}
 	}
-	public static void SmoothieSalesDB(String bname) {
+	public static void SmoothieSalesDB() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -82,25 +76,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_SMOOTHIE SET ORANGE_D = ?, KIWI_D = ?, GRAPE_D = ?, STRAW_D = ?, WATER_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_SMOOTHIE SET ORANGE_D = 0, KIWI_D = 0, GRAPE_D = 0, STRAW_D = 0, WATER_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setInt(3, 0);
-					pstmt.setInt(4, 0);
-					pstmt.setInt(5, 0);
-					pstmt.setString(6, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_SMOOTHIE SET ORANGE_M = ?, KIWI_M = ?, GRAPE_M = ?, STRAW_M = ?, WATER_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_SMOOTHIE SET ORANGE_M = 0, KIWI_M = 0, GRAPE_M = 0, STRAW_M = 0, WATER_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setInt(3, 0);
-						pstmt.setInt(4, 0);
-						pstmt.setInt(5, 0);
-						pstmt.setString(6, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -119,7 +101,7 @@ public class SalesDB {
 			}
 		}
 	}
-	public static void TeaSalesDB(String bname) {
+	public static void TeaSalesDB() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -138,19 +120,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_TEA SET GREEN_D = ?, BLACK_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_TEA SET GREEN_D = 0, BLACK_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setString(3, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_TEA SET GREEN_M = ?, BLACK_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_TEA SET GREEN_M = 0, BLACK_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setString(3, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -169,7 +145,7 @@ public class SalesDB {
 			}
 		}
 	}
-	public static void BubbleSalesDB(String bname) {
+	public static void BubbleSalesDB() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -188,21 +164,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_BUBBLE SET BS_D = ?, TARO_D = ?, GB_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_BUBBLE SET BS_D = 0, TARO_D = 0, GB_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setInt(3, 0);
-					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_BUBBLE SET BS_M = ?, TARO_M = ?, GB_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_BUBBLE SET BS_M = 0, TARO_M = 0, GB_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setInt(3, 0);
-						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -221,7 +189,7 @@ public class SalesDB {
 			}
 		}
 	}
-	public static void CakeSalesDB(String bname) {
+	public static void CakeSalesDB() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -240,21 +208,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_CAKE SET CHEESE_D = ?, SC_D = ?, CHOCO_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_CAKE SET CHEESE_D = 0, SC_D = 0, CHOCO_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setInt(3, 0);
-					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_CAKE SET CHEESE_M = ?, SC_M = ?, CHOCO_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_CAKE SET CHEESE_M = 0, SC_M = 0, CHOCO_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setInt(3, 0);
-						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}
@@ -273,7 +233,7 @@ public class SalesDB {
 			}
 		}
 	}
-	public static void MacaronSalesDB(String bname) {
+	public static void MacaronSalesDB() {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -292,21 +252,13 @@ public class SalesDB {
 			while (result = rset.next()) {
 				if(nowday != date.day) {
 					date.setDay(nowday);
-					query = "UPDATE MENU_MACARON SET BERRY_D = ?, YOGURT_D = ?, FRUIT_D = ? WHERE BNAME = ?";
+					query = "UPDATE MENU_MACARON SET BERRY_D = 0, YOGURT_D = 0, FRUIT_D = 0";
 					pstmt = conn.prepareStatement(query);
-					pstmt.setInt(1, 0);
-					pstmt.setInt(2, 0);
-					pstmt.setInt(3, 0);
-					pstmt.setString(4, bname);
 					pstmt.executeUpdate();
 					if(nowmonth != date.month) {
 						date.setMonth(nowmonth);
-						query = "UPDATE MENU_MACARON SET BERRY_M = ?, YOGURT_M = ?, FRUIT_M = ? WHERE BNAME = ?";
+						query = "UPDATE MENU_MACARON SET BERRY_M = 0, YOGURT_M = 0, FRUIT_M = 0";
 						pstmt = conn.prepareStatement(query);
-						pstmt.setInt(1, 0);
-						pstmt.setInt(2, 0);
-						pstmt.setInt(3, 0);
-						pstmt.setString(4, bname);
 						pstmt.executeUpdate();
 					}
 				}

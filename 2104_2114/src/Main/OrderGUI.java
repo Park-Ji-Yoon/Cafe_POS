@@ -138,8 +138,8 @@ class OrderPanel extends JPanel {
 	JLabel bubble_brown_label = new JLabel("", bubble_brown, JLabel.CENTER);
 	JLabel bubble_taro_label = new JLabel("", bubble_taro, JLabel.CENTER);
 	JLabel bubble_green_label = new JLabel("", bubble_green, JLabel.CENTER);
-
-	JButton add_black_bubble = new JButton("Black sugar");
+	
+	JButton add_brown_bubble = new JButton("Brownsugar");
 	JButton add_taro_bubble = new JButton("Taro");
 	JButton add_green_bubble = new JButton("Green tea");
 
@@ -228,22 +228,31 @@ class OrderPanel extends JPanel {
 				if (all_price == 0) {
 					JOptionPane.showMessageDialog(null, "메뉴를 하나 이상 선택해주세요", "메뉴부족", JOptionPane.ERROR_MESSAGE);
 				} else {
-					order_btn_count++;
-					if (order_btn_count == 1) {
-						Main.MainFrame.getOrder_panel().setVisible(false);
-						Main.MainFrame.getPayment_panel().setVisible(true);
-						Payment.td2.start();
-					} else {
-						Main.MainFrame.getOrder_panel().setVisible(false);
-						Main.MainFrame.getPayment_panel().setVisible(true);
-						synchronized (Payment.td2) {
-							Payment.td2.notify();
+					int co_re = StockDB.CoffeStockDB(which.getText(), ice_coffee_count, hot_coffee_count);
+					int smoo_re = StockDB.SmoothieStockDB(which.getText(), orange_smoothie_count, kiwi_smoothie_count, grape_smoothie_count, strawberry_smoothie_count, watermelon_smoothie_count);
+					int tea_re = StockDB.TeaStockDB(which.getText(), green_tea_count, black_tea_count);
+					int bu_re = StockDB.BubbleStockDB(which.getText(), brown_sugar_bubble_count, taro_bubble_count, green_bubble_count);
+					int cake_re = StockDB.CakeStockDB(which.getText(), cheese_cake_count, strawberry_cake_count, chocolate_cake_count);
+					int maca_re = StockDB.MacaronStockDB(which.getText(), berry_macaron_count, yogurt_macaron_count, fruit_macaron_count);
+					
+					if(co_re == 0 && smoo_re == 0 && tea_re == 0 && bu_re == 0 && cake_re == 0 && maca_re == 0) {
+						order_btn_count++;
+						if (order_btn_count == 1) {					
+							Main.MainFrame.getOrder_panel().setVisible(false);
+							Main.MainFrame.getPayment_panel().setVisible(true);
+							Payment.td2.start();
+						} else {						
+							Main.MainFrame.getOrder_panel().setVisible(false);
+							Main.MainFrame.getPayment_panel().setVisible(true);
+							synchronized (Payment.td2) {
+								Payment.td2.notify();
+							}
 						}
+						all_count = 0;
+						all_price = 0;
+						price_sum.setText("결제금액 : " + all_price + "원");
 					}
 				}
-				all_count = 0;
-				all_price = 0;
-				price_sum.setText("결제금액 : " + all_price + "원");
 			}
 		});
 
@@ -1690,18 +1699,19 @@ class OrderPanel extends JPanel {
 		add(bubble_green_label);
 		bubble_green_label.setVisible(false);
 
-		add_black_bubble.setBounds(740, 475, 180, 40);
-		add_black_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
-		add_black_bubble.setBorderPainted(false);
-		add_black_bubble.setBackground(new Color(201, 255, 245));
-		add_black_bubble.setFocusPainted(false);
-		add(add_black_bubble);
-		add_black_bubble.addActionListener(new ActionListener() {
+		add_brown_bubble.setBounds(740, 475, 180, 40);
+		add_brown_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
+		add_brown_bubble.setBorderPainted(false);
+		add_brown_bubble.setBackground(new Color(201, 255, 245));
+		add_brown_bubble.setFocusPainted(false);
+		add(add_brown_bubble);
+		add_brown_bubble.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bubble_brown_label.setVisible(true);
 			}
 		});
-		add_black_bubble.addMouseListener(new MouseListener() {
+		add_brown_bubble.addMouseListener(new MouseListener() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
@@ -1837,7 +1847,7 @@ class OrderPanel extends JPanel {
 		});
 
 		add_taro_bubble.setBounds(740, 525, 180, 40);
-		add_taro_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
+		add_taro_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_taro_bubble.setBorderPainted(false);
 		add_taro_bubble.setBackground(new Color(201, 255, 245));
 		add_taro_bubble.setFocusPainted(false);
@@ -1999,7 +2009,7 @@ class OrderPanel extends JPanel {
 //		});
 
 		add_green_bubble.setBounds(740, 575, 180, 40);
-		add_green_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
+		add_green_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_green_bubble.setBorderPainted(false);
 		add_green_bubble.setBackground(new Color(201, 255, 245));
 		add_green_bubble.setFocusPainted(false);
@@ -3641,6 +3651,12 @@ class ChoiceStore extends JPanel {
 					Main.MainFrame.getChoice_store_panel().setVisible(false);
 					OrderPanel.choice_store = ChoiceArea.choisen_store;				
 					OrderPanel.which.setText(OrderPanel.choice_store);
+					SalesDB.CoffeSalesDB();
+					SalesDB.SmoothieSalesDB();
+					SalesDB.TeaSalesDB();
+					SalesDB.BubbleSalesDB();
+					SalesDB.CakeSalesDB();
+					SalesDB.MacaronSalesDB();
 					Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
 					ChoiceArea.area_combobox.setSelectedIndex(0);		
 					ChoiceArea.store_combobox.setSelectedIndex(0);
@@ -3734,22 +3750,16 @@ class Timer implements Runnable {
 				return;
 			}
 			if (n == -1) {
-				SalesDB.CoffeSalesDB(OrderPanel.choice_store);
 				OrderDB.CoffeOrderDB(OrderPanel.choice_store, OrderPanel.ice_coffee_count, OrderPanel.hot_coffee_count);
 				
-				SalesDB.SmoothieSalesDB(OrderPanel.choice_store);
 				OrderDB.SmoothieOrderDB(OrderPanel.choice_store, OrderPanel.orange_smoothie_count, OrderPanel.kiwi_smoothie_count, OrderPanel.grape_smoothie_count, OrderPanel.strawberry_smoothie_count, OrderPanel.watermelon_smoothie_count);
 
-				SalesDB.TeaSalesDB(OrderPanel.choice_store);
 				OrderDB.TeaOrderDB(OrderPanel.choice_store, OrderPanel.green_tea_count, OrderPanel.black_tea_count);
 
-				SalesDB.BubbleSalesDB(OrderPanel.choice_store);
 				OrderDB.BubbleOrderDB(OrderPanel.choice_store, OrderPanel.brown_sugar_bubble_count, OrderPanel.taro_bubble_count, OrderPanel.green_bubble_count);
 
-				SalesDB.CakeSalesDB(OrderPanel.choice_store);
 				OrderDB.CakeOrderDB(OrderPanel.choice_store, OrderPanel.cheese_cake_count, OrderPanel.strawberry_cake_count, OrderPanel.chocolate_cake_count);
 				
-				SalesDB.MacaronSalesDB(OrderPanel.choice_store);
 				OrderDB.MacaronOrderDB(OrderPanel.choice_store, OrderPanel.berry_macaron_count, OrderPanel.yogurt_macaron_count, OrderPanel.fruit_macaron_count);
 				
 				Main.MainFrame.getPay_success_panel().setVisible(true);

@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-public class OrderDB {	
-	public static void CoffeOrderDB(String bname, int icecount, int hotcount) {
+public class StockDB {	
+	public static int CoffeStockDB(String bname, int icecount, int hotcount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -24,17 +24,15 @@ public class OrderDB {
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_COFFEE SET ICE_D = ?, HOT_D = ?, ICE_M = ?, HOT_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("ICE_D") + icecount);
-				pstmt.setInt(2, rset.getInt("HOT_D") + hotcount);
-				pstmt.setInt(3, rset.getInt("ICE_M") + icecount);
-				pstmt.setInt(4, rset.getInt("HOT_M") + hotcount);
-				pstmt.setString(5, bname);
-				pstmt.executeUpdate();
+			while (rset.next()) {
+				if(rset.getInt("ICE_S") < icecount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "ICE COFFEE", JOptionPane.ERROR_MESSAGE);		
+					return -1;
+				}
+				if(rset.getInt("HOT_S")  < hotcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "HOT COFFEE", JOptionPane.ERROR_MESSAGE);		
+					return -1;
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -49,8 +47,9 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
-	public static void SmoothieOrderDB(String bname, int orangecount, int kiwicount, int grapecount, int strawcount, int watercount) {
+	public static int SmoothieStockDB(String bname, int orangecount, int kiwicount, int grapecount, int strawcount, int watercount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -64,24 +63,28 @@ public class OrderDB {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
-
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_SMOOTHIE SET ORANGE_D = ?, KIWI_D = ?, GRAPE_D = ?, STRAW_D = ?, WATER_D = ?, ORANGE_M = ?, KIWI_M = ?, GRAPE_M = ?, STRAW_M = ?, WATER_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("ORANGE_D") + orangecount);
-				pstmt.setInt(2, rset.getInt("KIWI_D") + kiwicount);
-				pstmt.setInt(3, rset.getInt("GRAPE_D") + grapecount);
-				pstmt.setInt(4, rset.getInt("STRAW_D") + strawcount);
-				pstmt.setInt(5, rset.getInt("WATER_D") + watercount);
-				pstmt.setInt(6, rset.getInt("ORANGE_M") + orangecount);
-				pstmt.setInt(7, rset.getInt("KIWI_M") + kiwicount);
-				pstmt.setInt(8, rset.getInt("GRAPE_M") + grapecount);
-				pstmt.setInt(9, rset.getInt("STRAW_M") + strawcount);
-				pstmt.setInt(10, rset.getInt("WATER_M") + watercount);
-				pstmt.setString(11, bname);
-				pstmt.executeUpdate();
+			
+			while(rset.next()) {
+				if(rset.getInt("ORANGE_S") < orangecount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "ORANGE SMOOTHIE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("KIWI_S") < kiwicount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "KIWI SMOOTHIE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("GRAPE_S") < grapecount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "GRAPE SMOOTHIE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("STRAW_S") < strawcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "STRAW SMOOTHIE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("WATER_S") < watercount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "WATER SMOOTHIE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -96,8 +99,9 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
-	public static void TeaOrderDB(String bname, int greencount, int blackcount) {
+	public static int TeaStockDB(String bname, int greencount, int blackcount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -111,18 +115,16 @@ public class OrderDB {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
-
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_TEA SET GREEN_D = ?, BLACK_D = ?, GREEN_M = ?, BLACK_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("GREEN_D") + greencount);
-				pstmt.setInt(2, rset.getInt("BLACK_D") + blackcount);
-				pstmt.setInt(3, rset.getInt("GREEN_M") + greencount);
-				pstmt.setInt(4, rset.getInt("BLACK_M") + blackcount);
-				pstmt.setString(5, bname);
-				pstmt.executeUpdate();
+			
+			while(rset.next()) {
+				if(rset.getInt("GREEN_S") < greencount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "GREEN TEA", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("BLACK_S") < blackcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "BLACK TEA", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -137,8 +139,9 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
-	public static void BubbleOrderDB(String bname, int bscount, int tarocount, int gbcount) {
+	public static int BubbleStockDB(String bname, int bscount, int tarocount, int gbcount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -152,20 +155,20 @@ public class OrderDB {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
-
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_BUBBLE SET BS_D = ?, TARO_D = ?, GB_D = ?, BS_M = ?, TARO_M = ?, GB_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("BS_D") + bscount);
-				pstmt.setInt(2, rset.getInt("TARO_D") + tarocount);
-				pstmt.setInt(3, rset.getInt("GB_D") + gbcount);
-				pstmt.setInt(4, rset.getInt("BS_M") + bscount);
-				pstmt.setInt(5, rset.getInt("TARO_M") + tarocount);
-				pstmt.setInt(6, rset.getInt("GB_M") + gbcount);
-				pstmt.setString(7, bname);
-				pstmt.executeUpdate();
+			
+			while(rset.next()) {
+				if(rset.getInt("BS_S") < bscount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "BROWNSUGAR BUBBLETEA", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("TARO_S") < tarocount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "TARO BUBBLETEA", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("GB_S") < gbcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "GREEN BUBBLETEA", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -180,8 +183,9 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
-	public static void CakeOrderDB(String bname,int cheesecount, int sccount, int chococount) {
+	public static int CakeStockDB(String bname,int cheesecount, int sccount, int chococount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -195,20 +199,20 @@ public class OrderDB {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
-
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_CAKE SET CHEESE_D = ?, SC_D = ?, CHOCO_D = ?, CHEESE_M = ?, SC_M = ?, CHOCO_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("CHEESE_D") + cheesecount);
-				pstmt.setInt(2, rset.getInt("SC_D") + sccount);
-				pstmt.setInt(3, rset.getInt("CHOCO_D") + chococount);
-				pstmt.setInt(4, rset.getInt("CHEESE_M") + cheesecount);
-				pstmt.setInt(5, rset.getInt("SC_M") + sccount);
-				pstmt.setInt(6, rset.getInt("CHOCO_M") + chococount);
-				pstmt.setString(7, bname);
-				pstmt.executeUpdate();
+			
+			while(rset.next()) {
+				if(rset.getInt("CHEESE_S") < cheesecount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "CHEESE CAKE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("SC_S") < sccount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "STRAWBERRY CAKE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
+				if(rset.getInt("CHOCO_S") < chococount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "CHOCOLATE CAKE", JOptionPane.ERROR_MESSAGE);
+					return -1;
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -223,8 +227,9 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
-	public static void MacaronOrderDB(String bname, int berrycount, int yogurtcount, int fruitcount) {
+	public static int MacaronStockDB(String bname, int berrycount, int yogurtcount, int fruitcount) {
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -239,19 +244,19 @@ public class OrderDB {
 			pstmt.setString(1, bname);
 			rset = pstmt.executeQuery();
 
-			boolean result = true;
-
-			while (result = rset.next()) {
-				query = "UPDATE MENU_MACARON SET BERRY_D = ?, YOGURT_D = ?, FRUIT_D = ?, BERRY_M = ?, YOGURT_M = ?, FRUIT_M = ? WHERE BNAME = ?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, rset.getInt("BERRY_D") + berrycount);
-				pstmt.setInt(2, rset.getInt("YOGURT_D") + yogurtcount);
-				pstmt.setInt(3, rset.getInt("FRUIT_D") + fruitcount);
-				pstmt.setInt(4, rset.getInt("BERRY_M") + berrycount);
-				pstmt.setInt(5, rset.getInt("YOGURT_M") + yogurtcount);
-				pstmt.setInt(6, rset.getInt("FRUIT_M") + fruitcount);
-				pstmt.setString(7, bname);
-				pstmt.executeUpdate();
+			while (rset.next()) {
+				if(rset.getInt("BERRY_S") < berrycount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "BERRY MACARON", JOptionPane.ERROR_MESSAGE);		
+					return -1;
+				}
+				if(rset.getInt("YOGURT_S") < yogurtcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "YOGURT MACARON", JOptionPane.ERROR_MESSAGE);	
+					return -1;	
+				}
+				if(rset.getInt("FRUIT_S") < fruitcount) {
+					JOptionPane.showMessageDialog(null, "주문량이 재고보다 많습니다.", "FRUIT MACARON", JOptionPane.ERROR_MESSAGE);	
+					return -1;	
+				}
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -266,5 +271,6 @@ public class OrderDB {
 				e.printStackTrace();
 			}
 		}
+		return 0;
 	}
 }
