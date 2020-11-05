@@ -22,12 +22,14 @@ import javax.swing.*;
 
 import Manager.ManagerDAO;
 
+// 주문과 관련된 패널, 컴포넌트들이 있는 OrderGUI
 public class OrderGUI extends JFrame {
 	public static void main(String args[]) {
 		OrderPanel order_panel = new OrderPanel();
 	}
 }
 
+// 주문하기 패널
 class OrderPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
@@ -37,65 +39,82 @@ class OrderPanel extends JPanel {
 	JButton order_button = new JButton(icon);
 	JButton menu_exit_button = new JButton(icon);
 
-	// 메뉴 가격
+	// 메뉴 가격 변수 선언
+	// 커피 가격
 	static int ice_coffee_price = 2500;
 	static int hot_coffee_price = 2500;
 
+	// 스무디 가격
 	static int orange_smoothie_price = 3500;
 	static int kiwi_smoothie_price = 3500;
 	static int grape_smoothie_price = 3500;
 	static int strawberry_smoothie_price = 3500;
 	static int watermelon_smoothie_price = 3500;
 
+	// 차 가격
 	static int black_tea_price = 3000;
 	static int green_tea_price = 3000;
 
+	// 버블티 가격
 	static int brown_sugar_bubble_price = 4000;
 	static int taro_bubble_price = 4000;
 	static int green_bubble_price = 4000;
 
+	// 케이크 가격
 	static int cheese_cake_price = 5000;
 	static int strawberry_cake_price = 5000;
 	static int chocolate_cake_price = 5000;
 
+	// 마카롱 가격
 	static int berry_macaron_price = 2500;
 	static int yogurt_macaron_price = 2500;
 	static int fruit_macaron_price = 2500;
 
 	// 주문 개수
+	// 0으로 초기화
+	// 더블클릭 시 1씩 추가되는 변수들
+	
+	// 커피 주문 갯수 세는 변수
 	static int ice_coffee_count = 0;
 	static int hot_coffee_count = 0;
 
+	// 스무디 주문 갯수 세는 변수
 	static int orange_smoothie_count = 0;
 	static int kiwi_smoothie_count = 0;
 	static int grape_smoothie_count = 0;
 	static int strawberry_smoothie_count = 0;
 	static int watermelon_smoothie_count = 0;
 
+	// 차 주문 갯수 세는 변수
 	static int black_tea_count = 0;
 	static int green_tea_count = 0;
 
+	// 버블티 주문 갯수 세는 변수
 	static int brown_sugar_bubble_count = 0;
 	static int taro_bubble_count = 0;
 	static int green_bubble_count = 0;
 
+	// 케이크 주문 갯수 세는 변수
 	static int cheese_cake_count = 0;
 	static int strawberry_cake_count = 0;
 	static int chocolate_cake_count = 0;
 
+	// 마카롱 주문 갯수 세는 변수
 	static int berry_macaron_count = 0;
 	static int yogurt_macaron_count = 0;
 	static int fruit_macaron_count = 0;
 
+	// 주문하는 메뉴들의 총 개수
 	static int all_count = OrderPanel.ice_coffee_count + OrderPanel.hot_coffee_count + OrderPanel.orange_smoothie_count
 			+ OrderPanel.kiwi_smoothie_count + OrderPanel.grape_smoothie_count + OrderPanel.strawberry_smoothie_count
 			+ OrderPanel.watermelon_smoothie_count + black_tea_count + green_tea_count + brown_sugar_bubble_count
 			+ taro_bubble_count + green_bubble_count + cheese_cake_count + strawberry_cake_count + chocolate_cake_count
 			+ berry_macaron_count + yogurt_macaron_count + fruit_macaron_count;
 
+	// 주문하는 메뉴들의 총 가격
 	static int all_price;
 
-	// 커피
+	// 커피 Icon, Label, Button
 	Icon ice_coffee = new ImageIcon("images/ice_coffee.png");
 	Icon hot_coffee = new ImageIcon("images/hot_coffee.png");
 	JLabel ice_coffee_label = new JLabel("", ice_coffee, JLabel.CENTER);
@@ -104,7 +123,7 @@ class OrderPanel extends JPanel {
 	JButton add_ice_coffee = new JButton("Ice");
 	JButton add_hot_coffee = new JButton("Hot");
 
-	// 스무디(과일)
+	// 스무디(과일) Icon, Label, Button
 	Icon smoo_orange = new ImageIcon("images/orange-juice.png");
 	Icon smoo_kiwi = new ImageIcon("images/kiwi-juice.png");
 	Icon smoo_grape = new ImageIcon("images/grape-juice.png");
@@ -122,7 +141,7 @@ class OrderPanel extends JPanel {
 	JButton add_strawberry_smoo = new JButton("Strawberry");
 	JButton add_watermelon_smoo = new JButton("Watermelon");
 
-	// 차
+	// 차 Icon, Label, Button
 	Icon tea_hong = new ImageIcon("images/tea_hong.png");
 	Icon tea_green = new ImageIcon("images/tea_green.png");
 	JLabel tea_hong_label = new JLabel("", tea_hong, JLabel.CENTER);
@@ -131,7 +150,7 @@ class OrderPanel extends JPanel {
 	JButton add_hong_tea = new JButton("Black tea");
 	JButton add_green_tea = new JButton("Green tea");
 
-	// 버블티
+	// 버블티 Icon, Label, Button
 	Icon bubble_brown = new ImageIcon("images/bubble-tea-brown.png");
 	Icon bubble_taro = new ImageIcon("images/bubble-tea-taro.png");
 	Icon bubble_green = new ImageIcon("images/bubble-tea-green.png");
@@ -143,7 +162,7 @@ class OrderPanel extends JPanel {
 	JButton add_taro_bubble = new JButton("Taro");
 	JButton add_green_bubble = new JButton("Green tea");
 
-	// 케익
+	// 케익 Icon, Label, Button
 	Icon cake_cheese = new ImageIcon("images/cake_cheese.png");
 	Icon cake_strawberry = new ImageIcon("images/cake-strawberry.png");
 	Icon cake_chocolate = new ImageIcon("images/cake-chocolate.png");
@@ -155,7 +174,7 @@ class OrderPanel extends JPanel {
 	JButton add_cake_strawberry = new JButton("Strawberry");
 	JButton add_cake_chocolate = new JButton("Chocolate");
 
-	// 마카롱
+	// 마카롱 Icon, Label, Button
 	Icon macaron_berry = new ImageIcon("images/macaron-berry.png");
 	Icon macaron_yogurt = new ImageIcon("images/macaron-yogurt.png");
 	Icon macaron_fruit = new ImageIcon("images/macaron-fruit.png");
@@ -168,7 +187,7 @@ class OrderPanel extends JPanel {
 	JButton add_macaron_fruit = new JButton("Fruit");
 
 	// MainPanel에 올릴 컴포넌트들의 생성자 호출
-	ImageIcon background = new ImageIcon("images/background_15.png"); // 배경사진은 class못만들어서 그냥 넣음
+	ImageIcon background = new ImageIcon("images/background_15.png");
 
 	static OrderList order_list = new OrderList();
 
@@ -201,13 +220,14 @@ class OrderPanel extends JPanel {
 		return iceCoffee;
 	}
 
+	// OrderPanel 생성자
 	OrderPanel() {
 		add(order_list);
 		add(price_sum);
 
-		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
-		setLayout(null);
-		setVisible(true);
+		setBounds(0, 0, 1862, 1055); // 패널의 위치와 크기 지정
+		setLayout(null); // 패널 레이아웃 null로 설정
+		setVisible(true); // 화면에 보이도록 설정
 
 
 		which.setBounds(120, 30, 400, 100);
@@ -222,11 +242,13 @@ class OrderPanel extends JPanel {
 		order_button.setFocusPainted(false);
 		order_button.setOpaque(false);
 
+		// 주문하기 버튼 눌렀을 때 이벤트
 		order_button.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
+				// 만약 주문하는 가격이 0이면 dialog창을 띄워서 경고를 함
 				if (all_price == 0) {
 					JOptionPane.showMessageDialog(null, "메뉴를 하나 이상 선택해주세요", "메뉴부족", JOptionPane.ERROR_MESSAGE);
+				// 그렇지 않을 시 StockDB에 주문하는 메뉴 개수만큼의 재고가 존재하는지 확인
 				} else {
 					int co_re = StockDB.CoffeStockDB(which.getText(), ice_coffee_count, hot_coffee_count);
 					int smoo_re = StockDB.SmoothieStockDB(which.getText(), orange_smoothie_count, kiwi_smoothie_count, grape_smoothie_count, strawberry_smoothie_count, watermelon_smoothie_count);
@@ -235,6 +257,7 @@ class OrderPanel extends JPanel {
 					int cake_re = StockDB.CakeStockDB(which.getText(), cheese_cake_count, strawberry_cake_count, chocolate_cake_count);
 					int maca_re = StockDB.MacaronStockDB(which.getText(), berry_macaron_count, yogurt_macaron_count, fruit_macaron_count);
 					
+					// 위의 int형 변수들이 받은 return값이 모두 0이면 결제하기 화면으로 넘어가고 Thread를 실행시킴
 					if(co_re == 0 && smoo_re == 0 && tea_re == 0 && bu_re == 0 && cake_re == 0 && maca_re == 0) {
 						order_btn_count++;
 						if (order_btn_count == 1) {					
@@ -248,31 +271,39 @@ class OrderPanel extends JPanel {
 								Payment.td2.notify();
 							}
 						}
+						// 결제하기 화면으로 넘어가는 로직이 끝나면
+						// 주문하는 메뉴의 갯수를 0으로 설정
 						all_count = 0;
+						// 주문하는 메뉴의 가격를 0으로 설정
 						all_price = 0;
+						// 결제금액을 표시하는 Label에 "결제금액 : 0원"으로 text를 설정해준다
 						price_sum.setText("결제금액 : " + all_price + "원");
 					}
 				}
 			}
 		});
 
+		// menu_exit_button : 주문하기 화면에서 "취소하기" 버튼임
 		menu_exit_button.setBounds(1550, 900, 200, 50);
 		menu_exit_button.setVisible(true);
+		// 버튼을 투명하게 함
 		menu_exit_button.setBorderPainted(false);
 		menu_exit_button.setContentAreaFilled(false);
 		menu_exit_button.setFocusPainted(false);
 		menu_exit_button.setOpaque(false);
 
+		// 취소하기 버튼 추를 시 OrderPanel에서 MainPanel로 이동함
 		menu_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getOrder_panel().setVisible(false);
 				Main.MainFrame.getMain_panel().setVisible(true);
 				OrderPanel.getOrder_list().removeAll();
 
-				all_count = 0;
-				all_price = 0;
-				price_sum.setText("결제금액 : " + all_price + "원");
+				all_count = 0; // 주문하는 메뉴 갯수 0으로 설정
+				all_price = 0; // 주문하는 메뉴 가격 0으로 설정
+				price_sum.setText("결제금액 : " + all_price + "원"); // 결제금액도 0으로 나오도록 설정
 				
+				// 지점 선택 콤보박스가 인덱스 0번째를 선택하고 있도록 설정
 				Main.MainFrame.getChoice_store_panel().remove(ChoiceArea.store_combobox);
 				ChoiceArea.area_combobox.setSelectedIndex(0);		
 				ChoiceArea.store_combobox.setSelectedIndex(0);
@@ -284,18 +315,20 @@ class OrderPanel extends JPanel {
 		add(order_button);
 		add(menu_exit_button);
 
-		// 커피
+		// 아이스 커피 라벨 설정
 		ice_coffee_label.setBounds(140, 180, 145, 145);
 		ice_coffee_label.setVerticalTextPosition(JLabel.CENTER);
 		ice_coffee_label.setHorizontalTextPosition(JLabel.RIGHT);
 		add(ice_coffee_label);
 
+		// 핫 커피 라벨 설정
 		hot_coffee_label.setBounds(140, 180, 145, 145);
 		hot_coffee_label.setVerticalTextPosition(JLabel.CENTER);
 		hot_coffee_label.setHorizontalTextPosition(JLabel.RIGHT);
 		hot_coffee_label.setVisible(false);
 		add(hot_coffee_label);
 
+		// 아이스 커피 추가 버튼 설정
 		add_ice_coffee.setBounds(320, 210, 100, 40);
 		add_ice_coffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_ice_coffee.setBorderPainted(false);
@@ -312,15 +345,12 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setLocation(0, 0);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(iceCoffee);
 				if (e.getClickCount() == 2) {
 
 					iceCoffee.setBounds(0, all_count * 70, 500, 50);
-//					iceCoffee.setHorizontalAlignment(JLabel.CENTER);
 					iceCoffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
 					iceCoffee.setVisible(true);
 
@@ -331,7 +361,6 @@ class OrderPanel extends JPanel {
 					minus_ice_coffee.setBounds(10, 0, 30, 30);
 
 					minus_ice_coffee.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_ice_coffee.setFocusPainted(false);
 					minus_ice_coffee.setOpaque(false);
 					minus_ice_coffee.setIcon(minus);
@@ -443,6 +472,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 핫 커피 추가 버튼 설정
 		add_hot_coffee.setBounds(320, 260, 100, 40);
 		add_hot_coffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_hot_coffee.setBorderPainted(false);
@@ -459,9 +489,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(hotCoffee);
@@ -478,7 +505,6 @@ class OrderPanel extends JPanel {
 					minus_hot_coffee.setBounds(10, 0, 30, 30);
 
 					minus_hot_coffee.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_hot_coffee.setFocusPainted(false);
 					minus_hot_coffee.setOpaque(false);
 					minus_hot_coffee.setIcon(minus);
@@ -590,7 +616,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-		// 스무디
+		// 오렌지 스무디 추가 버튼 설정
 		smoo_orange_label.setBounds(590, 180, 145, 145);
 		smoo_orange_label.setVerticalTextPosition(JLabel.CENTER);
 		smoo_orange_label.setHorizontalTextPosition(JLabel.RIGHT);
@@ -636,9 +662,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(orangeSmoo);
@@ -655,7 +678,6 @@ class OrderPanel extends JPanel {
 					minus_orange_smoo.setBounds(10, 0, 30, 30);
 
 					minus_orange_smoo.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_orange_smoo.setFocusPainted(false);
 					minus_orange_smoo.setOpaque(false);
 					minus_orange_smoo.setIcon(minus);
@@ -767,6 +789,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 키위 스무디 추가 버튼 설정
 		add_kiwi_smoo.setBounds(740, 205, 170, 27);
 		add_kiwi_smoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 22));
 		add_kiwi_smoo.setBorderPainted(false);
@@ -786,9 +809,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(kiwiSmoo);
@@ -805,7 +825,6 @@ class OrderPanel extends JPanel {
 					minus_kiwi_smoo.setBounds(10, 0, 30, 30);
 
 					minus_kiwi_smoo.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_kiwi_smoo.setFocusPainted(false);
 					minus_kiwi_smoo.setOpaque(false);
 					minus_kiwi_smoo.setIcon(minus);
@@ -917,6 +936,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 포도 스무디 추가 버튼 설정
 		add_grape_smoo.setBounds(740, 240, 170, 27);
 		add_grape_smoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 22));
 		add_grape_smoo.setBorderPainted(false);
@@ -936,9 +956,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(grapeSmoo);
@@ -955,7 +972,6 @@ class OrderPanel extends JPanel {
 					minus_grape_smoo.setBounds(10, 0, 30, 30);
 
 					minus_grape_smoo.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_grape_smoo.setFocusPainted(false);
 					minus_grape_smoo.setOpaque(false);
 					minus_grape_smoo.setIcon(minus);
@@ -1067,6 +1083,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 딸기 스무디 추가 버튼 설정
 		add_strawberry_smoo.setBounds(740, 275, 170, 27);
 		add_strawberry_smoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 22));
 		add_strawberry_smoo.setBorderPainted(false);
@@ -1086,9 +1103,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(strawberrySmoo);
@@ -1105,7 +1119,6 @@ class OrderPanel extends JPanel {
 					minus_strawberry_smoo.setBounds(10, 0, 30, 30);
 
 					minus_strawberry_smoo.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_strawberry_smoo.setFocusPainted(false);
 					minus_strawberry_smoo.setOpaque(false);
 					minus_strawberry_smoo.setIcon(minus);
@@ -1221,6 +1234,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 수박 스무디 추가 버튼 설정
 		add_watermelon_smoo.setBounds(740, 310, 170, 27);
 		add_watermelon_smoo.setFont(new Font("인터파크고딕 M", Font.PLAIN, 22));
 		add_watermelon_smoo.setBorderPainted(false);
@@ -1240,9 +1254,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(watermalonSmoo);
@@ -1259,7 +1270,6 @@ class OrderPanel extends JPanel {
 					minus_watermelon_smoo.setBounds(10, 0, 30, 30);
 
 					minus_watermelon_smoo.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_watermelon_smoo.setFocusPainted(false);
 					minus_watermelon_smoo.setOpaque(false);
 					minus_watermelon_smoo.setIcon(minus);
@@ -1375,7 +1385,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-		// 차
+		// 홍차 추가 버튼 설정
 		tea_hong_label.setBounds(140, 476, 145, 145);
 		tea_hong_label.setVerticalTextPosition(JLabel.CENTER);
 		tea_hong_label.setHorizontalTextPosition(JLabel.RIGHT);
@@ -1403,9 +1413,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(blackTea);
@@ -1422,7 +1429,6 @@ class OrderPanel extends JPanel {
 					minus_black_tea.setBounds(10, 0, 30, 30);
 
 					minus_black_tea.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_black_tea.setFocusPainted(false);
 					minus_black_tea.setOpaque(false);
 					minus_black_tea.setIcon(minus);
@@ -1534,6 +1540,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 녹차 추가 버튼 설정
 		add_green_tea.setBounds(320, 550, 150, 40);
 		add_green_tea.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_green_tea.setBorderPainted(false);
@@ -1550,9 +1557,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(greenTea);
@@ -1569,7 +1573,6 @@ class OrderPanel extends JPanel {
 					minus_green_tea.setBounds(10, 0, 30, 30);
 
 					minus_green_tea.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_green_tea.setFocusPainted(false);
 					minus_green_tea.setOpaque(false);
 					minus_green_tea.setIcon(minus);
@@ -1681,7 +1684,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-		// 버블
+		// 브라운 슈가 버블티 추가 버튼 설정
 		bubble_brown_label.setBounds(590, 472, 145, 145);
 		bubble_brown_label.setVerticalTextPosition(JLabel.CENTER);
 		bubble_brown_label.setHorizontalTextPosition(JLabel.RIGHT);
@@ -1715,9 +1718,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(brownBubble);
@@ -1734,7 +1734,6 @@ class OrderPanel extends JPanel {
 					minus_brown_bubble.setBounds(10, 0, 30, 30);
 
 					minus_brown_bubble.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_brown_bubble.setFocusPainted(false);
 					minus_brown_bubble.setOpaque(false);
 					minus_brown_bubble.setIcon(minus);
@@ -1846,6 +1845,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 타로 버블티 추가 버튼 설정
 		add_taro_bubble.setBounds(740, 525, 180, 40);
 		add_taro_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_taro_bubble.setBorderPainted(false);
@@ -1863,9 +1863,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(taroBubble);
@@ -1882,7 +1879,6 @@ class OrderPanel extends JPanel {
 					minus_taro_bubble.setBounds(10, 0, 30, 30);
 
 					minus_taro_bubble.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_taro_bubble.setFocusPainted(false);
 					minus_taro_bubble.setOpaque(false);
 					minus_taro_bubble.setIcon(minus);
@@ -1994,20 +1990,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-//		add_taro_bubble.setBounds(740, 525, 180, 40);
-//		add_taro_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 26));
-//		add_taro_bubble.setBorderPainted(false);
-//		add_taro_bubble.setBackground(new Color(201, 255, 245));
-//		add_taro_bubble.setFocusPainted(false);
-//		add(add_taro_bubble);
-//		add_taro_bubble.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				bubble_brown_label.setVisible(false);
-//				bubble_taro_label.setVisible(true);
-//				bubble_green_label.setVisible(false);
-//			}
-//		});
-
+		// 녹차 버블티 추가 버튼 설정
 		add_green_bubble.setBounds(740, 575, 180, 40);
 		add_green_bubble.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_green_bubble.setBorderPainted(false);
@@ -2025,9 +2008,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(greenBubble);
@@ -2044,7 +2024,6 @@ class OrderPanel extends JPanel {
 					minus_green_bubble.setBounds(10, 0, 30, 30);
 
 					minus_green_bubble.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_green_bubble.setFocusPainted(false);
 					minus_green_bubble.setOpaque(false);
 					minus_green_bubble.setIcon(minus);
@@ -2156,7 +2135,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-		// 케익
+		// 치즈 케이크 추가 버튼 설정
 		cake_cheese_label.setBounds(140, 764, 145, 145);
 		cake_cheese_label.setVerticalTextPosition(JLabel.CENTER);
 		cake_cheese_label.setHorizontalTextPosition(JLabel.RIGHT);
@@ -2191,9 +2170,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(cheeseCake);
@@ -2210,7 +2186,6 @@ class OrderPanel extends JPanel {
 					minus_cheese_cake.setBounds(10, 0, 30, 30);
 
 					minus_cheese_cake.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_cheese_cake.setFocusPainted(false);
 					minus_cheese_cake.setOpaque(false);
 					minus_cheese_cake.setIcon(minus);
@@ -2322,6 +2297,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 딸기 케이크 추가 버튼 설정
 		add_cake_strawberry.setBounds(315, 815, 170, 40);
 		add_cake_strawberry.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_cake_strawberry.setBorderPainted(false);
@@ -2339,9 +2315,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(strayberryCake);
@@ -2358,7 +2331,6 @@ class OrderPanel extends JPanel {
 					minus_strawberry_cake.setBounds(10, 0, 30, 30);
 
 					minus_strawberry_cake.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_strawberry_cake.setFocusPainted(false);
 					minus_strawberry_cake.setOpaque(false);
 					minus_strawberry_cake.setIcon(minus);
@@ -2470,6 +2442,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 초코 케이크 추가 버튼 설정
 		add_cake_chocolate.setBounds(315, 865, 170, 40);
 		add_cake_chocolate.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_cake_chocolate.setBorderPainted(false);
@@ -2487,9 +2460,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(chocolateCake);
@@ -2506,7 +2476,6 @@ class OrderPanel extends JPanel {
 					minus_chocolate_cake.setBounds(10, 0, 30, 30);
 
 					minus_chocolate_cake.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_chocolate_cake.setFocusPainted(false);
 					minus_chocolate_cake.setOpaque(false);
 					minus_chocolate_cake.setIcon(minus);
@@ -2618,7 +2587,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
-		// 마카롱
+		// 베리 마카롱 추가 버튼 설정
 		macaron_berry_label.setBounds(590, 764, 145, 145);
 		macaron_berry_label.setVerticalTextPosition(JLabel.CENTER);
 		macaron_berry_label.setHorizontalTextPosition(JLabel.RIGHT);
@@ -2651,9 +2620,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(berryMacaron);
@@ -2670,7 +2636,6 @@ class OrderPanel extends JPanel {
 					minus_berry_macaron.setBounds(10, 0, 30, 30);
 
 					minus_berry_macaron.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_berry_macaron.setFocusPainted(false);
 					minus_berry_macaron.setOpaque(false);
 					minus_berry_macaron.setIcon(minus);
@@ -2782,6 +2747,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 요커트 마카롱 추가 버튼 설정
 		add_macaron_yogurt.setBounds(775, 815, 140, 40);
 		add_macaron_yogurt.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_macaron_yogurt.setBorderPainted(false);
@@ -2799,9 +2765,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(yogurtMacaron);
@@ -2818,7 +2781,6 @@ class OrderPanel extends JPanel {
 					minus_yogurt_macaron.setBounds(10, 0, 30, 30);
 
 					minus_yogurt_macaron.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_yogurt_macaron.setFocusPainted(false);
 					minus_yogurt_macaron.setOpaque(false);
 					minus_yogurt_macaron.setIcon(minus);
@@ -2930,6 +2892,7 @@ class OrderPanel extends JPanel {
 			}
 		});
 
+		// 과일 마카롱 추가 버튼 설정
 		add_macaron_fruit.setBounds(775, 865, 140, 40);
 		add_macaron_fruit.setFont(new Font("인터파크고딕 M", Font.PLAIN, 24));
 		add_macaron_fruit.setBorderPainted(false);
@@ -2947,9 +2910,6 @@ class OrderPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (OrderPanel.all_count == 0) {
-//					space.setText("========================");
-//					space.setBackground(Color.RED);
-//					space.setBounds(0, 0, 500, 50);
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(fruitMacaron);
@@ -2966,7 +2926,6 @@ class OrderPanel extends JPanel {
 					minus_fruit_macaron.setBounds(10, 0, 30, 30);
 
 					minus_fruit_macaron.setBorderPainted(false); // 테두리색
-//					minus_ice_coffee.setContentAreaFilled(false);
 					minus_fruit_macaron.setFocusPainted(false);
 					minus_fruit_macaron.setOpaque(false);
 					minus_fruit_macaron.setIcon(minus);
@@ -3098,120 +3057,6 @@ class OrderPanel extends JPanel {
 	}
 }
 
-//class PaymentExitBtn extends JButton {
-//	PaymentExitBtn() {
-//		setBounds(1160, 840, 157, 50);
-//		setVisible(true);
-//		setBackground(Color.BLUE);
-////		setBorderPainted(false);
-////		setContentAreaFilled(false);
-////		setFocusPainted(false);
-////		setOpaque(false);
-//		
-//		addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Main.MainFrame.getOrder_panel().setVisible(true);
-//				Main.MainFrame.getPayment_panel().setVisible(false);
-//			}
-//		});
-//	}
-//}
-//class PaySuccessBtn extends JButton{
-//	PaySuccessBtn(){
-//		setBounds(900, 840, 157, 50);
-//		setVisible(true);
-//		setBackground(Color.RED);
-////		setBorderPainted(false);
-////		setContentAreaFilled(false);
-////		setFocusPainted(false);
-////		setOpaque(false);
-//
-//		addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				if(OrderPanel.ice_coffee_count > 0) {
-//					PaySuccessDetail.ice_coffee_pay.setVisible(true);
-//				}
-//				if(OrderPanel.hot_coffee_count > 0) {
-//					PaySuccessDetail.hot_coffee_pay.setVisible(true);
-//				}
-//				if(OrderPanel.orange_smoothie_count > 0) {
-//					PaySuccessDetail.orange_smoo_pay.setVisible(true);
-//				}
-//				if(OrderPanel.kiwi_smoothie_count > 0) {
-//					PaySuccessDetail.kiwi_smoo_pay.setVisible(true);
-//				}
-//				if(OrderPanel.grape_smoothie_count > 0) {
-//					PaySuccessDetail.grape_smoo_pay.setVisible(true);
-//				}
-//				if(OrderPanel.strawberry_smoothie_count > 0) {
-//					PaySuccessDetail.strawberry_smoo_pay.setVisible(true);
-//				}
-//				if(OrderPanel.watermelon_smoothie_count > 0) {
-//					PaySuccessDetail.watermelon_smoo_pay.setVisible(true);
-//				}
-//				if(OrderPanel.black_tea_count > 0) {
-//					PaySuccessDetail.black_tea_pay.setVisible(true);
-//				}
-//				if(OrderPanel.green_tea_count > 0) {
-//					PaySuccessDetail.green_tea_pay.setVisible(true);
-//				}
-//				if(OrderPanel.brown_sugar_bubble_count > 0) {
-//					PaySuccessDetail.brown_bubble_pay.setVisible(true);
-//				}
-//				if(OrderPanel.taro_bubble_count > 0) {
-//					PaySuccessDetail.taro_bubble_pay.setVisible(true);
-//				}
-//				if(OrderPanel.green_bubble_count > 0) {
-//					PaySuccessDetail.green_bubble_pay.setVisible(true);
-//				}
-//				if(OrderPanel.cheese_cake_count > 0) {
-//					PaySuccessDetail.cheese_cake_pay.setVisible(true);
-//				}
-//				if(OrderPanel.strawberry_cake_count > 0) {
-//					PaySuccessDetail.strawberry_cake_pay.setVisible(true);
-//				}
-//				if(OrderPanel.chocolate_cake_count > 0) {
-//					PaySuccessDetail.chocolate_cake_pay.setVisible(true);
-//				}
-//				if(OrderPanel.berry_macaron_count > 0) {
-//					PaySuccessDetail.berry_macaron_pay.setVisible(true);
-//				}
-//				if(OrderPanel.yogurt_macaron_count > 0) {
-//					PaySuccessDetail.yogurt_macaron_pay.setVisible(true);
-//				}
-//				if(OrderPanel.fruit_macaron_count > 0) {
-//					PaySuccessDetail.fruit_macaron_pay.setVisible(true);
-//				}
-//				Main.MainFrame.getPay_success_panel().setVisible(true);
-//				Main.MainFrame.getPayment_panel().setVisible(false);
-//				// 커피
-//				OrderPanel.ice_coffee_count = 0;
-//				OrderPanel.hot_coffee_count = 0;
-//				//스무디
-//				OrderPanel.orange_smoothie_count = 0;
-//				OrderPanel.kiwi_smoothie_count = 0;
-//				OrderPanel.grape_smoothie_count = 0;
-//				OrderPanel.strawberry_smoothie_count = 0;
-//				OrderPanel.watermelon_smoothie_count = 0;
-//				// 차
-//				OrderPanel.black_tea_count = 0;
-//				OrderPanel.green_tea_count = 0;
-//				// 버블티
-//				OrderPanel.brown_sugar_bubble_count = 0;
-//				OrderPanel.taro_bubble_count = 0;
-//				OrderPanel.green_bubble_count = 0;
-//				// 케이크
-//				OrderPanel.cheese_cake_count = 0;
-//				OrderPanel.strawberry_cake_count = 0;
-//				OrderPanel.chocolate_cake_count = 0;
-//				// 마카롱
-//				OrderPanel.berry_macaron_count = 0;
-//				OrderPanel.yogurt_macaron_count = 0;
-//				OrderPanel.fruit_macaron_count = 0;
-//			}
-//		});
-//	}
-//}
 class Payment extends JPanel {
 	static PaymentTextCount payment_text_count = new PaymentTextCount();
 
@@ -3219,8 +3064,6 @@ class Payment extends JPanel {
 	static Thread td2 = new Thread(t2);
 
 	ImageIcon background = new ImageIcon("images/background_11.png"); // 배경사진은 class못만들어서 그냥 넣음
-//	PaymentExitBtn payment_exit_btn = new PaymentExitBtn();
-//	PaySuccessBtn pay_success_btn = new PaySuccessBtn();
 	static PriceSum pay_price_sum = new PriceSum();
 	static TextField pay_text = new TextField();
 
@@ -3241,8 +3084,6 @@ class Payment extends JPanel {
 
 		add(pay_price_sum);
 		add(payment_text_count);
-//		add(payment_exit_btn);
-//		add(pay_success_btn);
 		add(pay_text);
 	}
 
@@ -3378,7 +3219,6 @@ class OrderList extends JPanel {
 
 class OrderDetails extends JLabel {
 	OrderDetails() {
-//		setBounds(0, 70*(OrderPanel.ice_coffee_count + OrderPanel.hot_coffee_count + OrderPanel.orange_smoothie_count + OrderPanel.kiwi_smoothie_count + OrderPanel.grape_smoothie_count + OrderPanel.strawberry_smoothie_count + OrderPanel.watermelon_smoothie_count), 700, 100);
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
 		setVisible(true);
 		setHorizontalAlignment(JLabel.LEFT);
@@ -3435,26 +3275,32 @@ class PaySuccessPanel extends JPanel {
 }
 
 class PaySuccessDetail extends JPanel {
+	
 	// 커피
 	static PaySuccessLabel ice_coffee_pay = new PaySuccessLabel("images/ice_coffee_small.png");
 	static PaySuccessLabel hot_coffee_pay = new PaySuccessLabel("images/hot_coffee_small.png");
+	
 	// 스무디
 	static PaySuccessLabel orange_smoo_pay = new PaySuccessLabel("images/orange_juice_small.png");
 	static PaySuccessLabel kiwi_smoo_pay = new PaySuccessLabel("images/kiwi_juice_small.png");
 	static PaySuccessLabel grape_smoo_pay = new PaySuccessLabel("images/grape_juice_small.png");
 	static PaySuccessLabel strawberry_smoo_pay = new PaySuccessLabel("images/strawberry_juice_small.png");
 	static PaySuccessLabel watermelon_smoo_pay = new PaySuccessLabel("images/watermelon_juice_small.png");
+	
 	// 차
 	static PaySuccessLabel black_tea_pay = new PaySuccessLabel("images/tea_hong_small.png");
 	static PaySuccessLabel green_tea_pay = new PaySuccessLabel("images/tea_green_small.png");
+	
 	// 버블티
 	static PaySuccessLabel brown_bubble_pay = new PaySuccessLabel("images/bubble_tea_brown_small.png");
 	static PaySuccessLabel taro_bubble_pay = new PaySuccessLabel("images/bubble_tea_taro_small.png");
 	static PaySuccessLabel green_bubble_pay = new PaySuccessLabel("images/bubble_tea_green_small.png");
+	
 	// 케이크
 	static PaySuccessLabel cheese_cake_pay = new PaySuccessLabel("images/cake_cheese_small.png");
 	static PaySuccessLabel strawberry_cake_pay = new PaySuccessLabel("images/cake_strawberry_small.png");
 	static PaySuccessLabel chocolate_cake_pay = new PaySuccessLabel("images/cake_chocolate_small.png");
+	
 	// 마카롱
 	static PaySuccessLabel berry_macaron_pay = new PaySuccessLabel("images/macaron_berry_small.png");
 	static PaySuccessLabel yogurt_macaron_pay = new PaySuccessLabel("images/macaron_yogurt_small.png");
@@ -3818,33 +3664,40 @@ class Timer implements Runnable {
 				if (OrderPanel.fruit_macaron_count > 0) {
 					PaySuccessDetail.fruit_macaron_pay.setVisible(true);
 				}
+				
 				// 커피
 				OrderPanel.ice_coffee_count = 0;
 				OrderPanel.hot_coffee_count = 0;
+				
 				// 스무디
 				OrderPanel.orange_smoothie_count = 0;
 				OrderPanel.kiwi_smoothie_count = 0;
 				OrderPanel.grape_smoothie_count = 0;
 				OrderPanel.strawberry_smoothie_count = 0;
 				OrderPanel.watermelon_smoothie_count = 0;
+				
 				// 차
 				OrderPanel.black_tea_count = 0;
 				OrderPanel.green_tea_count = 0;
+				
 				// 버블티
 				OrderPanel.brown_sugar_bubble_count = 0;
 				OrderPanel.taro_bubble_count = 0;
 				OrderPanel.green_bubble_count = 0;
+				
 				// 케이크
 				OrderPanel.cheese_cake_count = 0;
 				OrderPanel.strawberry_cake_count = 0;
 				OrderPanel.chocolate_cake_count = 0;
+				
 				// 마카롱
 				OrderPanel.berry_macaron_count = 0;
 				OrderPanel.yogurt_macaron_count = 0;
 				OrderPanel.fruit_macaron_count = 0;
-
+				
+				// Thread 실행
 				try {
-					n = 10;
+					n = 10; // 10초
 					synchronized (Payment.td2) {
 						Payment.td2.wait();
 					}
@@ -3852,7 +3705,8 @@ class Timer implements Runnable {
 					System.out.println("스레드 멈춤");
 				}
 			}
-			if (n <= 3) {
+			if (n <= 3) { // 3초 이하일 때
+				// 텍스트 색을 빨강색으로 변경
 				Payment.payment_text_count.setForeground(Color.RED);
 			}
 		}
