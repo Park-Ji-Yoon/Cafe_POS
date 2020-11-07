@@ -27,11 +27,14 @@ public class ManagerGUI extends JFrame{
 		ManagerPanel manager_panel = new ManagerPanel();
 	}
 }
+
+// 매니저 패널 class
 class ManagerPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
 	ImageIcon background = new ImageIcon("images/background_19.png");
-
+	
+	// 로그인 취소 버튼
 	JButton manager_exit_button = new JButton(icon);
 	static JLabel bname_label = new JLabel();
 	JButton sales_button = new JButton(icon);
@@ -44,7 +47,7 @@ class ManagerPanel extends JPanel{
 		setLayout(null);
 		setVisible(true);
 
-		//로그인 취소
+		// 로그인 취소 버튼 속성 설정
 		manager_exit_button.setBounds(273, 781, 196, 80);
 		manager_exit_button.setVisible(true);
 		manager_exit_button.setBorderPainted(false);
@@ -57,20 +60,21 @@ class ManagerPanel extends JPanel{
 				Main.MainFrame.getManager_panel().setVisible(false);
 			}
 		});
-		add(manager_exit_button);
+		add(manager_exit_button); // ManagerPanel에 버튼 추가
 		
 		bname_label.setBounds(20, 203, 370, 80);
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 40));
 		add(bname_label);
 
-		//매출 관리 버튼
-		sales_button.setBounds(908, 98, 780, 158);
+		// 매출 관리 버튼
+		sales_button.setBounds(908, 98, 780, 158); // 위치와 크기 설정
 		sales_button.setVisible(true);
 		sales_button.setBorderPainted(false);
 		sales_button.setContentAreaFilled(false);
 		sales_button.setFocusPainted(false);
 		sales_button.setOpaque(false);
+		// 매출 관리 버튼 이벤트
 		sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getSales_panel().setVisible(true);
@@ -79,13 +83,14 @@ class ManagerPanel extends JPanel{
 		});
 		add(sales_button);
 
-		//재고 관리 버튼
-		stock_button.setBounds(908, 329, 780, 158);
+		// 재고 관리 버튼
+		stock_button.setBounds(908, 329, 780, 158); // 위치와 크기 설정
 		stock_button.setVisible(true);
 		stock_button.setBorderPainted(false);
 		stock_button.setContentAreaFilled(false);
 		stock_button.setFocusPainted(false);
 		stock_button.setOpaque(false);
+		// 재고 관리 버튼 이벤트
 		stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getStock_panel().setVisible(true);
@@ -94,13 +99,14 @@ class ManagerPanel extends JPanel{
 		});
 		add(stock_button);
 
-		//직원 관리 버튼
-		employee_button.setBounds(908, 560, 780, 158);
+		// 직원 관리 버튼
+		employee_button.setBounds(908, 560, 780, 158); // 위치와 크기 설정
 		employee_button.setVisible(true);
 		employee_button.setBorderPainted(false);
 		employee_button.setContentAreaFilled(false);
 		employee_button.setFocusPainted(false);
 		employee_button.setOpaque(false);
+		// 직원 관리 버튼 이벤트
 		employee_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getEmployee_panel().setVisible(true);
@@ -110,12 +116,13 @@ class ManagerPanel extends JPanel{
 		add(employee_button);
 		
 		//정보 관리 버튼
-		mypage_button.setBounds(908, 791, 780, 158);
+		mypage_button.setBounds(908, 791, 780, 158); // 위치와 크기 설정
 		mypage_button.setVisible(true);
 		mypage_button.setBorderPainted(false);
 		mypage_button.setContentAreaFilled(false);
 		mypage_button.setFocusPainted(false);
 		mypage_button.setOpaque(false);
+		// 정보 관리 버튼 이벤트
 		mypage_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getManager_info_panel().setVisible(true);
@@ -124,6 +131,8 @@ class ManagerPanel extends JPanel{
 		});
 		add(mypage_button);		
 	}
+	
+	// 배경 칠하는 메서드
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(background.getImage(), 0, 0, null);
@@ -137,24 +146,27 @@ class ManagerPanel extends JPanel{
 		return xyimg;
 	}
 }
+
+// 지점장 정보 패널
 class ManagerInfo extends JPanel{
 	ImageIcon background = new ImageIcon("images/manager1.png");
-	GoBackBtn2 go_back_btn2 = new GoBackBtn2();
+	GoBackBtn2 go_back_btn2 = new GoBackBtn2(); // 뒤로가기 버튼
 	
-	static ManagerNameLabel manager_name_label = new ManagerNameLabel();
-	static ManagerIdLabel manager_id_label = new ManagerIdLabel();
-	static ManagerPwLabel manager_pw_label = new ManagerPwLabel();
-	static ManagerBNameLabel manager_bname_label = new ManagerBNameLabel();
-	static ManagerBPhoneLabel manager_bphone_label = new ManagerBPhoneLabel();
-	static ManagerEmLabel manager_em_label = new ManagerEmLabel();
+	static ManagerNameLabel manager_name_label = new ManagerNameLabel(); // 지점장 이름 label
+	static ManagerIdLabel manager_id_label = new ManagerIdLabel(); // 지점장 id label
+	static ManagerPwLabel manager_pw_label = new ManagerPwLabel(); // 지점장 pw label
+	static ManagerBNameLabel manager_bname_label = new ManagerBNameLabel(); // 지점 이름 라벨
+	static ManagerBPhoneLabel manager_bphone_label = new ManagerBPhoneLabel(); // 지점 전화번호 라벨
+	static ManagerEmLabel manager_em_label = new ManagerEmLabel(); // 직원 수 라벨
 	
+	// ManagerInfo 생성자
 	ManagerInfo() {
-		setBounds(0, 0, 1862, 1055);
+		setBounds(0, 0, 1862, 1055); // 위치와 크기 설정
 		setLayout(null);
 		setVisible(true);
 		
+		// 컴포넌트 추가
 		add(go_back_btn2);
-		
 		add(manager_name_label);
 		add(manager_id_label);
 		add(manager_pw_label);
@@ -163,6 +175,7 @@ class ManagerInfo extends JPanel{
 		add(manager_em_label);
 	}
 	
+	// 다른 class에서 setText 하기 위한 getter메서드
 	public static ManagerNameLabel getManager_name_label() {
 		return manager_name_label;
 	}
@@ -194,6 +207,8 @@ class ManagerInfo extends JPanel{
 		super.paintComponent(g);
 	}
 }
+
+// 뒤로가기 버튼
 class GoBackBtn2 extends JButton{
 	GoBackBtn2() {
 		setBounds(20, 20, 200, 70);
@@ -210,18 +225,24 @@ class GoBackBtn2 extends JButton{
 		});
 	}
 }
+
+// 지점장 이름 label 클래스
 class ManagerNameLabel extends JLabel{
 	ManagerNameLabel() {
 		setBounds(950, 245, 400, 50);
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
+
+// 지점장 id label 클래스
 class ManagerIdLabel extends JLabel{
 	ManagerIdLabel() {
 		setBounds(950, 367, 400, 50);
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
+
+// 지점장 pw label 클래스
 class ManagerPwLabel extends JLabel{
 	ManagerPwLabel() {
 		setBounds(950, 480, 400, 50);
@@ -229,6 +250,8 @@ class ManagerPwLabel extends JLabel{
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
+
+// 지점명 label 클래스
 class ManagerBNameLabel extends JLabel{
 	ManagerBNameLabel() {
 		setBounds(950, 590, 400, 50);
@@ -236,6 +259,8 @@ class ManagerBNameLabel extends JLabel{
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
+
+// 지점전화번호 label 클래스
 class ManagerBPhoneLabel extends JLabel{
 	ManagerBPhoneLabel() {
 		setBounds(950, 713, 400, 50);
@@ -243,6 +268,8 @@ class ManagerBPhoneLabel extends JLabel{
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 36));
 	}
 }
+
+// 직원 수 label 클래스
 class ManagerEmLabel extends JLabel{
 	ManagerEmLabel() {
 		setBounds(950, 825, 400, 50);

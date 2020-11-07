@@ -178,7 +178,8 @@ class EmployeePanel extends JPanel{
             	change_cnt = rset.getInt("G_EM")+1;
             	query = "UPDATE MANAGER_TABLE SET G_EM = ? WHERE BNAME = ?";
             	pstmt = conn.prepareStatement(query);
-    			pstmt.setInt(2, change_cnt);
+            	pstmt.setInt(1, change_cnt);
+    			pstmt.setString(2, bname);
     			
     			pstmt.executeUpdate();
             }

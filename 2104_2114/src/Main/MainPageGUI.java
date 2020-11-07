@@ -5,9 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+
 import javax.swing.*;
 
 import Manager.Manager_List;
+import javazoom.jl.player.Player;
 
 public class MainPageGUI extends JFrame {
 	public static MainFrame main_frame;
@@ -15,14 +20,20 @@ public class MainPageGUI extends JFrame {
 	// main
 	public static void main(String[] args) {
 		main_frame = new MainFrame();
+		Music introMusic = new Music("background_music_2.mp3",true);
+	    introMusic.start();
 	}
-
+	
+	// main_frame의 getter
 	public static MainFrame getMain_frame() {
 		return main_frame;
 	}
 }
 
+// MainFrame클래스 (JFrame을 상속받음)
 class MainFrame extends JFrame {
+	
+	// main_frame에 올릴 패널들을 선언
 	static MainPanel main_panel;
 	static OrderPanel order_panel;
 	static Payment payment_panel;
@@ -61,17 +72,25 @@ class MainFrame extends JFrame {
 	static Manager_List manager_list_frame;
 	static MasterInfo master_info_panel;
 	static ManagerInfo manager_info_panel;
+	
+	static CoffeeInfoPanel coffee_info_panel;
+	static SmooInfoPanel smoo_info_panel;
+	static TeaInfoPanel tea_info_panel;
+	static BubbleInfoPanel bubble_info_panel;
+	static CakeInfoPanel cake_info_panel;
+	static MacaronInfoPanel macaron_info_panel;
 
+	// MainFrame 생성자
 	public MainFrame() {
-		
+		// 커서 설정하는 코드
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		Image cursorimage=tk.getImage("images/cursor_2.png");
+		Image cursorimage=tk.getImage("images/cursor_2.png"); // 사진으로 커서 설정
 		Point point=new Point(20,20);
 		Cursor cursor=tk.createCustomCursor(cursorimage, point, "haha");
-		
+		// 커서 설정
 		setCursor(cursor);
 		
-		// MainPanel 생성자 호출
+		// panel들 초기화
 		main_panel = new MainPanel();
 		main_panel.setVisible(true);
 
@@ -182,17 +201,37 @@ class MainFrame extends JFrame {
 		
 		manager_info_panel = new ManagerInfo();
 		manager_info_panel.setVisible(false);
+		
+		coffee_info_panel = new CoffeeInfoPanel();
+		coffee_info_panel.setVisible(false);
+		
+		smoo_info_panel = new SmooInfoPanel();
+		smoo_info_panel.setVisible(false);
+		
+		tea_info_panel = new TeaInfoPanel();
+		smoo_info_panel.setVisible(false);
+		
+		bubble_info_panel = new BubbleInfoPanel();
+		bubble_info_panel.setVisible(false);
+		
+		cake_info_panel = new CakeInfoPanel();
+		cake_info_panel.setVisible(false);
+		
+		macaron_info_panel = new MacaronInfoPanel();
+		macaron_info_panel.setVisible(false);
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
 		setBounds(20, 0, 1880, 1070); // JFrame 위치와 크기 (x, y, w, h)
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x누르면 닫힘
 		setResizable(false);
-		getContentPane().setLayout(null);
+		getContentPane().setLayout(null); // 프레임 레이아웃 null로 설정
 		setVisible(true);
-		getContentPane().add(main_panel);
+		
+		// 먼저 main_panel을 추가함
+		getContentPane().add(main_panel); 
 
-		// JFrame위에 추가할 것들
+		// main_panel 위에 모든 패널들을 추가
 		add(main_panel);
 		add(order_panel);
 		add(payment_panel);
@@ -230,12 +269,20 @@ class MainFrame extends JFrame {
 		add(master_choice_store_panel);
 		add(master_info_panel);
 		add(manager_info_panel);
+		
+		add(coffee_info_panel);
+		add(smoo_info_panel);
+		add(tea_info_panel);
+		add(bubble_info_panel);
+		add(cake_info_panel);
+		add(macaron_info_panel);
 
 		// 프레임 위 앱 아이콘
 		ImageIcon icon = new ImageIcon("images/logo_20.png");
 		setIconImage(icon.getImage());	
 	}
 	
+	// 다른 클래스들에서 setVisible()을 설정하기 위한 getter 메서드
 	public static MainPanel getMain_panel() {
 		return main_panel;
 	}
@@ -347,8 +394,28 @@ class MainFrame extends JFrame {
 	public static ManagerInfo getManager_info_panel() {
 		return manager_info_panel;
 	}
+	
+	public static CoffeeInfoPanel getCoffee_info_panel() {
+		return coffee_info_panel;
+	}
+	public static SmooInfoPanel getSmoo_info_panel() {
+		return smoo_info_panel;
+	}
+	public static TeaInfoPanel getTea_info_panel() {
+		return tea_info_panel;
+	}
+	public static BubbleInfoPanel getBubble_info_panel() {
+		return bubble_info_panel;
+	}
+	public static CakeInfoPanel getCake_info_panel() {
+		return cake_info_panel;
+	}
+	public static MacaronInfoPanel getMacaron_info_panel() {
+		return macaron_info_panel;
+	}
 }
 
+// MainPanel패널 클래스 생성
 class MainPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_1.png");
 	
@@ -357,6 +424,7 @@ class MainPanel extends JPanel {
 	static JButton order_btn = new JButton(icon); // '주문하기' 버튼 생성자 호출
 	static JButton login_btn = new JButton(icon); // '로그인' 버튼 생성자 호출
 
+	// MainPanel 생성자
 	MainPanel() {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -367,7 +435,6 @@ class MainPanel extends JPanel {
 		order_btn.setContentAreaFilled(false);
 		order_btn.setFocusPainted(false);
 		order_btn.setOpaque(false);
-//		order_btn.decorate(); // 버튼 테두리 둥글게
 		order_btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Main.MainFrame.getMain_panel().setVisible(false);
@@ -376,23 +443,28 @@ class MainPanel extends JPanel {
 					// 커피
 					PaySuccessDetail.ice_coffee_pay.setVisible(false);
 					PaySuccessDetail.hot_coffee_pay.setVisible(false);
+					
 					// 스무디
 					PaySuccessDetail.orange_smoo_pay.setVisible(false);
 					PaySuccessDetail.kiwi_smoo_pay.setVisible(false);
 					PaySuccessDetail.grape_smoo_pay.setVisible(false);
 					PaySuccessDetail.strawberry_smoo_pay.setVisible(false);
 					PaySuccessDetail.watermelon_smoo_pay.setVisible(false);
+					
 					// 차
 					PaySuccessDetail.black_tea_pay.setVisible(false);
 					PaySuccessDetail.green_tea_pay.setVisible(false);
+					
 					// 버블티
 					PaySuccessDetail.brown_bubble_pay.setVisible(false);
 					PaySuccessDetail.taro_bubble_pay.setVisible(false);
 					PaySuccessDetail.green_bubble_pay.setVisible(false);
+					
 					// 케이크
 					PaySuccessDetail.cheese_cake_pay.setVisible(false);
 					PaySuccessDetail.strawberry_cake_pay.setVisible(false);
 					PaySuccessDetail.chocolate_cake_pay.setVisible(false);
+					
 					// 마카롱
 					PaySuccessDetail.berry_macaron_pay.setVisible(false);
 					PaySuccessDetail.yogurt_macaron_pay.setVisible(false);
@@ -407,7 +479,6 @@ class MainPanel extends JPanel {
 		login_btn.setContentAreaFilled(false);
 		login_btn.setFocusPainted(false);
 		login_btn.setOpaque(false);
-//		order_btn.decorate(); // 버튼 테두리 둥글게
 		login_btn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Main.MainFrame.getMain_panel().setVisible(false);
@@ -433,6 +504,7 @@ class MainPanel extends JPanel {
 		return login_btn;
 	}
 }
+
 //둥근 버튼 만드는 RoundedButton 클래스
 class RoundedButton extends JButton {
 	public RoundedButton() {

@@ -278,7 +278,7 @@ class ChoiceAreaMaster extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Main.MainFrame.getChoice_area_master_panel().setVisible(false);
-				Main.MainFrame.getMain_panel().setVisible(true);
+				Main.MainFrame.getMaster_panel().setVisible(true);
 				area_combobox_master.setSelectedIndex(0);
 				ChoiceAreaMaster.area_choice_label_master.setText("지역을 선택해 주세요");
 				ChoiceAreaMaster.store_choice_label_master.setText("지점을 선택해 주세요");
