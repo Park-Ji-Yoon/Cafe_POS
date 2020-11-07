@@ -24,6 +24,8 @@ public class FranchiseGUI {
 		FranchisePanel franchise_panel = new FranchisePanel();
 	}
 }
+
+// 지점별 매출액 확인 클래스 (관리자만 가능)
 class FranchisePanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
