@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+// 지점장 클래스
 public class EmployeeGUI extends JFrame{
 	public EmployeeGUI() {
 	}
@@ -27,6 +28,8 @@ public class EmployeeGUI extends JFrame{
 		ManagerPanel manager_panel = new ManagerPanel();
 	}
 }
+
+// 지점장 메인 화면 클래스
 class EmployeePanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
