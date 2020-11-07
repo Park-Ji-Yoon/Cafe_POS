@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 
 import javazoom.jl.player.Player;
 
+// 음악 재생 클래스
 class Music extends Thread{
     
     private Player player; // jl라이브러리 => mp3파일을 java에서 실행하기 위한 라이브러리
