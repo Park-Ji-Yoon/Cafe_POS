@@ -34,6 +34,11 @@ class FranchisePanel extends JPanel{
 	static StoreNameLabel store_name_label = new StoreNameLabel();
 	static String bname = ChoiceAreaMaster.choisen_store_master;
 	
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
+	
 	JButton franchise_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
@@ -48,6 +53,10 @@ class FranchisePanel extends JPanel{
 		setVisible(true);
 		
 		add(store_name_label);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
 
 		//매출관리 취소
 		franchise_exit_button.setBounds(61, 35, 126, 35);
@@ -183,6 +192,10 @@ class SCoffeeSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_31.png");
 	
 	static StoreNameLabel store_name_label_coffee = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton smoothie_sales_button = new JButton(icon);
@@ -205,6 +218,11 @@ class SCoffeeSalesPanel extends JPanel{
 		coffee_db();
 		
 		add(store_name_label_coffee);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -384,6 +402,10 @@ class SSmoothieSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_32.png");
 	
 	static StoreNameLabel store_name_label_smoothie = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -418,6 +440,11 @@ class SSmoothieSalesPanel extends JPanel{
 		smoothie_db();
 		
 		add(store_name_label_smoothie);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -646,6 +673,10 @@ class STeaSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_33.png");
 	
 	static StoreNameLabel store_name_label_tea = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -668,6 +699,11 @@ class STeaSalesPanel extends JPanel{
 		tea_db();
 		
 		add(store_name_label_tea);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -847,6 +883,10 @@ class SBubbleSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_34.png");
 	
 	static StoreNameLabel store_name_label_bubble = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -873,6 +913,11 @@ class SBubbleSalesPanel extends JPanel{
 		bubble_db();
 		
 		add(store_name_label_bubble);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1068,6 +1113,10 @@ class SCakeSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_35.png");
 	
 	static StoreNameLabel store_name_label_cake = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -1094,6 +1143,11 @@ class SCakeSalesPanel extends JPanel{
 		cake_db();
 		
 		add(store_name_label_cake);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1289,6 +1343,10 @@ class SMacaronSalesPanel extends JPanel{
 	ImageIcon background = new ImageIcon("images/background_36.png");
 	
 	static StoreNameLabel store_name_label_macaron = new StoreNameLabel();
+	static StoreManagerJLabel store_manager_label = new StoreManagerJLabel();
+	static StorePhoneLabel store_phone_label = new StorePhoneLabel();
+	static DaySalesLabel day_sales_label = new DaySalesLabel();
+	static MonthSalesLabel month_sales_label = new MonthSalesLabel();
 
 	JButton sales_exit_button = new JButton(icon);
 	JButton coffe_sales_button = new JButton(icon);
@@ -1315,6 +1373,11 @@ class SMacaronSalesPanel extends JPanel{
 		macaron_db();
 		
 		add(store_name_label_macaron);
+		add(store_manager_label);
+		add(store_phone_label);
+		add(day_sales_label);
+		add(month_sales_label);
+
 		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
@@ -1511,5 +1574,41 @@ class StoreNameLabel extends JLabel{
 		setVisible(true);
 		setForeground(Color.BLACK);
 		setHorizontalAlignment(JLabel.CENTER);
+	}
+}
+class StoreManagerJLabel extends JLabel{
+	StoreManagerJLabel(){
+		setBounds(1350, 320, 400, 100);
+		setFont(new Font("인터파크고딕 L", Font.PLAIN, 50));
+		setVisible(true);
+		setForeground(Color.BLACK);
+		setHorizontalAlignment(JLabel.LEFT);
+	}
+}
+class StorePhoneLabel extends JLabel{
+	StorePhoneLabel(){
+		setBounds(1520, 420, 500, 100);
+		setFont(new Font("인터파크고딕 L", Font.PLAIN, 50));
+		setVisible(true);
+		setForeground(Color.BLACK);
+		setHorizontalAlignment(JLabel.LEFT);
+	}
+}
+class DaySalesLabel extends JLabel{
+	DaySalesLabel(){
+		setBounds(1550, 670, 500, 100);
+		setFont(new Font("인터파크고딕 L", Font.PLAIN, 50));
+		setVisible(true);
+		setForeground(Color.BLACK);
+		setHorizontalAlignment(JLabel.LEFT);
+	}
+}
+class MonthSalesLabel extends JLabel{
+	MonthSalesLabel(){
+		setBounds(1550, 770, 500, 100);
+		setFont(new Font("인터파크고딕 L", Font.PLAIN, 50));
+		setVisible(true);
+		setForeground(Color.BLACK);
+		setHorizontalAlignment(JLabel.LEFT);
 	}
 }

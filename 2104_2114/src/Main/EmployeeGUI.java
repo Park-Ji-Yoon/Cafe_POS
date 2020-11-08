@@ -64,7 +64,7 @@ class EmployeePanel extends JPanel{
 		});
 		add(employee_exit_button);
 
-		bname_label.setBounds(360, 398, 420, 80);
+		bname_label.setBounds(300, 398, 480, 80);
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 55));
 		add(bname_label);
