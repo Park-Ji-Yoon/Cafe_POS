@@ -20,7 +20,7 @@ public class MainPageGUI extends JFrame {
 	// main
 	public static void main(String[] args) {
 		main_frame = new MainFrame();
-		Music introMusic = new Music("background_music_2.mp3",true);
+		Music introMusic = new Music("bgm_president.mp3", true);
 	    introMusic.start();
 	}
 	
