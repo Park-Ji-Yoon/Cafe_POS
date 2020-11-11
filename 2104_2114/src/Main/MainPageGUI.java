@@ -16,11 +16,12 @@ import javazoom.jl.player.Player;
 
 public class MainPageGUI extends JFrame {
 	public static MainFrame main_frame;
+	public static Music introMusic;
 
 	// main
 	public static void main(String[] args) {
 		main_frame = new MainFrame();
-		Music introMusic = new Music("bgm_president.mp3", true);
+		introMusic = new Music("bgm_president.mp3", true);
 	    introMusic.start();
 	}
 	

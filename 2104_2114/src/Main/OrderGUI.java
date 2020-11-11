@@ -3306,7 +3306,7 @@ class PaySuccessPanel extends JPanel {
 	JButton exit = new JButton();
 
 	PaySuccessPanel() {
-
+		
 		setVisible(true);
 		setBounds(0, 0, 1862, 1055);
 		setLayout(null);
@@ -3323,6 +3323,9 @@ class PaySuccessPanel extends JPanel {
 				Main.MainFrame.getPay_success_panel().setVisible(false);
 				Main.MainFrame.getMain_panel().setVisible(true);
 				OrderPanel.getOrder_list().removeAll();
+				
+				MainPageGUI.introMusic = new Music("bgm_president.mp3", true);
+				MainPageGUI.introMusic.start();
 			}
 		});
 
@@ -3779,6 +3782,11 @@ class Timer implements Runnable {
 			if (n <= 3) { // 3초 이하일 때
 				// 텍스트 색을 빨강색으로 변경
 				Payment.payment_text_count.setForeground(Color.RED);
+			}	
+			if(n == 0) {
+				MainPageGUI.introMusic.close();
+				Music payment = new Music("payment_audio_mp3.mp3", false);
+				payment.start();
 			}
 		}
 	}
