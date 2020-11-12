@@ -77,10 +77,10 @@ class EmployeePanel extends JPanel{
 		//직원 추가
 		em_in.setBounds(642, 562, 253, 150);
 		em_in.setVisible(true);
-//		em_in.setBorderPainted(false);
-//		em_in.setContentAreaFilled(false);
-//		em_in.setFocusPainted(false);
-//		em_in.setOpaque(false);
+		em_in.setBorderPainted(false);
+		em_in.setContentAreaFilled(false);
+		em_in.setFocusPainted(false);
+		em_in.setOpaque(false);
 		em_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(employee_db(bname).equals("20")) {
@@ -96,10 +96,10 @@ class EmployeePanel extends JPanel{
 		//직원 삭제
 		em_de.setBounds(971, 562, 253, 150);
 		em_de.setVisible(true);
-//		em_de.setBorderPainted(false);
-//		em_de.setContentAreaFilled(false);
-//		em_de.setFocusPainted(false);
-//		em_de.setOpaque(false);
+		em_de.setBorderPainted(false);
+		em_de.setContentAreaFilled(false);
+		em_de.setFocusPainted(false);
+		em_de.setOpaque(false);
 		em_de.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(employee_db(bname).equals("0")) {

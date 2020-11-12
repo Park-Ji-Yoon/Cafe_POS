@@ -41,6 +41,8 @@ class StockPanel extends JPanel{
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
 	
+	static String bname;
+	
 	StockPanel() {
 		setBounds(0, 0, 1862, 1055); // ¿ßƒ°øÕ ≈©±‚ ¡ˆ¡§
 		setLayout(null);
@@ -70,6 +72,7 @@ class StockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -85,6 +88,7 @@ class StockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -100,6 +104,7 @@ class StockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -115,6 +120,7 @@ class StockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -130,6 +136,7 @@ class StockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -145,6 +152,7 @@ class StockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getStock_panel().setVisible(false);
 			}
@@ -175,11 +183,9 @@ class GCoffeeStockPanel extends JPanel{
 	JButton bubble_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel ice_s = new JLabel();
-	JLabel hot_s = new JLabel();
+	static JLabel ice_s = new JLabel();
+	static JLabel hot_s = new JLabel();
 
 	JTextField ice_cnt = new JTextField();
 	JTextField hot_cnt = new JTextField();
@@ -187,8 +193,8 @@ class GCoffeeStockPanel extends JPanel{
 	JButton ice_in = new JButton();
 	JButton hot_in = new JButton();
 	
-	int ice_s_db;
-	int hot_s_db;
+	static int ice_s_db;
+	static int hot_s_db;
 	
 	GCoffeeStockPanel() {
 		coffee_db();
@@ -223,6 +229,7 @@ class GCoffeeStockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(false);
 				ice_cnt.setText("");
@@ -240,6 +247,7 @@ class GCoffeeStockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(false);
 				ice_cnt.setText("");
@@ -257,6 +265,7 @@ class GCoffeeStockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(false);
 				ice_cnt.setText("");
@@ -274,6 +283,7 @@ class GCoffeeStockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(false);
 				ice_cnt.setText("");
@@ -291,6 +301,7 @@ class GCoffeeStockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(false);
 				ice_cnt.setText("");
@@ -375,7 +386,7 @@ class GCoffeeStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void coffee_db() {		
+	public static void coffee_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -386,14 +397,16 @@ class GCoffeeStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	ice_s_db = rset.getInt("ICE_S");
+				ice_s.setText(Integer.toString(ice_s_db) + "¿‹");
             	hot_s_db = rset.getInt("HOT_S");
+        		hot_s.setText(Integer.toString(hot_s_db) + "¿‹");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -420,7 +433,7 @@ class GCoffeeStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -431,14 +444,14 @@ class GCoffeeStockPanel extends JPanel{
                 	query = "UPDATE MENU_COFFEE SET ICE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, ice_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("hot")) {
             		hot_s_db = rset.getInt("HOT_S") + Integer.parseInt(hot_cnt.getText());
                 	query = "UPDATE MENU_COFFEE SET HOT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, hot_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -468,14 +481,12 @@ class GSmoothieStockPanel extends JPanel{
 	JButton bubble_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel orange_s = new JLabel();
-	JLabel kiwi_s = new JLabel();
-	JLabel grape_s = new JLabel();
-	JLabel straw_s = new JLabel();
-	JLabel water_s = new JLabel();
+	static JLabel orange_s = new JLabel();
+	static JLabel kiwi_s = new JLabel();
+	static JLabel grape_s = new JLabel();
+	static JLabel straw_s = new JLabel();
+	static JLabel water_s = new JLabel();
 
 	JTextField orange_cnt = new JTextField();
 	JTextField kiwi_cnt = new JTextField();
@@ -489,11 +500,11 @@ class GSmoothieStockPanel extends JPanel{
 	JButton straw_in = new JButton();
 	JButton water_in = new JButton();
 	
-	int orange_s_db;
-	int kiwi_s_db;
-	int grape_s_db;
-	int straw_s_db;
-	int water_s_db;
+	static int orange_s_db;
+	static int kiwi_s_db;
+	static int grape_s_db;
+	static int straw_s_db;
+	static int water_s_db;
 	
 	GSmoothieStockPanel() {
 		smoothie_db();
@@ -531,6 +542,7 @@ class GSmoothieStockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
 				orange_cnt.setText("");
@@ -551,6 +563,7 @@ class GSmoothieStockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
 				orange_cnt.setText("");
@@ -571,6 +584,7 @@ class GSmoothieStockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
 				orange_cnt.setText("");
@@ -591,6 +605,7 @@ class GSmoothieStockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
 				orange_cnt.setText("");
@@ -611,6 +626,7 @@ class GSmoothieStockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(false);
 				orange_cnt.setText("");
@@ -795,7 +811,7 @@ class GSmoothieStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void smoothie_db() {		
+	public static void smoothie_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -806,17 +822,22 @@ class GSmoothieStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	orange_s_db = rset.getInt("ORANGE_S");
+        		orange_s.setText(Integer.toString(orange_s_db) + "¿‹");
             	kiwi_s_db = rset.getInt("KIWI_S");
+        		kiwi_s.setText(Integer.toString(kiwi_s_db) + "¿‹");
             	grape_s_db = rset.getInt("GRAPE_S");
+        		grape_s.setText(Integer.toString(grape_s_db) + "¿‹");
             	straw_s_db = rset.getInt("STRAW_S");
+        		straw_s.setText(Integer.toString(straw_s_db) + "¿‹");
             	water_s_db = rset.getInt("WATER_S");
+        		water_s.setText(Integer.toString(water_s_db) + "¿‹");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -843,7 +864,7 @@ class GSmoothieStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -854,35 +875,35 @@ class GSmoothieStockPanel extends JPanel{
                 	query = "UPDATE MENU_SMOOTHIE SET ORANGE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, orange_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("kiwi")) {
             		kiwi_s_db = rset.getInt("KIWI_S") + Integer.parseInt(kiwi_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET KIWI_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, kiwi_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("grape")) {
             		grape_s_db = rset.getInt("GRAPE_S") + Integer.parseInt(grape_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET GRAPE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, grape_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("straw")) {
             		straw_s_db = rset.getInt("STRAW_S") + Integer.parseInt(straw_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET STRAW_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, straw_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("water")) {
             		water_s_db = rset.getInt("WATER_S") + Integer.parseInt(water_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET WATER_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, water_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -912,11 +933,9 @@ class GTeaStockPanel extends JPanel{
 	JButton bubble_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel green_s = new JLabel();
-	JLabel black_s = new JLabel();
+	static JLabel green_s = new JLabel();
+	static JLabel black_s = new JLabel();
 
 	JTextField green_cnt = new JTextField();
 	JTextField black_cnt = new JTextField();
@@ -924,8 +943,8 @@ class GTeaStockPanel extends JPanel{
 	JButton green_in = new JButton();
 	JButton black_in = new JButton();
 	
-	int green_s_db;
-	int black_s_db;
+	static int green_s_db;
+	static int black_s_db;
 
 	GTeaStockPanel() {
 		tea_db();
@@ -960,6 +979,7 @@ class GTeaStockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
 				green_cnt.setText("");
@@ -977,6 +997,7 @@ class GTeaStockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
 				green_cnt.setText("");
@@ -994,6 +1015,7 @@ class GTeaStockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
 				green_cnt.setText("");
@@ -1011,6 +1033,7 @@ class GTeaStockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
 				green_cnt.setText("");
@@ -1028,6 +1051,7 @@ class GTeaStockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getGTea_stock_panel().setVisible(false);
 				green_cnt.setText("");
@@ -1113,7 +1137,7 @@ class GTeaStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void tea_db() {		
+	public static void tea_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1124,14 +1148,16 @@ class GTeaStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	green_s_db = rset.getInt("GREEN_S");
+				green_s.setText(Integer.toString(green_s_db) + "¿‹");
             	black_s_db = rset.getInt("BLACK_S");
+        		black_s.setText(Integer.toString(black_s_db) + "¿‹");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -1158,7 +1184,7 @@ class GTeaStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1169,14 +1195,14 @@ class GTeaStockPanel extends JPanel{
                 	query = "UPDATE MENU_TEA SET GREEN_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, green_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("black")) {
             		black_s_db = rset.getInt("BLACK_S") + Integer.parseInt(black_cnt.getText());
                 	query = "UPDATE MENU_TEA SET BLACK_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, black_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1206,12 +1232,10 @@ class GBubbleStockPanel extends JPanel{
 	JButton tea_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel bs_s = new JLabel();
-	JLabel taro_s = new JLabel();
-	JLabel gb_s = new JLabel();
+	static JLabel bs_s = new JLabel();
+	static JLabel taro_s = new JLabel();
+	static JLabel gb_s = new JLabel();
 	
 	JTextField bs_cnt = new JTextField();
 	JTextField taro_cnt = new JTextField();
@@ -1221,9 +1245,9 @@ class GBubbleStockPanel extends JPanel{
 	JButton taro_in = new JButton();
 	JButton gb_in = new JButton();
 	
-	int bs_s_db;
-	int taro_s_db;
-	int gb_s_db;
+	static int bs_s_db;
+	static int taro_s_db;
+	static int gb_s_db;
 
 	GBubbleStockPanel() {
 		bubble_db();
@@ -1259,6 +1283,7 @@ class GBubbleStockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
 				bs_cnt.setText("");
@@ -1277,6 +1302,7 @@ class GBubbleStockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
 				bs_cnt.setText("");
@@ -1295,6 +1321,7 @@ class GBubbleStockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
 				bs_cnt.setText("");
@@ -1313,6 +1340,7 @@ class GBubbleStockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
 				bs_cnt.setText("");
@@ -1331,6 +1359,7 @@ class GBubbleStockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getGBubble_stock_panel().setVisible(false);
 				bs_cnt.setText("");
@@ -1448,7 +1477,7 @@ class GBubbleStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void bubble_db() {		
+	public static void bubble_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1459,15 +1488,18 @@ class GBubbleStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	bs_s_db = rset.getInt("BS_S");
+        		bs_s.setText(Integer.toString(bs_s_db) + "¿‹");
             	taro_s_db = rset.getInt("TARO_S");
+        		taro_s.setText(Integer.toString(taro_s_db) + "¿‹");
             	gb_s_db = rset.getInt("GB_S");
+        		gb_s.setText(Integer.toString(gb_s_db) + "¿‹");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -1494,7 +1526,7 @@ class GBubbleStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1505,21 +1537,21 @@ class GBubbleStockPanel extends JPanel{
                 	query = "UPDATE MENU_BUBBLE SET BS_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, bs_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("taro")) {
             		taro_s_db = rset.getInt("TARO_S") + Integer.parseInt(taro_cnt.getText());
                 	query = "UPDATE MENU_BUBBLE SET TARO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, taro_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("gb")) {
             		gb_s_db = rset.getInt("GB_S") + Integer.parseInt(gb_cnt.getText());
                 	query = "UPDATE MENU_BUBBLE SET GB_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, gb_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1550,12 +1582,10 @@ class GCakeStockPanel extends JPanel{
 	JButton tea_stock_button = new JButton(icon);
 	JButton bubble_stock_button = new JButton(icon);
 	JButton macaron_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel cheese_s = new JLabel();
-	JLabel sc_s = new JLabel();
-	JLabel choco_s = new JLabel();
+	static 	JLabel cheese_s = new JLabel();
+	static 	JLabel sc_s = new JLabel();
+	static 	JLabel choco_s = new JLabel();
 	
 	JTextField cheese_cnt = new JTextField();
 	JTextField sc_cnt = new JTextField();
@@ -1565,9 +1595,9 @@ class GCakeStockPanel extends JPanel{
 	JButton sc_in = new JButton();
 	JButton choco_in = new JButton();
 	
-	int cheese_s_db;
-	int sc_s_db;
-	int choco_s_db;
+	static int cheese_s_db;
+	static int sc_s_db;
+	static int choco_s_db;
 
 	GCakeStockPanel() {
 		cake_db();
@@ -1603,6 +1633,7 @@ class GCakeStockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
 				cheese_cnt.setText("");
@@ -1621,6 +1652,7 @@ class GCakeStockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
 				cheese_cnt.setText("");
@@ -1639,6 +1671,7 @@ class GCakeStockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
 				cheese_cnt.setText("");
@@ -1657,6 +1690,7 @@ class GCakeStockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
 				cheese_cnt.setText("");
@@ -1675,6 +1709,7 @@ class GCakeStockPanel extends JPanel{
 		macaron_stock_button.setOpaque(false);
 		macaron_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronStockPanel.macaron_db();
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(true);
 				Main.MainFrame.getGCake_stock_panel().setVisible(false);
 				cheese_cnt.setText("");
@@ -1792,7 +1827,7 @@ class GCakeStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void cake_db() {		
+	public static void cake_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1803,15 +1838,18 @@ class GCakeStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	cheese_s_db = rset.getInt("CHEESE_S");
+        		cheese_s.setText(Integer.toString(cheese_s_db) + "¡∂∞¢");
             	sc_s_db = rset.getInt("SC_S");
+        		sc_s.setText(Integer.toString(sc_s_db) + "¡∂∞¢");
             	choco_s_db = rset.getInt("CHOCO_S");
+        		choco_s.setText(Integer.toString(choco_s_db) + "¡∂∞¢");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -1838,7 +1876,7 @@ class GCakeStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -1849,21 +1887,21 @@ class GCakeStockPanel extends JPanel{
                 	query = "UPDATE MENU_CAKE SET CHEESE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, cheese_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("sc")) {
             		sc_s_db = rset.getInt("SC_S") + Integer.parseInt(sc_cnt.getText());
                 	query = "UPDATE MENU_CAKE SET SC_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, sc_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("choco")) {
             		choco_s_db = rset.getInt("CHOCO_S") + Integer.parseInt(choco_cnt.getText());
                 	query = "UPDATE MENU_CAKE SET CHOCO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, choco_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }
@@ -1894,12 +1932,10 @@ class GMacaronStockPanel extends JPanel{
 	JButton tea_stock_button = new JButton(icon);
 	JButton bubble_stock_button = new JButton(icon);
 	JButton cake_stock_button = new JButton(icon);
-
-	static String bname;
 	
-	JLabel berry_s = new JLabel();
-	JLabel yogurt_s = new JLabel();
-	JLabel fruit_s = new JLabel();
+	static JLabel berry_s = new JLabel();
+	static JLabel yogurt_s = new JLabel();
+	static JLabel fruit_s = new JLabel();
 	
 	JTextField berry_cnt = new JTextField();
 	JTextField yogurt_cnt = new JTextField();
@@ -1909,9 +1945,9 @@ class GMacaronStockPanel extends JPanel{
 	JButton yogurt_in = new JButton();
 	JButton fruit_in = new JButton();
 
-	int berry_s_db;
-	int yogurt_s_db;
-	int fruit_s_db;
+	static int berry_s_db;
+	static int yogurt_s_db;
+	static int fruit_s_db;
 	
 	GMacaronStockPanel() {
 		macaron_db();
@@ -1947,6 +1983,7 @@ class GMacaronStockPanel extends JPanel{
 		coffe_stock_button.setOpaque(false);
 		coffe_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeStockPanel.coffee_db();
 				Main.MainFrame.getGCoffee_stock_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
 				berry_cnt.setText("");
@@ -1965,6 +2002,7 @@ class GMacaronStockPanel extends JPanel{
 		smoothie_stock_button.setOpaque(false);
 		smoothie_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieStockPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_stock_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
 				berry_cnt.setText("");
@@ -1983,6 +2021,7 @@ class GMacaronStockPanel extends JPanel{
 		tea_stock_button.setOpaque(false);
 		tea_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaStockPanel.tea_db();
 				Main.MainFrame.getGTea_stock_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
 				berry_cnt.setText("");
@@ -2001,6 +2040,7 @@ class GMacaronStockPanel extends JPanel{
 		bubble_stock_button.setOpaque(false);
 		bubble_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleStockPanel.bubble_db();
 				Main.MainFrame.getGBubble_stock_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
 				berry_cnt.setText("");
@@ -2019,6 +2059,7 @@ class GMacaronStockPanel extends JPanel{
 		cake_stock_button.setOpaque(false);
 		cake_stock_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeStockPanel.cake_db();
 				Main.MainFrame.getGCake_stock_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_stock_panel().setVisible(false);
 				berry_cnt.setText("");
@@ -2137,7 +2178,7 @@ class GMacaronStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void macaron_db() {		
+	public static void macaron_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -2148,15 +2189,18 @@ class GMacaronStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	berry_s_db = rset.getInt("BERRY_S");
+        		berry_s.setText(Integer.toString(berry_s_db) + "∞≥");
             	yogurt_s_db = rset.getInt("YOGURT_S");
+        		yogurt_s.setText(Integer.toString(yogurt_s_db) + "∞≥");
             	fruit_s_db = rset.getInt("FRUIT_S");
+        		fruit_s.setText(Integer.toString(fruit_s_db) + "∞≥");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -2183,7 +2227,7 @@ class GMacaronStockPanel extends JPanel{
             
             query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, StockPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
@@ -2194,21 +2238,21 @@ class GMacaronStockPanel extends JPanel{
                 	query = "UPDATE MENU_MACARON SET BERRY_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, berry_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("yogurt")) {
             		yogurt_s_db = rset.getInt("YOGURT_S") + Integer.parseInt(yogurt_cnt.getText());
                 	query = "UPDATE MENU_MACARON SET YOGURT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, yogurt_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("fruit")) {
             		fruit_s_db = rset.getInt("FRUIT_S") + Integer.parseInt(fruit_cnt.getText());
                 	query = "UPDATE MENU_MACARON SET FRUIT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
         			pstmt.setInt(1, fruit_s_db);
-        			pstmt.setString(2, bname);
+        			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}
             }

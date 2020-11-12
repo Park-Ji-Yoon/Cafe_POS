@@ -317,6 +317,7 @@ class ChoiceStoreMaster extends JPanel {
 					Main.MainFrame.getFranchise_panel().setVisible(true);
 					Main.MainFrame.getChoice_area_master_panel().setVisible(false);
 					// String에 저장시키기========================================================================================================================
+					FranchisePanel.bname = ChoiceAreaMaster.choisen_store_master;
 					FranchisePanel.store_name_label.setText(ChoiceAreaMaster.choisen_store_master);	
 					FranchisePanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					FranchisePanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));

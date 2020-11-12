@@ -36,7 +36,9 @@ public class ManagerLogin {
                 	EmployeePanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname = nowbname;
                 	SalesPanel.bname = nowbname;
+                	StockPanel.bname = nowbname;
                 	System.out.println("메소드 밖 : " + nowbname);
+                	
                 	ManagerInfo.getManager_name_label().setText(getG_Name());
                 	ManagerInfo.getManager_id_label().setText(getG_Id());
                 	ManagerInfo.getManager_pw_label().setText(getG_Pw());
@@ -44,6 +46,21 @@ public class ManagerLogin {
                 	ManagerInfo.getManager_bphone_label().setText(getG_BPhone());
                 	ManagerInfo.getManager_em_label().setText(getG_Em());
 
+                	SalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	SalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GCoffeeSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GCoffeeSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GSmoothieSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GSmoothieSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GTeaSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GTeaSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GBubbleSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GBubbleSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GCakeSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GCakeSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	GMacaronSalesPanel.day_label.setText("일별 : " + Integer.toString(FranchiseDB.FranchiseDaySales(nowbname)));
+                	GMacaronSalesPanel.month_label.setText("월별 : " + Integer.toString(FranchiseDB.FranchiseMonthSales(nowbname)));
+                	
                 	GLoginPanel.getId_field().setText("");
                 	GLoginPanel.getPw_field().setText("");
                 	

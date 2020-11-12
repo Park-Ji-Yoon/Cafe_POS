@@ -37,9 +37,12 @@ class SalesPanel extends JPanel{
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 	
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
+		
 	static String bname;
 
-	SalesPanel() {
+	SalesPanel() {		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
 		setVisible(true);
@@ -59,6 +62,20 @@ class SalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(115, 184, 67, 30);
 		coffe_sales_button.setVisible(true);
@@ -192,6 +209,9 @@ class GCoffeeSalesPanel extends JPanel{
 	static JLabel hot_d = new JLabel();
 	static JLabel hot_m = new JLabel();
 
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
+	
 	static int ice_d_db;
 	static int ice_m_db;
 	static int hot_d_db;
@@ -219,6 +239,19 @@ class GCoffeeSalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//스무디 매출액 버튼
 		smoothie_sales_button.setBounds(402, 180, 114, 40);
 		smoothie_sales_button.setVisible(true);
@@ -414,6 +447,9 @@ class GSmoothieSalesPanel extends JPanel{
 	static int straw_m_db;
 	static int water_d_db;
 	static int water_m_db;
+
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
 	
 	GSmoothieSalesPanel() {
 		smoothie_db();
@@ -436,6 +472,20 @@ class GSmoothieSalesPanel extends JPanel{
 			}
 		});
 		add(sales_exit_button);
+		
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(111, 180, 73, 34);
@@ -674,6 +724,9 @@ class GTeaSalesPanel extends JPanel{
 	static int black_d_db;
 	static int black_m_db;
 
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
+	
 	GTeaSalesPanel() {
 		tea_db();
 		
@@ -696,6 +749,19 @@ class GTeaSalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(111, 180, 73, 34);
 		coffe_sales_button.setVisible(true);
@@ -884,6 +950,9 @@ class GBubbleSalesPanel extends JPanel{
 	static int gb_d_db;
 	static int gb_m_db;
 
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
+	
 	GBubbleSalesPanel() {
 		bubble_db();
 		
@@ -906,6 +975,19 @@ class GBubbleSalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(111, 180, 73, 34);
 		coffe_sales_button.setVisible(true);
@@ -1111,6 +1193,9 @@ class GCakeSalesPanel extends JPanel{
 	static int choco_d_db;
 	static int choco_m_db;
 
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
+	
 	GCakeSalesPanel() {
 		cake_db();
 		
@@ -1133,6 +1218,19 @@ class GCakeSalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(111, 180, 73, 34);
 		coffe_sales_button.setVisible(true);
@@ -1338,6 +1436,9 @@ class GMacaronSalesPanel extends JPanel{
 	static int yogurt_m_db;
 	static int fruit_d_db;
 	static int fruit_m_db;
+
+	static JLabel day_label = new JLabel();
+	static JLabel month_label = new JLabel();
 	
 	GMacaronSalesPanel() {
 		macaron_db();
@@ -1361,6 +1462,19 @@ class GMacaronSalesPanel extends JPanel{
 		});
 		add(sales_exit_button);
 
+		day_label.setBounds(600, 35, 300, 80);
+		day_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		day_label.setVisible(true);
+		day_label.setForeground(Color.BLACK);
+		add(day_label);
+
+
+		month_label.setBounds(1000, 35, 300, 80);
+		month_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 50));
+		month_label.setVisible(true);
+		month_label.setForeground(Color.BLACK);
+		add(month_label);
+		
 		//커피 매출액 버튼
 		coffe_sales_button.setBounds(111, 180, 73, 34);
 		coffe_sales_button.setVisible(true);
