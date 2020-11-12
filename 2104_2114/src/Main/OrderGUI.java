@@ -3785,7 +3785,7 @@ class Timer implements Runnable {
 			}	
 			if(n == 0) {
 				MainPageGUI.introMusic.close();
-				Music payment = new Music("payment_audio_mp3.mp3", false);
+				Music payment = new Music("payment_audio_mp3 (2).mp3", false);
 				payment.start();
 			}
 		}

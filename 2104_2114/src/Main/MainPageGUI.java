@@ -16,13 +16,13 @@ import javazoom.jl.player.Player;
 
 public class MainPageGUI extends JFrame {
 	public static MainFrame main_frame;
-	public static Music introMusic;
+	public static Music introMusic; // 배경음악 초기화
 
-	// main
+	// main 메서드
 	public static void main(String[] args) {
 		main_frame = new MainFrame();
-		introMusic = new Music("bgm_president.mp3", true);
-	    introMusic.start();
+		introMusic = new Music("bgm_president.mp3", true);  // introMusic 반복재생되도록 설정
+	    introMusic.start(); // introMusic 음악 시작
 	}
 	
 	// main_frame의 getter
@@ -35,15 +35,15 @@ public class MainPageGUI extends JFrame {
 class MainFrame extends JFrame {
 	
 	// main_frame에 올릴 패널들을 선언
-	static MainPanel main_panel;
-	static OrderPanel order_panel;
-	static Payment payment_panel;
-	static LoginPanel login_panel;
-	static GLoginPanel glogin_panel;
-	static SLoginPanel slogin_panel;
-	static ManagerPanel manager_panel;
-	static SalesPanel sales_panel;
-	static StockPanel stock_panel;
+	static MainPanel main_panel; // 메인 패널
+	static OrderPanel order_panel; // 주문하기 패널
+	static Payment payment_panel; // 결제 패널
+	static LoginPanel login_panel; // 로그인 선택 화면 패널
+	static GLoginPanel glogin_panel; // 지점장 로그인 화면 패널
+	static SLoginPanel slogin_panel; // 관리자 로그인 화면 패널
+	static ManagerPanel manager_panel; // 매니저 홈 화면 패널
+	static SalesPanel sales_panel; // 매출액 확인 패널
+	static StockPanel stock_panel; // 재고 확인 패널
 	static GCoffeeSalesPanel gcoffee_sales_panel;
 	static GSmoothieSalesPanel gsmoothie_sales_panel;
 	static GTeaSalesPanel gtea_sales_panel;
@@ -71,15 +71,15 @@ class MainFrame extends JFrame {
 	static ChoiceAreaMaster master_choice_area_panel;
 	static ChoiceStoreMaster master_choice_store_panel;
 	static Manager_List manager_list_frame;
-	static MasterInfo master_info_panel;
-	static ManagerInfo manager_info_panel;
+	static MasterInfo master_info_panel; // 관리자 정보 패널
+	static ManagerInfo manager_info_panel; // 지점장 정보 패널
 	
-	static CoffeeInfoPanel coffee_info_panel;
-	static SmooInfoPanel smoo_info_panel;
-	static TeaInfoPanel tea_info_panel;
-	static BubbleInfoPanel bubble_info_panel;
-	static CakeInfoPanel cake_info_panel;
-	static MacaronInfoPanel macaron_info_panel;
+	static CoffeeInfoPanel coffee_info_panel; // 커피 영양정보 패널
+	static SmooInfoPanel smoo_info_panel; // 스무디 영양정보 패널
+	static TeaInfoPanel tea_info_panel; // 차 영양정보 패널
+	static BubbleInfoPanel bubble_info_panel; // 버블티 영양정보 패널
+	static CakeInfoPanel cake_info_panel; // 케이크 영양정보 패널
+	static MacaronInfoPanel macaron_info_panel; // 마카롱 영양정보 패널
 
 	// MainFrame 생성자
 	public MainFrame() {
@@ -88,6 +88,7 @@ class MainFrame extends JFrame {
 		Image cursorimage=tk.getImage("images/cursor_2.png"); // 사진으로 커서 설정
 		Point point=new Point(20,20);
 		Cursor cursor=tk.createCustomCursor(cursorimage, point, "haha");
+		
 		// 커서 설정
 		setCursor(cursor);
 		

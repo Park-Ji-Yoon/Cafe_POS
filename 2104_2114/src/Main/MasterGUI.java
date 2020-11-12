@@ -37,6 +37,7 @@ public class MasterGUI extends JFrame{
 class MasterPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
+	// 배경 사진 초기화
 	ImageIcon background = new ImageIcon("images/background_37.png");
 
 	JButton master_exit_button = new JButton(icon);
