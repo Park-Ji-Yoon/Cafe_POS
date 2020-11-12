@@ -34,6 +34,7 @@ public class ManagerLogin {
                 	
                 	ManagerPanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname_label.setText(nowbname);
+                	EmployeePanel.bname = nowbname;
                 	GCoffeeSalesPanel.bname = nowbname;
                 	GSmoothieSalesPanel.bname = nowbname;
                 	GTeaSalesPanel.bname = nowbname;

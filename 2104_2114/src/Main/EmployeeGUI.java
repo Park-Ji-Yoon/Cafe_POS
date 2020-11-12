@@ -37,13 +37,13 @@ class EmployeePanel extends JPanel{
 
 	JButton employee_exit_button = new JButton(icon);
 	static JLabel bname_label = new JLabel();
-	JLabel employeecnt_label = new JLabel();
+	static JLabel employeecnt_label = new JLabel();
 
 	JButton em_in = new JButton(icon);
 	JButton em_de = new JButton(icon);
+	static String bname;
 	
 	EmployeePanel() {
-		
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
 		setVisible(true);
@@ -69,7 +69,7 @@ class EmployeePanel extends JPanel{
 		add(bname_label);
 
 		employeecnt_label.setBounds(1105, 398, 50, 80);
-		employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
+		employeecnt_label.setText(employee_db(bname));
 		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
 		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 45));
 		add(employeecnt_label);
@@ -83,11 +83,11 @@ class EmployeePanel extends JPanel{
 //		em_in.setOpaque(false);
 		em_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(employee_db(bname_label.getText()) == 20) {
+				if(employee_db(bname).equals("20")) {
 					JOptionPane.showMessageDialog(null, "한 지점당 20명의 직원만 등록 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
 				}else {
-					employee_in(bname_label.getText());
-					employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
+					employee_in(bname);
+					employeecnt_label.setText(employee_db(bname));
 				}
 			}
 		});
@@ -102,11 +102,11 @@ class EmployeePanel extends JPanel{
 //		em_de.setOpaque(false);
 		em_de.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(employee_db(bname_label.getText()) == 0) {
+				if(employee_db(bname).equals("0")) {
 					JOptionPane.showMessageDialog(null, "직원 등록은 최소 0명부터 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
 				}else {
-					employee_de(bname_label.getText());
-					employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
+					employee_de(bname);
+					employeecnt_label.setText(employee_db(bname));
 				}
 			}
 		});
@@ -124,7 +124,8 @@ class EmployeePanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public int employee_db(String bname) {		
+	public static String employee_db(String bname) {		
+		String em = null;
 		int em_cnt = 0;
 		String query;
 		PreparedStatement pstmt = null;
@@ -142,8 +143,7 @@ class EmployeePanel extends JPanel{
 			boolean result = true;
 			
             while (result = rset.next()) {
-            	em_cnt = rset.getInt("G_EM");
-                return em_cnt;
+                return Integer.toString(rset.getInt("G_EM"));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -158,7 +158,7 @@ class EmployeePanel extends JPanel{
                 e.printStackTrace();
             }
         }
-        return em_cnt;
+        return em;
 	}
 	public void employee_in(String bname) {		
 		String query;

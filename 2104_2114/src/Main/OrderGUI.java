@@ -3665,21 +3665,21 @@ class Timer implements Runnable {
 				return;
 			}
 			if (n == -1) {
-				OrderDB.CoffeOrderDB(OrderPanel.choice_store, OrderPanel.ice_coffee_count, OrderPanel.hot_coffee_count);
+				OrderDB.CoffeOrderDB(OrderPanel.which.getText(), OrderPanel.ice_coffee_count, OrderPanel.hot_coffee_count);
 
-				OrderDB.SmoothieOrderDB(OrderPanel.choice_store, OrderPanel.orange_smoothie_count,
+				OrderDB.SmoothieOrderDB(OrderPanel.which.getText(), OrderPanel.orange_smoothie_count,
 						OrderPanel.kiwi_smoothie_count, OrderPanel.grape_smoothie_count,
 						OrderPanel.strawberry_smoothie_count, OrderPanel.watermelon_smoothie_count);
 
-				OrderDB.TeaOrderDB(OrderPanel.choice_store, OrderPanel.green_tea_count, OrderPanel.black_tea_count);
+				OrderDB.TeaOrderDB(OrderPanel.which.getText(), OrderPanel.green_tea_count, OrderPanel.black_tea_count);
 
-				OrderDB.BubbleOrderDB(OrderPanel.choice_store, OrderPanel.brown_sugar_bubble_count,
+				OrderDB.BubbleOrderDB(OrderPanel.which.getText(), OrderPanel.brown_sugar_bubble_count,
 						OrderPanel.taro_bubble_count, OrderPanel.green_bubble_count);
 
-				OrderDB.CakeOrderDB(OrderPanel.choice_store, OrderPanel.cheese_cake_count,
+				OrderDB.CakeOrderDB(OrderPanel.which.getText(), OrderPanel.cheese_cake_count,
 						OrderPanel.strawberry_cake_count, OrderPanel.chocolate_cake_count);
 
-				OrderDB.MacaronOrderDB(OrderPanel.choice_store, OrderPanel.berry_macaron_count,
+				OrderDB.MacaronOrderDB(OrderPanel.which.getText(), OrderPanel.berry_macaron_count,
 						OrderPanel.yogurt_macaron_count, OrderPanel.fruit_macaron_count);
 
 				Main.MainFrame.getPay_success_panel().setVisible(true);

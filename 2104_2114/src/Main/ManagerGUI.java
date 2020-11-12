@@ -109,6 +109,7 @@ class ManagerPanel extends JPanel{
 		// 직원 관리 버튼 이벤트
 		employee_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EmployeePanel.employeecnt_label.setText(EmployeePanel.employee_db(EmployeePanel.bname));
 				Main.MainFrame.getEmployee_panel().setVisible(true);
 				Main.MainFrame.getManager_panel().setVisible(false);				
 			}
