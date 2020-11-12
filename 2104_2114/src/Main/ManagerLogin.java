@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
  
 public class ManagerLogin {
-    public static String bname;
+    public static String nowbname;
     
 	public ManagerLogin() {
 		String query;
@@ -30,26 +30,25 @@ public class ManagerLogin {
                 if(rset.getString("G_ID").equals(GLoginPanel.getId_field().getText()) && rset.getString("G_PW").equals(GLoginPanel.getPw_field().getText())){
                 	JOptionPane.showMessageDialog(null, "로그인에 성공하였습니다.", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                 	
-                	bname = rset.getString("G_BNAME");
+                	nowbname = rset.getString("G_BNAME");
                 	
-                	ManagerPanel.bname_label.setText(bname);
-                	EmployeePanel.bname_label.setText(bname);
-                	EmployeePanel.bname = bname;
-                	GCoffeeSalesPanel.bname = bname;
-                	GSmoothieSalesPanel.bname = bname;
-                	GTeaSalesPanel.bname = bname;
-                	GBubbleSalesPanel.bname = bname;
-                	GCakeSalesPanel.bname = bname;
-                	GMacaronSalesPanel.bname = bname;
-                	GCoffeeStockPanel.bname = bname;
-                	GSmoothieStockPanel.bname = bname;
-                	GTeaStockPanel.bname = bname;
-                	GBubbleStockPanel.bname = bname;
-                	GCakeStockPanel.bname = bname;
-                	GMacaronStockPanel.bname = bname;
+                	ManagerPanel.bname_label.setText(nowbname);
+                	EmployeePanel.bname_label.setText(nowbname);
+                	GCoffeeSalesPanel.bname = nowbname;
+                	GSmoothieSalesPanel.bname = nowbname;
+                	GTeaSalesPanel.bname = nowbname;
+                	GBubbleSalesPanel.bname = nowbname;
+                	GCakeSalesPanel.bname = nowbname;
+                	GMacaronSalesPanel.bname = nowbname;
+                	GCoffeeStockPanel.bname = nowbname;
+                	GSmoothieStockPanel.bname = nowbname;
+                	GTeaStockPanel.bname = nowbname;
+                	GBubbleStockPanel.bname = nowbname;
+                	GCakeStockPanel.bname = nowbname;
+                	GMacaronStockPanel.bname = nowbname;
                 	
                 	
-                	System.out.println("메소드 밖 : " + bname);
+                	System.out.println("메소드 밖 : " + nowbname);
                 	ManagerInfo.getManager_name_label().setText(getG_Name());
                 	ManagerInfo.getManager_id_label().setText(getG_Id());
                 	ManagerInfo.getManager_pw_label().setText(getG_Pw());
@@ -99,8 +98,8 @@ public class ManagerLogin {
             
             query = "SELECT G_NAME FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;
@@ -130,8 +129,8 @@ public class ManagerLogin {
             
             query = "SELECT G_ID FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;
@@ -161,8 +160,8 @@ public class ManagerLogin {
             
             query = "SELECT G_PW FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;
@@ -192,8 +191,8 @@ public class ManagerLogin {
             
             query = "SELECT G_BNAME FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;
@@ -223,8 +222,8 @@ public class ManagerLogin {
             
             query = "SELECT G_BPHONE FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;
@@ -254,8 +253,8 @@ public class ManagerLogin {
             
             query = "SELECT G_EM FROM MANAGER_TABLE WHERE G_BNAME=?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
-			System.out.println("메소드 안 : " + bname);
+			pstmt.setString(1, nowbname);
+			System.out.println("메소드 안 : " + nowbname);
 			rset = pstmt.executeQuery();
 			
 			boolean result = true;

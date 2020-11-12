@@ -37,7 +37,6 @@ class EmployeePanel extends JPanel{
 
 	JButton employee_exit_button = new JButton(icon);
 	static JLabel bname_label = new JLabel();
-	static String bname;
 	JLabel employeecnt_label = new JLabel();
 
 	JButton em_in = new JButton(icon);
@@ -70,7 +69,7 @@ class EmployeePanel extends JPanel{
 		add(bname_label);
 
 		employeecnt_label.setBounds(1105, 398, 50, 80);
-		employeecnt_label.setText(Integer.toString(employee_db()));
+		employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
 		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
 		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 45));
 		add(employeecnt_label);
@@ -78,17 +77,17 @@ class EmployeePanel extends JPanel{
 		//직원 추가
 		em_in.setBounds(642, 562, 253, 150);
 		em_in.setVisible(true);
-		em_in.setBorderPainted(false);
-		em_in.setContentAreaFilled(false);
-		em_in.setFocusPainted(false);
-		em_in.setOpaque(false);
+//		em_in.setBorderPainted(false);
+//		em_in.setContentAreaFilled(false);
+//		em_in.setFocusPainted(false);
+//		em_in.setOpaque(false);
 		em_in.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(employee_db() == 20) {
+				if(employee_db(bname_label.getText()) == 20) {
 					JOptionPane.showMessageDialog(null, "한 지점당 20명의 직원만 등록 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
 				}else {
-					employee_in();
-					employeecnt_label.setText(Integer.toString(employee_db()));
+					employee_in(bname_label.getText());
+					employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
 				}
 			}
 		});
@@ -97,17 +96,17 @@ class EmployeePanel extends JPanel{
 		//직원 삭제
 		em_de.setBounds(971, 562, 253, 150);
 		em_de.setVisible(true);
-		em_de.setBorderPainted(false);
-		em_de.setContentAreaFilled(false);
-		em_de.setFocusPainted(false);
-		em_de.setOpaque(false);
+//		em_de.setBorderPainted(false);
+//		em_de.setContentAreaFilled(false);
+//		em_de.setFocusPainted(false);
+//		em_de.setOpaque(false);
 		em_de.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(employee_db() == 0) {
+				if(employee_db(bname_label.getText()) == 0) {
 					JOptionPane.showMessageDialog(null, "직원 등록은 최소 0명부터 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
 				}else {
-					employee_de();
-					employeecnt_label.setText(Integer.toString(employee_db()));
+					employee_de(bname_label.getText());
+					employeecnt_label.setText(Integer.toString(employee_db(bname_label.getText())));
 				}
 			}
 		});
@@ -125,7 +124,7 @@ class EmployeePanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public int employee_db() {		
+	public int employee_db(String bname) {		
 		int em_cnt = 0;
 		String query;
 		PreparedStatement pstmt = null;
@@ -144,6 +143,7 @@ class EmployeePanel extends JPanel{
 			
             while (result = rset.next()) {
             	em_cnt = rset.getInt("G_EM");
+                return em_cnt;
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -160,7 +160,7 @@ class EmployeePanel extends JPanel{
         }
         return em_cnt;
 	}
-	public void employee_in() {		
+	public void employee_in(String bname) {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -179,11 +179,10 @@ class EmployeePanel extends JPanel{
 			
             while (result = rset.next()) {
             	change_cnt = rset.getInt("G_EM")+1;
-            	query = "UPDATE MANAGER_TABLE SET G_EM = ? WHERE BNAME = ?";
+            	query = "UPDATE MANAGER_TABLE SET G_EM = ? WHERE G_BNAME = ?";
             	pstmt = conn.prepareStatement(query);
             	pstmt.setInt(1, change_cnt);
     			pstmt.setString(2, bname);
-    			
     			pstmt.executeUpdate();
             }
         } catch (ClassNotFoundException e) {
@@ -200,7 +199,7 @@ class EmployeePanel extends JPanel{
             }
         }
 	}
-	public void employee_de() {		
+	public void employee_de(String bname) {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -219,7 +218,7 @@ class EmployeePanel extends JPanel{
 			
             while (result = rset.next()) {
             	change_cnt = rset.getInt("G_EM")-1;
-            	query = "UPDATE MANAGER_TABLE SET G_EM = ? WHERE BNAME = ?";
+            	query = "UPDATE MANAGER_TABLE SET G_EM = ? WHERE G_BNAME = ?";
             	pstmt = conn.prepareStatement(query);
     			pstmt.setInt(1, change_cnt);
     			pstmt.setString(2, bname);
