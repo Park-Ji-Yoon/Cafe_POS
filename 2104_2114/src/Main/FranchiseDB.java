@@ -100,7 +100,7 @@ public class FranchiseDB {
 				franchise_day_sales += rset.getInt("ICE_D") + rset.getInt("HOT_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*2500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -136,7 +136,7 @@ public class FranchiseDB {
 				franchise_day_sales += rset.getInt("ORANGE_D") + rset.getInt("KIWI_D") + rset.getInt("GRAPE_D") + rset.getInt("STRAW_D") + rset.getInt("WATER_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*3500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -173,7 +173,7 @@ public class FranchiseDB {
 				franchise_day_sales += rset.getInt("GREEN_D") + rset.getInt("BLACK_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*3000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -206,10 +206,10 @@ public class FranchiseDB {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				franchise_day_sales += rset.getInt("BS_D") + rset.getInt("TARO_D") + rset.getInt("GB_S");
+				franchise_day_sales += rset.getInt("BS_D") + rset.getInt("TARO_D") + rset.getInt("GB_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*4000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -246,7 +246,7 @@ public class FranchiseDB {
 				franchise_day_sales += rset.getInt("CHEESE_D") + rset.getInt("SC_D") + rset.getInt("CHOCO_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*5000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -279,10 +279,10 @@ public class FranchiseDB {
 			rset = pstmt.executeQuery();
 
 			while (rset.next()) {
-				franchise_day_sales += rset.getInt("BERRY_D") + rset.getInt("YOGURT_D") + rset.getInt("FRUIT_S");
+				franchise_day_sales += rset.getInt("BERRY_D") + rset.getInt("YOGURT_D") + rset.getInt("FRUIT_D");
 			}
 			
-			return franchise_day_sales;
+			return franchise_day_sales*2500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -325,7 +325,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("ICE_M") + rset.getInt("HOT_M");
 			}
 
-			return franchise_month_sales;
+			return franchise_month_sales*2500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -361,7 +361,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("ORANGE_M") + rset.getInt("KIWI_M") + rset.getInt("GRAPE_M") + rset.getInt("STRAW_M") + rset.getInt("WATER_M");
 			}
 
-			return franchise_month_sales;
+			return franchise_month_sales*3500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -396,7 +396,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("GREEN_M") + rset.getInt("BLACK_M");
 			}
 			
-			return franchise_month_sales;
+			return franchise_month_sales*3000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -431,7 +431,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("BS_M") + rset.getInt("TARO_M") + rset.getInt("GB_M");
 			}
 			
-			return franchise_month_sales;
+			return franchise_month_sales*4000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -466,7 +466,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("CHEESE_M") + rset.getInt("SC_M") + rset.getInt("CHOCO_M");
 			}
 
-			return franchise_month_sales;
+			return franchise_month_sales*5000;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -501,7 +501,7 @@ public class FranchiseDB {
 				franchise_month_sales += rset.getInt("BERRY_M") + rset.getInt("YOGURT_M") + rset.getInt("FRUIT_M");
 			}
 
-			return franchise_month_sales;
+			return franchise_month_sales*2500;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

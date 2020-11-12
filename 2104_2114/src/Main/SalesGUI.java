@@ -36,6 +36,8 @@ class SalesPanel extends JPanel{
 	JButton bubble_sales_button = new JButton(icon);
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
+	
+	static String bname;
 
 	SalesPanel() {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
@@ -66,6 +68,7 @@ class SalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -81,6 +84,7 @@ class SalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -96,6 +100,7 @@ class SalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -111,6 +116,7 @@ class SalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -126,6 +132,7 @@ class SalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -141,6 +148,7 @@ class SalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getSales_panel().setVisible(false);
 			}
@@ -179,16 +187,15 @@ class GCoffeeSalesPanel extends JPanel{
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 
-	JLabel ice_d = new JLabel();
-	JLabel ice_m = new JLabel();
-	JLabel hot_d = new JLabel();
-	JLabel hot_m = new JLabel();
+	static JLabel ice_d = new JLabel();
+	static JLabel ice_m = new JLabel();
+	static JLabel hot_d = new JLabel();
+	static JLabel hot_m = new JLabel();
 
-	static String bname;
-	int ice_d_db;
-	int ice_m_db;
-	int hot_d_db;
-	int hot_m_db;
+	static int ice_d_db;
+	static int ice_m_db;
+	static int hot_d_db;
+	static int hot_m_db;
 
 	GCoffeeSalesPanel() {
 		coffee_db();
@@ -221,6 +228,7 @@ class GCoffeeSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
@@ -236,6 +244,7 @@ class GCoffeeSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
@@ -251,6 +260,7 @@ class GCoffeeSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
@@ -266,6 +276,7 @@ class GCoffeeSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
@@ -281,6 +292,7 @@ class GCoffeeSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(false);
 			}
@@ -327,7 +339,7 @@ class GCoffeeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void coffee_db() {		
+	public static void coffee_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -338,16 +350,20 @@ class GCoffeeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_COFFEE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	ice_d_db = rset.getInt("ICE_D") * 2500;
+        		ice_d.setText(Integer.toString(ice_d_db));
             	ice_m_db = rset.getInt("ICE_M") * 2500;
+        		ice_m.setText(Integer.toString(ice_m_db));
             	hot_d_db = rset.getInt("HOT_D") * 2500;
+        		hot_d.setText(Integer.toString(hot_d_db));
             	hot_m_db = rset.getInt("HOT_M") * 2500;
+        		hot_m.setText(Integer.toString(hot_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -376,28 +392,28 @@ class GSmoothieSalesPanel extends JPanel{
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 
-	JLabel orange_d = new JLabel();
-	JLabel orange_m = new JLabel();
-	JLabel kiwi_d = new JLabel();
-	JLabel kiwi_m = new JLabel();
-	JLabel grape_d = new JLabel();
-	JLabel grape_m = new JLabel();
-	JLabel straw_d = new JLabel();
-	JLabel straw_m = new JLabel();
-	JLabel water_d = new JLabel();
-	JLabel water_m = new JLabel();
+	static JLabel orange_d = new JLabel();
+	static JLabel orange_m = new JLabel();
+	static JLabel kiwi_d = new JLabel();
+	static JLabel kiwi_m = new JLabel();
+	static JLabel grape_d = new JLabel();
+	static JLabel grape_m = new JLabel();
+	static JLabel straw_d = new JLabel();
+	static JLabel straw_m = new JLabel();
+	static JLabel water_d = new JLabel();
+	static JLabel water_m = new JLabel();
 
-	static String bname;
-	int orange_d_db;
-	int orange_m_db;
-	int kiwi_d_db;
-	int kiwi_m_db;
-	int grape_d_db;
-	int grape_m_db;
-	int straw_d_db;
-	int straw_m_db;
-	int water_d_db;
-	int water_m_db;
+
+	static int orange_d_db;
+	static int orange_m_db;
+	static int kiwi_d_db;
+	static int kiwi_m_db;
+	static int grape_d_db;
+	static int grape_m_db;
+	static int straw_d_db;
+	static int straw_m_db;
+	static int water_d_db;
+	static int water_m_db;
 	
 	GSmoothieSalesPanel() {
 		smoothie_db();
@@ -430,6 +446,7 @@ class GSmoothieSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
@@ -445,6 +462,7 @@ class GSmoothieSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
@@ -460,6 +478,7 @@ class GSmoothieSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
@@ -475,6 +494,7 @@ class GSmoothieSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
@@ -490,6 +510,7 @@ class GSmoothieSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(false);
 			}
@@ -578,7 +599,7 @@ class GSmoothieSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void smoothie_db() {		
+	public static void smoothie_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -589,22 +610,32 @@ class GSmoothieSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_SMOOTHIE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	orange_d_db = rset.getInt("ORANGE_D") * 3500;
+        		orange_d.setText(Integer.toString(orange_d_db));
             	orange_m_db = rset.getInt("ORANGE_M") * 3500;
+        		orange_m.setText(Integer.toString(orange_m_db));
             	kiwi_d_db = rset.getInt("KIWI_D") * 3500;
+        		kiwi_d.setText(Integer.toString(kiwi_d_db));
             	kiwi_m_db = rset.getInt("KIWI_M") * 3500;
+        		kiwi_m.setText(Integer.toString(kiwi_m_db));
             	grape_d_db = rset.getInt("GRAPE_D") * 3500;
+        		grape_d.setText(Integer.toString(grape_d_db));
             	grape_m_db = rset.getInt("GRAPE_M") * 3500;
+        		grape_m.setText(Integer.toString(grape_m_db));
             	straw_d_db = rset.getInt("STRAW_D") * 3500;
+        		straw_d.setText(Integer.toString(straw_d_db));
             	straw_m_db = rset.getInt("STRAW_M") * 3500;
+        		straw_m.setText(Integer.toString(straw_m_db));
             	water_d_db = rset.getInt("WATER_D") * 3500;
+        		water_d.setText(Integer.toString(water_d_db));
             	water_m_db = rset.getInt("WATER_M") * 3500;
+        		water_m.setText(Integer.toString(water_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -633,16 +664,15 @@ class GTeaSalesPanel extends JPanel{
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 
-	JLabel green_d = new JLabel();
-	JLabel green_m = new JLabel();
-	JLabel black_d = new JLabel();
-	JLabel black_m = new JLabel();
+	static JLabel green_d = new JLabel();
+	static JLabel green_m = new JLabel();
+	static JLabel black_d = new JLabel();
+	static JLabel black_m = new JLabel();
 
-	static String bname;
-	int green_d_db;
-	int green_m_db;
-	int black_d_db;
-	int black_m_db;
+	static int green_d_db;
+	static int green_m_db;
+	static int black_d_db;
+	static int black_m_db;
 
 	GTeaSalesPanel() {
 		tea_db();
@@ -675,6 +705,7 @@ class GTeaSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
@@ -690,6 +721,7 @@ class GTeaSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
@@ -705,6 +737,7 @@ class GTeaSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
@@ -720,6 +753,7 @@ class GTeaSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
@@ -735,6 +769,7 @@ class GTeaSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getGTea_sales_panel().setVisible(false);
 			}
@@ -781,7 +816,7 @@ class GTeaSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void tea_db() {		
+	public static void tea_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -792,16 +827,20 @@ class GTeaSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_TEA WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	green_d_db = rset.getInt("GREEN_D") * 3000;
+        		green_d.setText(Integer.toString(green_d_db));
             	green_m_db = rset.getInt("GREEN_M") * 3000;
+        		green_m.setText(Integer.toString(green_m_db));
             	black_d_db = rset.getInt("BLACK_D") * 3000;
+        		black_d.setText(Integer.toString(black_d_db));
             	black_m_db = rset.getInt("BLACK_M") * 3000;
+        		black_m.setText(Integer.toString(black_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -830,20 +869,20 @@ class GBubbleSalesPanel extends JPanel{
 	JButton cake_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 
-	JLabel bs_d = new JLabel();
-	JLabel bs_m = new JLabel();
-	JLabel taro_d = new JLabel();
-	JLabel taro_m = new JLabel();
-	JLabel gb_d = new JLabel();
-	JLabel gb_m = new JLabel();
+	static JLabel bs_d = new JLabel();
+	static JLabel bs_m = new JLabel();
+	static JLabel taro_d = new JLabel();
+	static JLabel taro_m = new JLabel();
+	static JLabel gb_d = new JLabel();
+	static JLabel gb_m = new JLabel();
 
-	static String bname;
-	int bs_d_db;
-	int bs_m_db;
-	int taro_d_db;
-	int taro_m_db;
-	int gb_d_db;
-	int gb_m_db;
+
+	static int bs_d_db;
+	static int bs_m_db;
+	static int taro_d_db;
+	static int taro_m_db;
+	static int gb_d_db;
+	static int gb_m_db;
 
 	GBubbleSalesPanel() {
 		bubble_db();
@@ -876,6 +915,7 @@ class GBubbleSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
@@ -891,6 +931,7 @@ class GBubbleSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
@@ -906,6 +947,7 @@ class GBubbleSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
@@ -921,6 +963,7 @@ class GBubbleSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
@@ -936,6 +979,7 @@ class GBubbleSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getGBubble_sales_panel().setVisible(false);
 			}
@@ -996,7 +1040,7 @@ class GBubbleSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void bubble_db() {		
+	public static void bubble_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1007,18 +1051,24 @@ class GBubbleSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_BUBBLE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	bs_d_db = rset.getInt("BS_D") * 4000;
+        		bs_d.setText(Integer.toString(bs_d_db));
             	bs_m_db = rset.getInt("BS_M") * 4000;
+        		bs_m.setText(Integer.toString(bs_m_db));
             	taro_d_db = rset.getInt("TARO_D") * 4000;
+        		taro_d.setText(Integer.toString(taro_d_db));
             	taro_m_db = rset.getInt("TARO_M") * 4000;
+        		taro_m.setText(Integer.toString(taro_m_db));
             	gb_d_db = rset.getInt("GB_D") * 4000;
+        		gb_d.setText(Integer.toString(gb_d_db));
             	gb_m_db = rset.getInt("GB_M") * 4000;
+        		gb_m.setText(Integer.toString(gb_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -1047,20 +1097,19 @@ class GCakeSalesPanel extends JPanel{
 	JButton bubble_sales_button = new JButton(icon);
 	JButton macaron_sales_button = new JButton(icon);
 
-	JLabel cheese_d = new JLabel();
-	JLabel cheese_m = new JLabel();
-	JLabel sc_d = new JLabel();
-	JLabel sc_m = new JLabel();
-	JLabel choco_d = new JLabel();
-	JLabel choco_m = new JLabel();
+	static JLabel cheese_d = new JLabel();
+	static JLabel cheese_m = new JLabel();
+	static JLabel sc_d = new JLabel();
+	static JLabel sc_m = new JLabel();
+	static JLabel choco_d = new JLabel();
+	static JLabel choco_m = new JLabel();
 
-	static String bname;
-	int cheese_d_db;
-	int cheese_m_db;
-	int sc_d_db;
-	int sc_m_db;
-	int choco_d_db;
-	int choco_m_db;
+	static int cheese_d_db;
+	static int cheese_m_db;
+	static int sc_d_db;
+	static int sc_m_db;
+	static int choco_d_db;
+	static int choco_m_db;
 
 	GCakeSalesPanel() {
 		cake_db();
@@ -1093,6 +1142,7 @@ class GCakeSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
@@ -1108,6 +1158,7 @@ class GCakeSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
@@ -1123,6 +1174,7 @@ class GCakeSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
@@ -1138,6 +1190,7 @@ class GCakeSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
@@ -1153,6 +1206,7 @@ class GCakeSalesPanel extends JPanel{
 		macaron_sales_button.setOpaque(false);
 		macaron_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GMacaronSalesPanel.macaron_db();
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(true);
 				Main.MainFrame.getGCake_sales_panel().setVisible(false);
 			}
@@ -1213,7 +1267,7 @@ class GCakeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void cake_db() {		
+	public static void cake_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1224,18 +1278,24 @@ class GCakeSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_CAKE WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	cheese_d_db = rset.getInt("CHEESE_D") * 5000;
+        		cheese_d.setText(Integer.toString(cheese_d_db));
             	cheese_m_db = rset.getInt("CHEESE_M") * 5000;
+        		cheese_m.setText(Integer.toString(cheese_m_db));
             	sc_d_db = rset.getInt("SC_D") * 5000;
+        		sc_d.setText(Integer.toString(sc_d_db));
             	sc_m_db = rset.getInt("SC_M") * 5000;
+        		sc_m.setText(Integer.toString(sc_m_db));
             	choco_d_db = rset.getInt("CHOCO_D") * 5000;
+        		choco_d.setText(Integer.toString(choco_d_db));
             	choco_m_db = rset.getInt("CHOCO_M") * 5000;
+        		choco_m.setText(Integer.toString(choco_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -1264,20 +1324,20 @@ class GMacaronSalesPanel extends JPanel{
 	JButton bubble_sales_button = new JButton(icon);
 	JButton cake_sales_button = new JButton(icon);
 
-	JLabel berry_d = new JLabel();
-	JLabel berry_m = new JLabel();
-	JLabel yogurt_d = new JLabel();
-	JLabel yogurt_m = new JLabel();
-	JLabel fruit_d = new JLabel();
-	JLabel fruit_m = new JLabel();
+	static JLabel berry_d = new JLabel();
+	static JLabel berry_m = new JLabel();
+	static JLabel yogurt_d = new JLabel();
+	static JLabel yogurt_m = new JLabel();
+	static JLabel fruit_d = new JLabel();
+	static JLabel fruit_m = new JLabel();
 
-	static String bname;
-	int berry_d_db;
-	int berry_m_db;
-	int yogurt_d_db;
-	int yogurt_m_db;
-	int fruit_d_db;
-	int fruit_m_db;
+
+	static 	int berry_d_db;
+	static 	int berry_m_db;
+	static int yogurt_d_db;
+	static int yogurt_m_db;
+	static int fruit_d_db;
+	static int fruit_m_db;
 	
 	GMacaronSalesPanel() {
 		macaron_db();
@@ -1310,6 +1370,7 @@ class GMacaronSalesPanel extends JPanel{
 		coffe_sales_button.setOpaque(false);
 		coffe_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCoffeeSalesPanel.coffee_db();
 				Main.MainFrame.getGCoffee_sales_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
@@ -1325,6 +1386,7 @@ class GMacaronSalesPanel extends JPanel{
 		smoothie_sales_button.setOpaque(false);
 		smoothie_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GSmoothieSalesPanel.smoothie_db();
 				Main.MainFrame.getGSmoothie_sales_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
@@ -1340,6 +1402,7 @@ class GMacaronSalesPanel extends JPanel{
 		tea_sales_button.setOpaque(false);
 		tea_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GTeaSalesPanel.tea_db();
 				Main.MainFrame.getGTea_sales_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
@@ -1355,6 +1418,7 @@ class GMacaronSalesPanel extends JPanel{
 		bubble_sales_button.setOpaque(false);
 		bubble_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GBubbleSalesPanel.bubble_db();
 				Main.MainFrame.getGBubble_sales_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
@@ -1370,6 +1434,7 @@ class GMacaronSalesPanel extends JPanel{
 		cake_sales_button.setOpaque(false);
 		cake_sales_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GCakeSalesPanel.cake_db();
 				Main.MainFrame.getGCake_sales_panel().setVisible(true);
 				Main.MainFrame.getGMacaron_sales_panel().setVisible(false);
 			}
@@ -1430,7 +1495,7 @@ class GMacaronSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public void macaron_db() {		
+	public static void macaron_db() {		
 		String query;
 		PreparedStatement pstmt = null;
 		Connection conn = null;
@@ -1441,18 +1506,24 @@ class GMacaronSalesPanel extends JPanel{
             
             query = "SELECT * FROM MENU_MACARON WHERE BNAME = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, bname);
+			pstmt.setString(1, SalesPanel.bname);
 			rset = pstmt.executeQuery();
              
 			boolean result = true;
 			
             while (result = rset.next()) {
             	berry_d_db = rset.getInt("BERRY_D") * 2500;
+        		berry_d.setText(Integer.toString(berry_d_db));
             	berry_m_db = rset.getInt("BERRY_M") * 2500;
+        		berry_m.setText(Integer.toString(berry_m_db));
             	yogurt_d_db = rset.getInt("YOGURT_D") * 2500;
+        		yogurt_d.setText(Integer.toString(yogurt_d_db));
             	yogurt_m_db = rset.getInt("YOGURT_M") * 2500;
+        		yogurt_m.setText(Integer.toString(yogurt_m_db));
             	fruit_d_db = rset.getInt("FRUIT_D") * 2500;
+        		fruit_d.setText(Integer.toString(fruit_d_db));
             	fruit_m_db = rset.getInt("FRUIT_M") * 2500;
+        		fruit_m.setText(Integer.toString(fruit_m_db));
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -35,20 +35,7 @@ public class ManagerLogin {
                 	ManagerPanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname = nowbname;
-                	GCoffeeSalesPanel.bname = nowbname;
-                	GSmoothieSalesPanel.bname = nowbname;
-                	GTeaSalesPanel.bname = nowbname;
-                	GBubbleSalesPanel.bname = nowbname;
-                	GCakeSalesPanel.bname = nowbname;
-                	GMacaronSalesPanel.bname = nowbname;
-                	GCoffeeStockPanel.bname = nowbname;
-                	GSmoothieStockPanel.bname = nowbname;
-                	GTeaStockPanel.bname = nowbname;
-                	GBubbleStockPanel.bname = nowbname;
-                	GCakeStockPanel.bname = nowbname;
-                	GMacaronStockPanel.bname = nowbname;
-                	
-                	
+                	SalesPanel.bname = nowbname;
                 	System.out.println("메소드 밖 : " + nowbname);
                 	ManagerInfo.getManager_name_label().setText(getG_Name());
                 	ManagerInfo.getManager_id_label().setText(getG_Id());
