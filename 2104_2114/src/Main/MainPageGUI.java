@@ -224,7 +224,7 @@ class MainFrame extends JFrame {
 
 		// MainFrame 속성 설정
 		setTitle("쉬다 가이소"); // JFrame 생성 및 타이틀 설정
-		setBounds(20, 0, 1880, 1070); // JFrame 위치와 크기 (x, y, w, h)
+		setBounds(20, 0, 1862, 1055); // JFrame 위치와 크기 (x, y, w, h)
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x누르면 닫힘
 		setResizable(false);
 		getContentPane().setLayout(null); // 프레임 레이아웃 null로 설정
