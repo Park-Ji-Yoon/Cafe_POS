@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
 import javax.swing.*;
+
+import org.w3c.dom.events.MouseEvent;
 
 import Manager.Manager_List;
 import javazoom.jl.player.Player;
@@ -422,7 +425,7 @@ class MainPanel extends JPanel {
 	static Icon icon = new ImageIcon("images/back_1.png");
 	
 	// MainPanel에 올릴 컴포넌트들의 생성자 호출
-	ImageIcon background = new ImageIcon("images/background_8.png"); // 배경사진은 class못만들어서 그냥 넣음
+	ImageIcon background = new ImageIcon("images/background_101.png"); // 배경사진은 class못만들어서 그냥 넣음
 	static JButton order_btn = new JButton(icon); // '주문하기' 버튼 생성자 호출
 	static JButton login_btn = new JButton(icon); // '로그인' 버튼 생성자 호출
 
@@ -431,7 +434,8 @@ class MainPanel extends JPanel {
 		setBounds(0, 0, 1862, 1055); // 위치와 크기 지정
 		setLayout(null);
 		
-		order_btn.setBounds(1250, 650, 550, 120);
+		order_btn.setBounds(580, 350, 700, 250);
+//		order_btn.setBounds(1250, 650, 550, 120);
 		order_btn.setVisible(true);
 		order_btn.setBorderPainted(false);
 		order_btn.setContentAreaFilled(false);
@@ -475,7 +479,8 @@ class MainPanel extends JPanel {
 		});
 		
 		login_btn.setFont(new Font("Black Han Sans", Font.PLAIN, 45));
-		login_btn.setBounds(1250, 800, 570, 120);
+		login_btn.setBounds(731, 800, 400, 150);
+//		login_btn.setBounds(1250, 800, 570, 120);
 		login_btn.setVisible(true);
 		login_btn.setBorderPainted(false);
 		login_btn.setContentAreaFilled(false);
@@ -562,5 +567,31 @@ class RoundedButton extends JButton {
 		graphics.drawString(getText(), textX, textY);
 		graphics.dispose();
 		super.paintComponent(g);
+	}
+}
+class MouseEvents implements MouseListener {
+	@Override
+	public void mouseClicked(java.awt.event.MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseEntered(java.awt.event.MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseExited(java.awt.event.MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mousePressed(java.awt.event.MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseReleased(java.awt.event.MouseEvent arg0) {
+		
 	}
 }
