@@ -1429,7 +1429,7 @@ class OrderPanel extends JPanel {
 						public void actionPerformed(ActionEvent e) {
 							strawberry_smoothie_count--;
 							strawberrySmoo
-									.setText("          Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
+									.setText("          SB-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
 											+ "  |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1465,7 +1465,7 @@ class OrderPanel extends JPanel {
 						public void actionPerformed(ActionEvent e) {
 							strawberry_smoothie_count++;
 							strawberrySmoo
-									.setText("          Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
+									.setText("          SB-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
 											+ "  |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1500,7 +1500,7 @@ class OrderPanel extends JPanel {
 					if (strawberry_smoothie_count < 2) {
 						strawberry_smoothie_count++;
 						strawberrySmoo
-								.setText("          Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
+								.setText("          SB-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
 										+ "  |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1527,7 +1527,7 @@ class OrderPanel extends JPanel {
 					} else {
 						strawberry_smoothie_count++;
 						strawberrySmoo
-								.setText("          Strawberry-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
+								.setText("          SB-smoothie  |  " + String.valueOf(strawberry_smoothie_count)
 										+ "  |  " + String.valueOf(strawberry_smoothie_count * 3500) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1628,7 +1628,7 @@ class OrderPanel extends JPanel {
 						public void actionPerformed(ActionEvent e) {
 							watermelon_smoothie_count--;
 							watermalonSmoo
-									.setText(" 뺌  Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
+									.setText("          WM-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
 											+ "  |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1663,7 +1663,7 @@ class OrderPanel extends JPanel {
 					plus_watermelon_smoo.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							watermelon_smoothie_count++;
-							watermalonSmoo.setText("           Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
+							watermalonSmoo.setText("          WM-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
 											+ "  |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1698,7 +1698,7 @@ class OrderPanel extends JPanel {
 					if (watermelon_smoothie_count < 2) {
 						watermelon_smoothie_count++;
 						watermalonSmoo
-								.setText("           Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
+								.setText("          WM-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
 										+ "  |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -1725,7 +1725,7 @@ class OrderPanel extends JPanel {
 					} else {
 						watermelon_smoothie_count++;
 						watermalonSmoo
-								.setText("           Watermelon-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
+								.setText("          WM-smoothie  |  " + String.valueOf(watermelon_smoothie_count)
 										+ "  |  " + String.valueOf(watermelon_smoothie_count * 3500) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -2017,7 +2017,7 @@ class OrderPanel extends JPanel {
 					plus_green_tea.setBorderPainted(false); // 테두리색
 					plus_green_tea.setFocusPainted(false);
 					plus_green_tea.setOpaque(false);
-					plus_green_tea.setIcon(minus);
+					plus_green_tea.setIcon(plus);
 					greenTea.add(plus_green_tea);
 
 					minus_green_tea.addActionListener(new ActionListener() {
@@ -2230,7 +2230,7 @@ class OrderPanel extends JPanel {
 					minus_brown_bubble.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							brown_sugar_bubble_count--;
-							brownBubble.setText(" 뺌 Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
+							brownBubble.setText("          BS-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
 									+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -2263,8 +2263,8 @@ class OrderPanel extends JPanel {
 					
 					plus_brown_bubble.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							brown_sugar_bubble_count--;
-							brownBubble.setText(" 뺌 Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
+							brown_sugar_bubble_count++;
+							brownBubble.setText("          BS-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
 									+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 									+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -2297,7 +2297,7 @@ class OrderPanel extends JPanel {
 					
 					if (brown_sugar_bubble_count < 2) {
 						brown_sugar_bubble_count++;
-						brownBubble.setText("          Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
+						brownBubble.setText("          BS-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
 								+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -2323,7 +2323,7 @@ class OrderPanel extends JPanel {
 								+ "개  " + brown_sugar_bubble_count * brown_sugar_bubble_price + "원");
 					} else {
 						brown_sugar_bubble_count++;
-						brownBubble.setText("          Brownsugar-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
+						brownBubble.setText("          BS-bubbleT  |  " + String.valueOf(brown_sugar_bubble_count)
 								+ "  |  " + String.valueOf(brown_sugar_bubble_count * 4000) + "원");
 						all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
 								+ OrderPanel.hot_coffee_count * OrderPanel.hot_coffee_price
@@ -2454,7 +2454,7 @@ class OrderPanel extends JPanel {
 					
 					plus_taro_bubble.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							taro_bubble_count--;
+							taro_bubble_count++;
 							taroBubble.setText("          Taro-bubbleT  |  " + String.valueOf(taro_bubble_count) + "  |  "
 									+ String.valueOf(taro_bubble_count * 4000) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
@@ -3966,8 +3966,9 @@ class Payment extends JPanel {
 		setForeground(Color.white);
 
 		pay_price_sum.setForeground(new Color(255, 93, 82));
-		pay_price_sum.setBounds(670, 560, 500, 100);
+		pay_price_sum.setBounds(570, 560, 700, 100);
 		pay_price_sum.setFont(new Font("인터파크고딕 M", Font.PLAIN, 60));
+		pay_price_sum.setHorizontalAlignment(JLabel.CENTER);
 
 		pay_text.setBounds(500, 500, 0, 0);
 		pay_text.setVisible(true);
