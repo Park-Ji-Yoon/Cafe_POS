@@ -1214,7 +1214,7 @@ class SCakeSalesPanel extends JPanel{
 		sales_exit_button.setOpaque(false);
 		sales_exit_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.MainFrame.getManager_panel().setVisible(true);
+				Main.MainFrame.getMaster_panel().setVisible(true);
 				Main.MainFrame.getSCake_sales_panel().setVisible(false);
 			}
 		});

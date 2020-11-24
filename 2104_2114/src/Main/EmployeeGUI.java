@@ -63,13 +63,13 @@ class EmployeePanel extends JPanel{
 		add(employee_exit_button);
 
 		//해당 지점 이름
-		bname_label.setBounds(300, 398, 480, 80);
-		bname_label.setHorizontalAlignment(JLabel.RIGHT);
+		bname_label.setBounds(691, 330, 480, 80);
+		bname_label.setHorizontalAlignment(JLabel.CENTER);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 55));
 		add(bname_label);
 		
 		//해당 지점의 현재 직원 수
-		employeecnt_label.setBounds(1105, 398, 50, 80);
+		employeecnt_label.setBounds(930, 440, 50, 40);
 		employeecnt_label.setText(employee_db(bname));
 		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
 		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 45));
