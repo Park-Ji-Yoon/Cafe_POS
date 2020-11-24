@@ -28,6 +28,8 @@ public class StockGUI {
 		StockPanel stock_panel = new StockPanel();
 	}
 }
+
+//재고 관리 페이지
 class StockPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
@@ -386,6 +388,8 @@ class GCoffeeStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//커피 현재 재고 가져오기
 	public static void coffee_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -422,6 +426,8 @@ class GCoffeeStockPanel extends JPanel{
             }
         }
 	}	
+	
+	//입력받은 만큼 커피 재고 추가
 	public void coffee_db(String menu) {	
 		String query;
 		PreparedStatement pstmt = null;
@@ -440,6 +446,7 @@ class GCoffeeStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("ice")){
+                	//입력받은 만큼 아이스 재고 추가
             		ice_s_db = rset.getInt("ICE_S") + Integer.parseInt(ice_cnt.getText());
                 	query = "UPDATE MENU_COFFEE SET ICE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -447,6 +454,7 @@ class GCoffeeStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("hot")) {
+                	//입력받은 만큼 핫 재고 추가
             		hot_s_db = rset.getInt("HOT_S") + Integer.parseInt(hot_cnt.getText());
                 	query = "UPDATE MENU_COFFEE SET HOT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -811,6 +819,8 @@ class GSmoothieStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//스무디 현재 재고 가져오기
 	public static void smoothie_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -853,6 +863,8 @@ class GSmoothieStockPanel extends JPanel{
             }
         }
 	}	
+	
+	//입력받은 만큼 스무디 재고 추가
 	public void smoothie_db(String menu) {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -871,6 +883,7 @@ class GSmoothieStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("orange")){
+                	//입력받은 만큼 오렌지 재고 추가
             		orange_s_db = rset.getInt("ORANGE_S") + Integer.parseInt(orange_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET ORANGE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -878,6 +891,7 @@ class GSmoothieStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("kiwi")) {
+                	//입력받은 만큼 키위 재고 추가
             		kiwi_s_db = rset.getInt("KIWI_S") + Integer.parseInt(kiwi_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET KIWI_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -885,6 +899,7 @@ class GSmoothieStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("grape")) {
+                	//입력받은 만큼 포도 재고 추가
             		grape_s_db = rset.getInt("GRAPE_S") + Integer.parseInt(grape_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET GRAPE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -892,6 +907,7 @@ class GSmoothieStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("straw")) {
+                	//입력받은 만큼 딸기 재고 추가
             		straw_s_db = rset.getInt("STRAW_S") + Integer.parseInt(straw_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET STRAW_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -899,6 +915,7 @@ class GSmoothieStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("water")) {
+                	//입력받은 만큼 수박 재고 추가
             		water_s_db = rset.getInt("WATER_S") + Integer.parseInt(water_cnt.getText());
                 	query = "UPDATE MENU_SMOOTHIE SET WATER_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1137,6 +1154,8 @@ class GTeaStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//차 현재 재고 가져오기
 	public static void tea_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1173,6 +1192,8 @@ class GTeaStockPanel extends JPanel{
             }
         }
 	}
+	
+	//입력받은 만큼 차 재고 추가
 	public void tea_db(String menu) {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1191,6 +1212,7 @@ class GTeaStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("green")){
+                	//입력받은 만큼 녹차 재고 추가
             		green_s_db = rset.getInt("GREEN_S") + Integer.parseInt(green_cnt.getText());
                 	query = "UPDATE MENU_TEA SET GREEN_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1198,6 +1220,7 @@ class GTeaStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("black")) {
+                	//입력받은 만큼 홍차 재고 추가
             		black_s_db = rset.getInt("BLACK_S") + Integer.parseInt(black_cnt.getText());
                 	query = "UPDATE MENU_TEA SET BLACK_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1477,6 +1500,8 @@ class GBubbleStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//버블티 현재 재고 가져오기
 	public static void bubble_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1515,6 +1540,8 @@ class GBubbleStockPanel extends JPanel{
             }
         }
 	}
+	
+	//입력받은 만큼 버블티 재고 추가
 	public void bubble_db(String menu) {	
 		String query;
 		PreparedStatement pstmt = null;
@@ -1533,6 +1560,7 @@ class GBubbleStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("bs")){
+                	//입력받은 만큼 흑당 재고 추가
             		bs_s_db = rset.getInt("BS_S") + Integer.parseInt(bs_cnt.getText());
                 	query = "UPDATE MENU_BUBBLE SET BS_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1540,6 +1568,7 @@ class GBubbleStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("taro")) {
+                	//입력받은 만큼 타로 재고 추가
             		taro_s_db = rset.getInt("TARO_S") + Integer.parseInt(taro_cnt.getText());
                 	query = "UPDATE MENU_BUBBLE SET TARO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1547,6 +1576,7 @@ class GBubbleStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("gb")) {
+                	//입력받은 만큼 녹차 재고 추가
             		gb_s_db = rset.getInt("GB_S") + Integer.parseInt(gb_cnt.getText());
                 	query = "UPDATE MENU_BUBBLE SET GB_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1827,6 +1857,8 @@ class GCakeStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//케이크 현재 재고 가져오기
 	public static void cake_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1865,6 +1897,8 @@ class GCakeStockPanel extends JPanel{
             }
         }
 	}
+	
+	//입력받은 만큼 케이크 재고 추가
 	public void cake_db(String menu) {	
 		String query;
 		PreparedStatement pstmt = null;
@@ -1883,6 +1917,7 @@ class GCakeStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("cheese")){
+                	//입력받은 만큼 치즈 재고 추가
             		cheese_s_db = rset.getInt("CHEESE_S") + Integer.parseInt(cheese_cnt.getText());
                 	query = "UPDATE MENU_CAKE SET CHEESE_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1890,6 +1925,7 @@ class GCakeStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("sc")) {
+                	//입력받은 만큼 딸기 재고 추가
             		sc_s_db = rset.getInt("SC_S") + Integer.parseInt(sc_cnt.getText());
                 	query = "UPDATE MENU_CAKE SET SC_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -1897,6 +1933,7 @@ class GCakeStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("choco")) {
+                	//입력받은 만큼 초코 재고 추가
             		choco_s_db = rset.getInt("CHOCO_S") + Integer.parseInt(choco_cnt.getText());
                 	query = "UPDATE MENU_CAKE SET CHOCO_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -2178,6 +2215,8 @@ class GMacaronStockPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//마카롱 현재 재고 가져오기
 	public static void macaron_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -2216,6 +2255,8 @@ class GMacaronStockPanel extends JPanel{
             }
         }
 	}
+	
+	//입력받은 만큼 마카롱 재고 추가
 	public void macaron_db(String menu) {
 		String query;
 		PreparedStatement pstmt = null;
@@ -2234,6 +2275,7 @@ class GMacaronStockPanel extends JPanel{
 			
             while (result = rset.next()) {
             	if(menu.equals("berry")){
+                	//입력받은 만큼 베리 재고 추가
             		berry_s_db = rset.getInt("BERRY_S") + Integer.parseInt(berry_cnt.getText());
                 	query = "UPDATE MENU_MACARON SET BERRY_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -2241,6 +2283,7 @@ class GMacaronStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("yogurt")) {
+                	//입력받은 만큼 요거트 재고 추가
             		yogurt_s_db = rset.getInt("YOGURT_S") + Integer.parseInt(yogurt_cnt.getText());
                 	query = "UPDATE MENU_MACARON SET YOGURT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
@@ -2248,6 +2291,7 @@ class GMacaronStockPanel extends JPanel{
         			pstmt.setString(2, StockPanel.bname);
         			pstmt.executeUpdate();
             	}else if(menu.equals("fruit")) {
+                	//입력받은 만큼 과일 재고 추가
             		fruit_s_db = rset.getInt("FRUIT_S") + Integer.parseInt(fruit_cnt.getText());
                 	query = "UPDATE MENU_MACARON SET FRUIT_S = ? WHERE BNAME = ?";
                 	pstmt = conn.prepareStatement(query);
