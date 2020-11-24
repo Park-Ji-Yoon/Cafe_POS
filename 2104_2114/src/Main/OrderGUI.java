@@ -198,6 +198,8 @@ class OrderPanel extends JPanel {
 
 	static OrderList order_list = new OrderList();
 
+	// 메뉴를 더블클릭해서 추가 할 시 오른쪽 패널에 추가될 JLabel들 초기화
+	// 더블클릭이 되지 않으면 사용이 안 됨
 	static OrderDetails iceCoffee = new OrderDetails();
 	static OrderDetails hotCoffee = new OrderDetails();
 	static OrderDetails orangeSmoo = new OrderDetails();
@@ -412,15 +414,19 @@ class OrderPanel extends JPanel {
 					OrderPanel.getOrder_list().add(space);
 				}
 				OrderPanel.getOrder_list().add(iceCoffee);
+				
+				// 더블 클릭 되었을 때 오른쪽에 쌓임
 				if (e.getClickCount() == 2) {
 
-					iceCoffee.setBounds(0, all_count * 70, 500, 50);
+					iceCoffee.setBounds(0, all_count * 70, 500, 50); // 쌓이는 위치는 (주문한 메뉴 종류 개수)*70
 					iceCoffee.setFont(new Font("인터파크고딕 M", Font.PLAIN, 30));
 					iceCoffee.setVisible(true);
-
+					
+					// 마이너스, 플러스 버튼 이미지 초기화
 					ImageIcon minus = new ImageIcon("images/minus.png");
 					ImageIcon plus = new ImageIcon("images/plus.png");
 
+					// 메뉴 개수 추가(+), 메뉴 개수 삭제(-) 버튼 초기화
 					JButton minus_ice_coffee = new JButton();
 					minus_ice_coffee.setFont(new Font("인터파크고딕 L", Font.PLAIN, 20));
 					minus_ice_coffee.setBounds(10, 0, 30, 30);
@@ -441,9 +447,11 @@ class OrderPanel extends JPanel {
 					plus_ice_coffee.setIcon(plus);
 					iceCoffee.add(plus_ice_coffee);
 
+					// 아이스 커피 (-) 버튼 클릭 시 이벤트
 					minus_ice_coffee.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							ice_coffee_count--;
+							ice_coffee_count--; // 아이스 커피 개수가 줄어듬
+							// 오른쪽에 있는 JLabel의 text를 바꾸어줌
 							iceCoffee.setText("          Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "   |  "
 									+ String.valueOf(ice_coffee_count * 2500) + "원");
 							all_price = OrderPanel.ice_coffee_count * OrderPanel.ice_coffee_price
@@ -464,18 +472,24 @@ class OrderPanel extends JPanel {
 									+ OrderPanel.berry_macaron_count * OrderPanel.berry_macaron_price
 									+ OrderPanel.yogurt_macaron_count * OrderPanel.yogurt_macaron_price
 									+ OrderPanel.fruit_macaron_count * OrderPanel.fruit_macaron_price;
-							price_sum.setText("결제금액 : " + all_price + "원");
-							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText());
+							price_sum.setText("결제금액 : " + all_price + "원"); // 오른쪽 패널 밑에 있는 총액의 text를 바꿔줌
+							Payment.pay_price_sum.setText(OrderPanel.price_sum.getText()); // 결제하기 버튼 누르면 나올 패널에서의 총액 text를 바꿔줌
 							PaySuccessDetail.ice_coffee_pay.setText("Ice-coffee  " + ice_coffee_count + "개  "
-									+ ice_coffee_count * ice_coffee_price + "원");
+									+ ice_coffee_count * ice_coffee_price + "원"); // 영수증 패널의 JLabel text바꿔줌
+							// 만약 아이스 커피 갯수가 0이면 JLabel을 사라지게 함
 							if (ice_coffee_count == 0) {
 								OrderPanel.iceCoffee.setVisible(false);
 							}
 						}
 					});
+					
+					// 아이스커피 JLabel에 플러스 버튼 추가
 					iceCoffee.add(plus_ice_coffee);
+					
+					// 아이스커피 플러스버튼 이벤트
 					plus_ice_coffee.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
+							// 아이스 커피 갯수 추가
 							ice_coffee_count++;
 							iceCoffee.setText("          Ice-coffee  |  " + String.valueOf(ice_coffee_count) + "   |  "
 									+ String.valueOf(ice_coffee_count * 2500) + "원");
@@ -4108,11 +4122,13 @@ class OrderList extends JPanel {
 	}
 }
 
+// 각각 메뉴의 버튼 더블 클릭 했을 때 오른쪽 메뉴창에 올라가는 JLabel의 클래스
+// 차곡차곡 쌓여야 하기 때문에 위치 지정 안 함
 class OrderDetails extends JLabel {
 	OrderDetails() {
 		setFont(new Font("인터파크고딕 M", Font.PLAIN, 28));
 		setVisible(true);
-		setHorizontalAlignment(JLabel.LEFT);
+		setHorizontalAlignment(JLabel.LEFT); // 왼쪽 정렬
 	}
 }
 
@@ -4782,6 +4798,7 @@ class MacaronInfoPanel extends JPanel {
 	}
 }
 
+// 커피 영양정보 버튼 클래스
 class CoffeeInfo extends JButton {
 	CoffeeInfo() {
 		setBounds(475, 372, 30, 30);
@@ -4792,6 +4809,8 @@ class CoffeeInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 스무디 영양정보 버튼 클래스
 class SmooInfo extends JButton {
 	SmooInfo() {
 		setBounds(917, 372, 30, 30);
@@ -4802,6 +4821,8 @@ class SmooInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 차 영양정보 버튼 클래스
 class TeaInfo extends JButton {
 	TeaInfo() {
 		setBounds(475, 662, 30, 30);
@@ -4812,6 +4833,8 @@ class TeaInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 버블티 영양정보 버튼 클래스
 class BubbleInfo extends JButton {
 	BubbleInfo() {
 		setBounds(917, 662, 30, 30);
@@ -4822,6 +4845,8 @@ class BubbleInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 케이크 영양정보 버튼 클래스
 class CakeInfo extends JButton {
 	CakeInfo() {
 		setBounds(475, 952, 30, 30);
@@ -4832,6 +4857,8 @@ class CakeInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 마카롱 영양정보 버튼 클래스
 class MacaronInfo extends JButton {
 	MacaronInfo() {
 		setBounds(917, 952, 30, 30);
@@ -4842,6 +4869,8 @@ class MacaronInfo extends JButton {
 		setOpaque(false);
 	}
 }
+
+// 영양정보 닫기 버튼 클래스
 class CloseMenuInfo extends JButton{
 	CloseMenuInfo() {
 		setBounds(1350, 130, 100, 60);
