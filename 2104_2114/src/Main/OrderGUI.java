@@ -4167,7 +4167,7 @@ class PaySuccessPanel extends JPanel {
 				Main.MainFrame.getMain_panel().setVisible(true);
 				OrderPanel.getOrder_list().removeAll();
 				
-				MainPageGUI.introMusic = new Music("bgm_president.mp3", true);
+				MainPageGUI.introMusic = new Music("background_music_3.mp3", true);
 				MainPageGUI.introMusic.start();
 			}
 		});
@@ -4628,7 +4628,7 @@ class Timer implements Runnable {
 			}	
 			if(n == 0) {
 				MainPageGUI.introMusic.close();
-				Music payment = new Music("payment_audio_mp3 (2).mp3", false);
+				Music payment = new Music("payment_success_audio2.mp3", false);
 				payment.start();
 			}
 		}

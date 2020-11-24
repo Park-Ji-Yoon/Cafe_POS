@@ -24,7 +24,7 @@ public class MainPageGUI extends JFrame {
 	// main 메서드
 	public static void main(String[] args) {
 		main_frame = new MainFrame();
-		introMusic = new Music("bgm_president.mp3", true);  // introMusic 반복재생되도록 설정
+		introMusic = new Music("background_music_3.mp3", true);  // introMusic 반복재생되도록 설정
 	    introMusic.start(); // introMusic 음악 시작
 	}
 	
