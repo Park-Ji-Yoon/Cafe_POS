@@ -167,7 +167,7 @@ class MasterPanel extends JPanel{
 	}
 }
 
-//관리할 지점의 지역 선택
+// (관리자) 관리할 지점의 지역 선택
 class ChoiceAreaMaster extends JPanel {
 	static ArrayList<String> area_names = new ArrayList<String>(Arrays.asList("...", "부산", "대구", "울산", "경주", "창원"));
 
@@ -331,31 +331,37 @@ class ChoiceStoreMaster extends JPanel {
 					FranchisePanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					FranchisePanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					FranchisePanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					SCoffeeSalesPanel.store_name_label_coffee.setText(ChoiceAreaMaster.choisen_store_master);	
 					SCoffeeSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					SCoffeeSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					SCoffeeSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					SCoffeeSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					SSmoothieSalesPanel.store_name_label_smoothie.setText(ChoiceAreaMaster.choisen_store_master);
 					SSmoothieSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					SSmoothieSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					SSmoothieSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					SSmoothieSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					STeaSalesPanel.store_name_label_tea.setText(ChoiceAreaMaster.choisen_store_master);	
 					STeaSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					STeaSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					STeaSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					STeaSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					SBubbleSalesPanel.store_name_label_bubble.setText(ChoiceAreaMaster.choisen_store_master);
 					SBubbleSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					SBubbleSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					SBubbleSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					SBubbleSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					SCakeSalesPanel.store_name_label_cake.setText(ChoiceAreaMaster.choisen_store_master);	
 					SCakeSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					SCakeSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					SCakeSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					SCakeSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					SMacaronSalesPanel.store_name_label_macaron.setText(ChoiceAreaMaster.choisen_store_master);
 					SMacaronSalesPanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
 					SMacaronSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
@@ -371,7 +377,7 @@ class ChoiceStoreMaster extends JPanel {
 			}
 		});
 		
-		//관리할 지점 선택 페이지로 이동
+		// 관리할 지점 선택 페이지로 이동
 		store_exit_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
