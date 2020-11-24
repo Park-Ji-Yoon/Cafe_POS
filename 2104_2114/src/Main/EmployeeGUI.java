@@ -90,6 +90,12 @@ class EmployeePanel extends JPanel{
 					employee_in(bname);
 					employeecnt_label.setText(employee_db(bname));
 				}
+				ManagerInfo.getManager_name_label().setText(ManagerLogin.getG_Name());
+		    	ManagerInfo.getManager_id_label().setText(ManagerLogin.getG_Id());
+		    	ManagerInfo.getManager_pw_label().setText(ManagerLogin.getG_Pw());
+		    	ManagerInfo.getManager_bname_label().setText(ManagerLogin.getG_BName());
+		    	ManagerInfo.getManager_bphone_label().setText(ManagerLogin.getG_BPhone());
+		    	ManagerInfo.getManager_em_label().setText(ManagerLogin.getG_Em());
 			}
 		});
 		add(em_in);
@@ -102,6 +108,7 @@ class EmployeePanel extends JPanel{
 		em_de.setFocusPainted(false);
 		em_de.setOpaque(false);
 		em_de.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				if(employee_db(bname).equals("0")) {
 					JOptionPane.showMessageDialog(null, "직원 등록은 최소 0명부터 가능합니다.", "Error", JOptionPane.ERROR_MESSAGE);	
@@ -109,6 +116,12 @@ class EmployeePanel extends JPanel{
 					employee_de(bname);
 					employeecnt_label.setText(employee_db(bname));
 				}
+				ManagerInfo.getManager_name_label().setText(ManagerLogin.getG_Name());
+		    	ManagerInfo.getManager_id_label().setText(ManagerLogin.getG_Id());
+		    	ManagerInfo.getManager_pw_label().setText(ManagerLogin.getG_Pw());
+		    	ManagerInfo.getManager_bname_label().setText(ManagerLogin.getG_BName());
+		    	ManagerInfo.getManager_bphone_label().setText(ManagerLogin.getG_BPhone());
+		    	ManagerInfo.getManager_em_label().setText(ManagerLogin.getG_Em());
 			}
 		});
 		add(em_de);
