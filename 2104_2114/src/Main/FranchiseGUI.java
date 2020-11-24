@@ -188,9 +188,6 @@ class FranchisePanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
-	public static String getBname() {
-		return bname;
-	}
 }
 class SCoffeeSalesPanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
@@ -369,6 +366,8 @@ class SCoffeeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//커피 메뉴 일별, 월별 매출액
 	public static void coffee_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -642,6 +641,8 @@ class SSmoothieSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//스무디 메뉴 일별, 월별 매출액
 	public static void smoothie_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -872,6 +873,8 @@ class STeaSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//차 메뉴 일별, 월별 매출액
 	public static void tea_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1109,6 +1112,8 @@ class SBubbleSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//버블티 메뉴 일별, 월별 매출액
 	public static void bubble_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1349,6 +1354,8 @@ class SCakeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//케이크 메뉴 일별, 월별 매출액
 	public static void cake_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1591,6 +1598,8 @@ class SMacaronSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//마카롱 메뉴 일별, 월별 매출액
 	public static void macaron_db() {		
 		String query;
 		PreparedStatement pstmt = null;

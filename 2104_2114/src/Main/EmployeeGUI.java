@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-// 지점장 클래스
 public class EmployeeGUI extends JFrame{
 	public EmployeeGUI() {
 	}
@@ -29,7 +28,7 @@ public class EmployeeGUI extends JFrame{
 	}
 }
 
-// 지점장 메인 화면 클래스
+//직원 관리 클래스
 class EmployeePanel extends JPanel{
 	static Icon icon = new ImageIcon("images/back_2.png");
 	
@@ -48,7 +47,7 @@ class EmployeePanel extends JPanel{
 		setLayout(null);
 		setVisible(true);
 
-		//로그인 취소
+		//지점장 메인 화면으로 돌아가기
 		employee_exit_button.setBounds(61, 35, 126, 35);
 		employee_exit_button.setVisible(true);
 		employee_exit_button.setBorderPainted(false);
@@ -63,18 +62,20 @@ class EmployeePanel extends JPanel{
 		});
 		add(employee_exit_button);
 
+		//해당 지점 이름
 		bname_label.setBounds(300, 398, 480, 80);
 		bname_label.setHorizontalAlignment(JLabel.RIGHT);
 		bname_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 55));
 		add(bname_label);
-
+		
+		//해당 지점의 현재 직원 수
 		employeecnt_label.setBounds(1105, 398, 50, 80);
 		employeecnt_label.setText(employee_db(bname));
 		employeecnt_label.setHorizontalAlignment(JLabel.RIGHT);
 		employeecnt_label.setFont(new Font("인터파크고딕 M", Font.PLAIN, 45));
 		add(employeecnt_label);
 
-		//직원 추가
+		//직원 추가 버튼
 		em_in.setBounds(642, 562, 253, 150);
 		em_in.setVisible(true);
 		em_in.setBorderPainted(false);
@@ -93,7 +94,7 @@ class EmployeePanel extends JPanel{
 		});
 		add(em_in);
 
-		//직원 삭제
+		//직원 삭제 버튼
 		em_de.setBounds(971, 562, 253, 150);
 		em_de.setVisible(true);
 		em_de.setBorderPainted(false);
@@ -124,6 +125,8 @@ class EmployeePanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//현재 직원 수 불러오는 DB
 	public static String employee_db(String bname) {		
 		String em = null;
 		int em_cnt = 0;
@@ -160,6 +163,8 @@ class EmployeePanel extends JPanel{
         }
         return em;
 	}
+	
+	//직원 수 1명 추가하는 DB
 	public void employee_in(String bname) {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -199,6 +204,8 @@ class EmployeePanel extends JPanel{
             }
         }
 	}
+	
+	//직원 수 1명 삭제하는 DB
 	public void employee_de(String bname) {		
 		String query;
 		PreparedStatement pstmt = null;

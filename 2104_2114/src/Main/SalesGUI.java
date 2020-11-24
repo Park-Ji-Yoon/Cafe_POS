@@ -372,6 +372,8 @@ class GCoffeeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//커피 일별, 월별 매출액
 	public static void coffee_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -649,6 +651,8 @@ class GSmoothieSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//스무디 일별, 월별 매출액
 	public static void smoothie_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -882,6 +886,8 @@ class GTeaSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//차 일별, 월별 매출액
 	public static void tea_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1122,6 +1128,8 @@ class GBubbleSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//버블티 일별, 월별 매출액
 	public static void bubble_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1365,6 +1373,8 @@ class GCakeSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//케이크 일별, 월별 매출액
 	public static void cake_db() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -1609,6 +1619,8 @@ class GMacaronSalesPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//마카롱 일별, 월별 매출액
 	public static void macaron_db() {		
 		String query;
 		PreparedStatement pstmt = null;

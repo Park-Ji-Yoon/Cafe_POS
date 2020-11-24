@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 
+//지점 정보 가져오는 DB(지점명, 전화번호, 일별 매출액, 월별 매출액)
 public class FranchiseDB {	
+	
+	//지점명
 	public static String FranchiseManagerName(String bname) {		
 		String manager_name = null;
 		String query;
@@ -44,6 +47,8 @@ public class FranchiseDB {
 		}
 		return manager_name;
 	}
+	
+	//지점 전화번호
 	public static String FranchisePhone(String bname) {
 		String franchise_phone = null;
 		String query;
@@ -80,6 +85,8 @@ public class FranchiseDB {
 		}
 		return franchise_phone;
 	}
+	
+	//일별 커피 매출액
 	public static int FranchiseDayCoffeeSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -116,6 +123,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 스무디 매출액
 	public static int FranchiseDaySmoothieSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -152,6 +161,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 차 매출액
 	public static int FranchiseDayTeaSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -189,6 +200,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 버블티 매출액
 	public static int FranchiseDayBubbleSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -225,6 +238,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 케이크 매출액
 	public static int FranchiseDayCakeSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -262,6 +277,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 마카롱 매출액
 	public static int FranchiseDayMacaronSales(String bname) {
 		int franchise_day_sales = 0;
 		String query;
@@ -298,6 +315,8 @@ public class FranchiseDB {
 		}
 		return franchise_day_sales;
 	}
+	
+	//일별 총 매출액
 	public static int FranchiseDaySales(String bname) {
 		int franchise_day_sales = 0;
 		
@@ -305,6 +324,8 @@ public class FranchiseDB {
 		
 		return franchise_day_sales;
 	}
+	
+	//월별 커피 매출액
 	public static int FranchiseMonthCoffeeSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -341,6 +362,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 스무디 매출액
 	public static int FranchiseMonthSmoothieSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -377,6 +400,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 차 매출액
 	public static int FranchiseMonthTeaSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -412,6 +437,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 버블티 매출액
 	public static int FranchiseMonthBubbleSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -447,6 +474,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 케이크 매출액
 	public static int FranchiseMonthCakeSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -482,6 +511,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 마카롱 매출액
 	public static int FranchiseMonthMacaronSales(String bname) {
 		int franchise_month_sales = 0;
 		String query;
@@ -517,6 +548,8 @@ public class FranchiseDB {
 		}
 		return franchise_month_sales;
 	}
+	
+	//월별 총 매출액
 	public static int FranchiseMonthSales(String bname) {
 		int franchise_month_sales = 0;
 		

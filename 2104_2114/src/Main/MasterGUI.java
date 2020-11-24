@@ -128,6 +128,8 @@ class MasterPanel extends JPanel{
 		ImageIcon xyimg = new ImageIcon(yimg);
 		return xyimg;
 	}
+	
+	//관리자 이름 가져오는 DB
 	public static String getSname() {
 		String sname = "";
 		
@@ -164,6 +166,8 @@ class MasterPanel extends JPanel{
 		return sname;
 	}
 }
+
+//관리할 지점의 지역 선택
 class ChoiceAreaMaster extends JPanel {
 	static ArrayList<String> area_names = new ArrayList<String>(Arrays.asList("...", "부산", "대구", "울산", "경주", "창원"));
 
@@ -274,6 +278,8 @@ class ChoiceAreaMaster extends JPanel {
 				}
 			}
 		});
+		
+		//관리자 메인 페이지로 이동
 		area_exit_btn_master.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -294,6 +300,7 @@ class ChoiceAreaMaster extends JPanel {
 	}
 }
 
+//관리할 지점의 지점명 선택
 class ChoiceStoreMaster extends JPanel {
 	ImageIcon background = new ImageIcon("images/choice_4.png");
 
@@ -316,7 +323,8 @@ class ChoiceStoreMaster extends JPanel {
 				}else {
 					Main.MainFrame.getFranchise_panel().setVisible(true);
 					Main.MainFrame.getChoice_area_master_panel().setVisible(false);
-					// String에 저장시키기========================================================================================================================
+					
+					//326~361 다른 클래스에서 사용할 정보 저장
 					FranchisePanel.bname = ChoiceAreaMaster.choisen_store_master;
 					FranchisePanel.store_name_label.setText(ChoiceAreaMaster.choisen_store_master);	
 					FranchisePanel.store_manager_label.setText(FranchiseDB.FranchiseManagerName(ChoiceAreaMaster.choisen_store_master));
@@ -353,6 +361,7 @@ class ChoiceStoreMaster extends JPanel {
 					SMacaronSalesPanel.store_phone_label.setText(FranchiseDB.FranchisePhone(ChoiceAreaMaster.choisen_store_master));
 					SMacaronSalesPanel.day_sales_label.setText(Integer.toString(FranchiseDB.FranchiseDaySales(ChoiceAreaMaster.choisen_store_master)));
 					SMacaronSalesPanel.month_sales_label.setText(Integer.toString(FranchiseDB.FranchiseMonthSales(ChoiceAreaMaster.choisen_store_master)));
+					
 					Main.MainFrame.getChoice_store_master_panel().remove(ChoiceAreaMaster.store_combobox_master);
 					ChoiceAreaMaster.area_combobox_master.setSelectedIndex(0);		
 					ChoiceAreaMaster.store_combobox_master.setSelectedIndex(0);
@@ -361,6 +370,8 @@ class ChoiceStoreMaster extends JPanel {
 				}
 			}
 		});
+		
+		//관리할 지점 선택 페이지로 이동
 		store_exit_btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

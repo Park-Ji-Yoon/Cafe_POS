@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
  
 public class MasterLogin {
+	//master 로그인 시 호출되는 DB
     public MasterLogin() {
 		String query;
 		PreparedStatement pstmt = null;
@@ -41,6 +42,7 @@ public class MasterLogin {
                 }
             }
             
+            //로그인 실패 시
             if(result == false) {
             	JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 잘못입력되었습니다.", "Error", JOptionPane.ERROR_MESSAGE);
             }

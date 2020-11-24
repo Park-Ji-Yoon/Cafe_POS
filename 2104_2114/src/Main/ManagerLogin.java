@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 public class ManagerLogin {
     public static String nowbname;
     
+    //manager 로그인 시 호출되는 DB
 	public ManagerLogin() {
 		String query;
 		PreparedStatement pstmt = null;
@@ -32,12 +33,12 @@ public class ManagerLogin {
                 	
                 	nowbname = rset.getString("G_BNAME");
                 	
+                	//37~63 다른 클래스에서 필요한 정보 저장
                 	ManagerPanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname_label.setText(nowbname);
                 	EmployeePanel.bname = nowbname;
                 	SalesPanel.bname = nowbname;
                 	StockPanel.bname = nowbname;
-                	System.out.println("메소드 밖 : " + nowbname);
                 	
                 	ManagerInfo.getManager_name_label().setText(getG_Name());
                 	ManagerInfo.getManager_id_label().setText(getG_Id());
@@ -73,6 +74,7 @@ public class ManagerLogin {
                 }
             }
             
+            //로그인 실패 시
             if(result == false) {
             	JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 잘못입력되었습니다.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -90,6 +92,8 @@ public class ManagerLogin {
             }
         }
     }
+	
+	//지점장 이름
 	public static String getG_Name() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -121,6 +125,8 @@ public class ManagerLogin {
         }
 		return g_name;
 	}
+	
+	//지점장 아이디
 	public static String getG_Id() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -152,6 +158,8 @@ public class ManagerLogin {
         }
 		return g_id;
 	}
+	
+	//지점장 비밀번호
 	public static String getG_Pw() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -183,6 +191,8 @@ public class ManagerLogin {
         }
 		return g_pw;
 	}
+	
+	//지점명
 	public static String getG_BName() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -214,6 +224,8 @@ public class ManagerLogin {
         }
 		return g_bname;
 	}
+	
+	//지점 전화번호
 	public static String getG_BPhone() {		
 		String query;
 		PreparedStatement pstmt = null;
@@ -245,6 +257,8 @@ public class ManagerLogin {
         }
 		return g_bphone;
 	}
+	
+	//지점 직원 수
 	public static String getG_Em() {		
 		String query;
 		PreparedStatement pstmt = null;
